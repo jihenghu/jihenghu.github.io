@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jihenghu.github.io</id>
+    <title>Herrera&apos;s Notes</title>
+    <updated>2020-08-05T07:40:18.536Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jihenghu.github.io"/>
+    <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
+    <subtitle>涉江采芙蓉，兰泽多芳草。</subtitle>
+    <logo>https://jihenghu.github.io/images/avatar.png</logo>
+    <icon>https://jihenghu.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Herrera&apos;s Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[Mastodon Notes]]></title>
+        <id>https://jihenghu.github.io/post/mastodon-notes/</id>
+        <link href="https://jihenghu.github.io/post/mastodon-notes/">
+        </link>
+        <updated>2020-07-25T10:38:40.000Z</updated>
+        <content type="html"><![CDATA[<p>External Resources<br>
+Using the admin CLI: https://docs.joinmastodon.org/admin/tootctl/</p>
+<p>The official Docker guide：https://github.com/tootsuite/documentation/blob/archive/Running-Mastodon/Docker-Guide.md</p>
+<p>Nginx part (Chinese): https://candinya.com/posts/mastodon-first-meet/</p>
+<p>Docker configurations<br>
+The project now includes a Dockerfile and a docker-compose.yml file (which requires at least docker-compose version 1.10.0).</p>
+<p>Prerequisites<br>
+Working basic (Linux) server with Nginx (or Apache2; not officially supported).<br>
+Recent stable version of Docker.<br>
+Recent stable version of Docker-compose.<br>
+Setting up<br>
+Clone Mastodon's repository.</p>
+<h1 id="clone-mastodon-to-~live-directory">Clone mastodon to ~/live directory</h1>
+<p>git clone https://github.com/tootsuite/mastodon.git live</p>
+<h1 id="change-directory-to-~live">Change directory to ~/live</h1>
+<p>cd ~/live</p>
+<h1 id="checkout-to-the-latest-stable-branch">Checkout to the latest stable branch</h1>
+<p>git checkout <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>g</mi><mi>i</mi><mi>t</mi><mi>t</mi><mi>a</mi><mi>g</mi><mo>−</mo><mi>l</mi><mi mathvariant="normal">∣</mi><mi>g</mi><mi>r</mi><mi>e</mi><mi>p</mi><mo>−</mo><msup><mi>v</mi><mo mathvariant="normal">′</mo></msup><mi>r</mi><mi>c</mi><mo>[</mo><mn>0</mn><mo>−</mo><mn>9</mn><mo>]</mo><mo>∗</mo></mrow><annotation encoding="application/x-tex">(git tag -l | grep -v &#x27;rc[0-9]*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">c</span><span class="mopen">[</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mord">∗</span></span></span></span>' | sort -V | tail -n 1)<br>
+Review the settings in docker-compose.yml. Note that it is not default to store the postgresql database and redis databases in a persistent storage location. If you plan on running your instance in production, you must uncomment the volumes directive in docker-compose.yml.</p>
+<p>Getting the Mastodon image<br>
+Using a prebuilt image<br>
+If you're not making any local code changes or customizations on your instance, you can use a prebuilt Docker image to avoid the time and resource consumption of a build. Images are available from Docker Hub: https://hub.docker.com/r/tootsuite/mastodon/</p>
+<p>To use the prebuilt images:</p>
+<p>Open docker-compose.yml in your favorite text editor.<br>
+Comment out the build: . lines for all images (web, streaming, sidekiq).<br>
+Edit the image: tootsuite/mastodon lines for all images to include the release you want. The default is latest which is the most recent stable version, however it recommended to explicitly pin a version: If you wanted to use v2.2.0 for example, you would edit the lines to say: image: tootsuite/mastodon:v2.2.0<br>
+Save the file and exit the text editor.<br>
+Run cp .env.production.sample .env.production to bootstrap the configuration. You will need to edit this file later.<br>
+Run docker-compose build. It will now pull the correct image from Docker Hub.<br>
+Set correct file-owner with chown -R 991:991 public<br>
+Building your own image<br>
+You must build your own image if you've made any code modifications. To build your own image:</p>
+<p>Open docker-compose.yml in your favorite text editor.<br>
+Uncomment the build: . lines for all images (web, streaming, sidekiq) if needed.<br>
+Save the file and exit the text editor.<br>
+Run cp .env.production.sample .env.production to bootstrap the configuration. You will need to edit this file later.<br>
+Run docker-compose build.<br>
+Set correct file-owner with chown -R 991:991 public<br>
+Building the app<br>
+Now the image can be used to generate a configuration with:</p>
+<p>docker-compose run --rm web bundle exec rake mastodon:setup<br>
+This is an interactive wizard that will guide you through the basic and necessary options and generate new app secrets. At some point it will output your configuration, copy and paste that configuration into the .env.production file.</p>
+<p>The wizard will setup the database schema and precompile assets. After it's done, you can launch Mastodon with:</p>
+<p>docker-compose up -d<br>
+Configuration<br>
+Following that, make sure that you read the production guide, beginning with the section that describes how to point Nginx to Mastodon.</p>
+<p>The container has two volumes, for the assets and for user uploads, and optionally two more, for the postgresql and redis databases.</p>
+<p>The default docker-compose.yml maps them to the repository's public/assets and public/system directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.</p>
+<p>Note: The --rm option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.</p>
+<p>Running tasks<br>
+Running any of these tasks via docker-compose would look like this:</p>
+<p>docker-compose run --rm web bundle exec rake mastodon:media:clear<br>
+Updating<br>
+This approach makes updating to the latest version a real breeze.</p>
+<p>git fetch to download updates from the repository.<br>
+Now you need to tell git to use those updates. You have probably changed your docker-compose.yml file. Check with git status.<br>
+If the docker-compose.yml file is modified, run git stash to stash your cha</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://jihenghu.github.io/post/hello-gridea/</id>
+        <link href="https://jihenghu.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->  
+<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作  <img src="https://jihenghu.github.io/post-images/1596609586675.jpg" alt="" loading="lazy"></p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
