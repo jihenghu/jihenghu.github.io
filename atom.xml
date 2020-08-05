@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera&apos;s Notes</title>
-    <updated>2020-08-05T07:49:02.978Z</updated>
+    <updated>2020-08-05T07:50:09.376Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera&apos;s Notes</rights>
     <entry>
-        <title type="html"><![CDATA[Mastodon Notes]]></title>
+        <title type="html"><![CDATA[Mastodon Notes from]]></title>
         <id>https://jihenghu.github.io/post/mastodon-notes/</id>
         <link href="https://jihenghu.github.io/post/mastodon-notes/">
         </link>
