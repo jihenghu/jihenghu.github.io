@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mastodon Notes from | Herrera Notes</title>
+<title>MP1 OU/NSSL CLAMPS MWR and Surface Meteorology Data | Herrera Notes</title>
 <meta name="description" content="涉江采芙蓉，兰泽多芳草。" />
 <link rel="shortcut icon" href="https://jihenghu.github.io/favicon.ico">
 <link rel="stylesheet" href="https://jihenghu.github.io/styles/main.css">
@@ -15,10 +15,16 @@
 <script src="https://jihenghu.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/functions.js"></script>
     <meta name="referrer" content="never">
-    <meta name="description" content="External Resources
-Using the admin CLI: https://docs.joinmastodon.org/admin/tootctl/
-The official Docker guide：https://g..." />
-    <meta name="keywords" content="tech" />
+    <meta name="description" content="
+时间：20150601~20150714
+类型：飞行观测 NetCDF
+区域：SGP地区-如封面图
+参数：亮温，降水率，云水/云冰，风场，环境参数
+
+
+数据来源于 NCAR/EOL 系统，
+数据链接📌 MP1 OU/NSSL CLAMP..." />
+    <meta name="keywords" content="数据" />
     <script src="https://jihenghu.github.io/media/js/waterfall.min.js"></script>
     <script src="https://jihenghu.github.io/media/js/prism.min.js"></script>
   </head>
@@ -104,23 +110,23 @@ The official Docker guide：https://g..." />
       <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
         <div class="center content">
-          <div class="featured-image cover" style="background-image: url('https://s3.2heng.xin/mashiro.top/covers/2020-05-05-mastodon-notes.jpg');">
+          <div class="featured-image cover" style="background-image: url('https://jihenghu.github.io/post-images/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data.PNG');">
             <div class="meta top"> 
-              <time class="meta-info" style="float:left;" datetime="2020-07-25"><i class="fa fa-calendar"></i><span class="lately">14 天前</span></time>
+              <time class="meta-info" style="float:left;" datetime="2020-08-08"><i class="fa fa-calendar"></i><span class="lately">17 分钟前</span></time>
               
-              <a href="https://jihenghu.github.io/post/mastodon-notes/#comments" class="comments meta-info" title="">
-                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/mastodon-notes/"> </span>
+              <a href="https://jihenghu.github.io/post/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/"> </span>
               </a>
-              <span id="/mastodon-notes/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              <span id="/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
               
             </div>
             <div class="info">
               <div class="tags ">
                 
-                      <a href="https://jihenghu.github.io/tag/KLiO3nmSU/" class="ctag ctag-0 ctag-KLiO3nmSU" aria-label="">tech</a>
+                      <a href="https://jihenghu.github.io/tag/Mx8hOBrxg/" class="ctag ctag-0 ctag-Mx8hOBrxg" aria-label="">数据</a>
                     
               </div>
-              <h1 class="title ularge white bold">Mastodon Notes from</h1>
+              <h1 class="title ularge white bold">MP1 OU/NSSL CLAMPS MWR and Surface Meteorology Data</h1>
             </div>
           </div>
         </div>  
@@ -130,63 +136,21 @@ The official Docker guide：https://g..." />
             <article class="main-article post">
               <section class="post-content">
                 <div class="text">
-                  <p>External Resources<br>
-Using the admin CLI: https://docs.joinmastodon.org/admin/tootctl/</p>
-<p>The official Docker guide：https://github.com/tootsuite/documentation/blob/archive/Running-Mastodon/Docker-Guide.md</p>
-<p>Nginx part (Chinese): https://candinya.com/posts/mastodon-first-meet/</p>
-<p>Docker configurations<br>
-The project now includes a Dockerfile and a docker-compose.yml file (which requires at least docker-compose version 1.10.0).</p>
-<p>Prerequisites<br>
-Working basic (Linux) server with Nginx (or Apache2; not officially supported).<br>
-Recent stable version of Docker.<br>
-Recent stable version of Docker-compose.<br>
-Setting up<br>
-Clone Mastodon's repository.</p>
-<h1 id="clone-mastodon-to-~live-directory">Clone mastodon to ~/live directory</h1>
-<p>git clone https://github.com/tootsuite/mastodon.git live</p>
-<h1 id="change-directory-to-~live">Change directory to ~/live</h1>
-<p>cd ~/live</p>
-<h1 id="checkout-to-the-latest-stable-branch">Checkout to the latest stable branch</h1>
-<p>git checkout <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>g</mi><mi>i</mi><mi>t</mi><mi>t</mi><mi>a</mi><mi>g</mi><mo>−</mo><mi>l</mi><mi mathvariant="normal">∣</mi><mi>g</mi><mi>r</mi><mi>e</mi><mi>p</mi><mo>−</mo><msup><mi>v</mi><mo mathvariant="normal">′</mo></msup><mi>r</mi><mi>c</mi><mo>[</mo><mn>0</mn><mo>−</mo><mn>9</mn><mo>]</mo><mo>∗</mo></mrow><annotation encoding="application/x-tex">(git tag -l | grep -v &#x27;rc[0-9]*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">c</span><span class="mopen">[</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mord">∗</span></span></span></span>' | sort -V | tail -n 1)<br>
-Review the settings in docker-compose.yml. Note that it is not default to store the postgresql database and redis databases in a persistent storage location. If you plan on running your instance in production, you must uncomment the volumes directive in docker-compose.yml.</p>
-<p>Getting the Mastodon image<br>
-Using a prebuilt image<br>
-If you're not making any local code changes or customizations on your instance, you can use a prebuilt Docker image to avoid the time and resource consumption of a build. Images are available from Docker Hub: https://hub.docker.com/r/tootsuite/mastodon/</p>
-<p>To use the prebuilt images:</p>
-<p>Open docker-compose.yml in your favorite text editor.<br>
-Comment out the build: . lines for all images (web, streaming, sidekiq).<br>
-Edit the image: tootsuite/mastodon lines for all images to include the release you want. The default is latest which is the most recent stable version, however it recommended to explicitly pin a version: If you wanted to use v2.2.0 for example, you would edit the lines to say: image: tootsuite/mastodon:v2.2.0<br>
-Save the file and exit the text editor.<br>
-Run cp .env.production.sample .env.production to bootstrap the configuration. You will need to edit this file later.<br>
-Run docker-compose build. It will now pull the correct image from Docker Hub.<br>
-Set correct file-owner with chown -R 991:991 public<br>
-Building your own image<br>
-You must build your own image if you've made any code modifications. To build your own image:</p>
-<p>Open docker-compose.yml in your favorite text editor.<br>
-Uncomment the build: . lines for all images (web, streaming, sidekiq) if needed.<br>
-Save the file and exit the text editor.<br>
-Run cp .env.production.sample .env.production to bootstrap the configuration. You will need to edit this file later.<br>
-Run docker-compose build.<br>
-Set correct file-owner with chown -R 991:991 public<br>
-Building the app<br>
-Now the image can be used to generate a configuration with:</p>
-<p>docker-compose run --rm web bundle exec rake mastodon:setup<br>
-This is an interactive wizard that will guide you through the basic and necessary options and generate new app secrets. At some point it will output your configuration, copy and paste that configuration into the .env.production file.</p>
-<p>The wizard will setup the database schema and precompile assets. After it's done, you can launch Mastodon with:</p>
-<p>docker-compose up -d<br>
-Configuration<br>
-Following that, make sure that you read the production guide, beginning with the section that describes how to point Nginx to Mastodon.</p>
-<p>The container has two volumes, for the assets and for user uploads, and optionally two more, for the postgresql and redis databases.</p>
-<p>The default docker-compose.yml maps them to the repository's public/assets and public/system directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.</p>
-<p>Note: The --rm option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.</p>
-<p>Running tasks<br>
-Running any of these tasks via docker-compose would look like this:</p>
-<p>docker-compose run --rm web bundle exec rake mastodon:media:clear<br>
-Updating<br>
-This approach makes updating to the latest version a real breeze.</p>
-<p>git fetch to download updates from the repository.<br>
-Now you need to tell git to use those updates. You have probably changed your docker-compose.yml file. Check with git status.<br>
-If the docker-compose.yml file is modified, run git stash to stash your cha</p>
+                  <ul>
+<li>时间：20150601~20150714</li>
+<li>类型：飞行观测 NetCDF</li>
+<li>区域：SGP地区-如封面图</li>
+<li>参数：亮温，降水率，云水/云冰，风场，环境参数</li>
+</ul>
+<!-- more -->
+<p>数据来源于 NCAR/EOL 系统，</p>
+<p>数据链接📌 <a href="https://data.eol.ucar.edu/dataset/485.102">MP1 OU/NSSL CLAMPS MWR and Surface Meteorology Data</a></p>
+<p>🌴状态：已下载-&gt;  D:\MP1 OUNSSL CLAMPS MWR and Surface Meteorology Data</p>
+<p>相关文献：</p>
+<blockquote>
+<p>Turner, D. 2016. MP1 OU/NSSL CLAMPS MWR and Surface Meteorology Data. Version 1.0. UCAR/NCAR - Earth Observing Laboratory. https://doi.org/10.5065/D6707ZT3. Accessed 08 Aug 2020.</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://jihenghu.github.io/post-images/1596875718348.PNG" alt="" loading="lazy"></figure>
 
                 </div>
                 <div class="clear"></div>
@@ -196,26 +160,13 @@ If the docker-compose.yml file is modified, run git stash to stash your cha</p>
 
             <section class="related section">
               
-              <article class="prev grid-50 tablet-grid-50 grid-parent">
-                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data.PNG');"></div>
-                 <a href="https://jihenghu.github.io/post/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/" class="full-link"></a>
-                 <div class="info">
-                  <time datetime="2020-08-08">2020-08-08</time>
-                  <h4 class="title white no-margin">MP1 OU/NSSL CLAMPS MWR and Surface Meteorology Data</h4>
-                </div>
-                 <span class="epcl-button red">
-                  <img src="https://jihenghu.github.io/media/images/left-arrow.svg" width="15" alt="Left Arrow">
-                </span>
-                <div class="overlay"></div>
-              </article>
-              
               
               <article class="next grid-50 tablet-grid-50 grid-parent">
-                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/hello-gridea.jpg');"></div>
-                 <a href="https://jihenghu.github.io/post/hello-gridea/" class="full-link"></a>
+                <div class="thumb cover lazy loaded" style="background-image: url('https://s3.2heng.xin/mashiro.top/covers/2020-05-05-mastodon-notes.jpg');"></div>
+                 <a href="https://jihenghu.github.io/post/mastodon-notes/" class="full-link"></a>
                  <div class="info">
-                  <time datetime="2018-12-12">2018-12-12</time>
-                  <h4 class="title white no-margin">Hello Gridea see you</h4>
+                  <time datetime="2020-07-25">2020-07-25</time>
+                  <h4 class="title white no-margin">Mastodon Notes from</h4>
                 </div>
                  <span class="epcl-button red">
                   <img src="https://jihenghu.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
