@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-08-08T08:44:36.313Z</updated>
+    <updated>2020-08-08T08:50:46.129Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -20,14 +20,14 @@
 <li>时间：20150601~20150714</li>
 <li>类型：飞行观测 NetCDF</li>
 <li>区域：SGP地区-如封面图</li>
-<li>参数：亮温，降水率，云水/云冰，风场，环境参数</li>
+<li>参数：天空亮温，降水率，云水/云冰，风场，环境参数</li>
 </ul>
 ]]></summary>
         <content type="html"><![CDATA[<ul>
 <li>时间：20150601~20150714</li>
 <li>类型：飞行观测 NetCDF</li>
 <li>区域：SGP地区-如封面图</li>
-<li>参数：亮温，降水率，云水/云冰，风场，环境参数</li>
+<li>参数：天空亮温，降水率，云水/云冰，风场，环境参数</li>
 </ul>
 ]]></content>
     </entry>
