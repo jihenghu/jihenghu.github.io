@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-08-22T08:11:15.093Z</updated>
+    <updated>2020-08-23T02:46:14.498Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -11,11 +11,29 @@
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera Notes</rights>
     <entry>
+        <title type="html"><![CDATA[使用IR和MW的地表亮温的透射深度不同进行冰原研究]]></title>
+        <id>https://jihenghu.github.io/post/shi-yong-ir-he-mw-de-di-biao-liang-wen-de-tou-she-shen-du-bu-tong-jin-xing-bing-yuan-yan-jiu/</id>
+        <link href="https://jihenghu.github.io/post/shi-yong-ir-he-mw-de-di-biao-liang-wen-de-tou-she-shen-du-bu-tong-jin-xing-bing-yuan-yan-jiu/">
+        </link>
+        <updated>2020-08-23T02:35:49.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Facts about emissivity]]></title>
+        <id>https://jihenghu.github.io/post/facts-about-emissivity/</id>
+        <link href="https://jihenghu.github.io/post/facts-about-emissivity/">
+        </link>
+        <updated>2020-08-22T12:27:08.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[葵花8和MODIS卫星云盖产品较于CALIPSO/VFM]]></title>
         <id>https://jihenghu.github.io/post/kui-hua-8-he-modis-wei-xing-yun-gai-chan-pin-jiao-yu-calipsovfm/</id>
         <link href="https://jihenghu.github.io/post/kui-hua-8-he-modis-wei-xing-yun-gai-chan-pin-jiao-yu-calipsovfm/">
         </link>
         <updated>2020-08-22T08:01:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>Diurnal cycle and seasonal variation of cloud cover over the Tibetan Plateau as determined from Himawari-8 new-generation geostationary satellite data</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Diurnal cycle and seasonal variation of cloud cover over the Tibetan Plateau as determined from Himawari-8 new-generation geostationary satellite data</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[极地地区fire severity map构建]]></title>
@@ -23,6 +41,10 @@
         <link href="https://jihenghu.github.io/post/ji-di-di-qu-fire-severity-map-gou-jian/">
         </link>
         <updated>2020-08-22T07:55:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>《A robust visible near-infrared index for fire severity mapping in Arctic tundra ecosystems》</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>《A robust visible near-infrared index for fire severity mapping in Arctic tundra ecosystems》</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[硬件开发基础]]></title>
@@ -37,20 +59,6 @@
         <link href="https://jihenghu.github.io/post/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/">
         </link>
         <updated>2020-08-08T08:22:24.000Z</updated>
-        <summary type="html"><![CDATA[<ul>
-<li>时间：20150601~20150714</li>
-<li>类型：飞行观测 NetCDF</li>
-<li>区域：SGP地区-如封面图</li>
-<li>参数：天空亮温，降水率，云水/云冰，风场，环境参数</li>
-</ul>
-]]></summary>
-        <content type="html"><![CDATA[<ul>
-<li>时间：20150601~20150714</li>
-<li>类型：飞行观测 NetCDF</li>
-<li>区域：SGP地区-如封面图</li>
-<li>参数：天空亮温，降水率，云水/云冰，风场，环境参数</li>
-</ul>
-]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea see you]]></title>
