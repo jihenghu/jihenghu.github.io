@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-09-04T01:22:17.115Z</updated>
+    <updated>2020-09-06T05:18:00.766Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://jihenghu.github.io/images/avatar.png</logo>
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[自动化反演脚本]]></title>
+        <id>https://jihenghu.github.io/post/zi-dong-hua-fan-yan-jiao-ben/</id>
+        <link href="https://jihenghu.github.io/post/zi-dong-hua-fan-yan-jiao-ben/">
+        </link>
+        <updated>2020-09-06T05:12:01.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[环北极冰冻圈冻土分布]]></title>
         <id>https://jihenghu.github.io/post/huan-bei-ji-bing-dong-quan-dong-tu-fen-bu/</id>
@@ -80,12 +87,5 @@
         <link href="https://jihenghu.github.io/post/shu-ju-mp1-ounssl-clamps-mwr-and-surface-meteorology-data/">
         </link>
         <updated>2020-08-08T08:22:24.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea see you]]></title>
-        <id>https://jihenghu.github.io/post/hello-gridea/</id>
-        <link href="https://jihenghu.github.io/post/hello-gridea/">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
     </entry>
 </feed>

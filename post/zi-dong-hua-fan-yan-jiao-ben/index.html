@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>标签列表 | Herrera Notes</title>
+<title>自动化反演脚本 | Herrera Notes</title>
 <meta name="description" content="涉江采芙蓉，兰泽多芳草。" />
 <link rel="shortcut icon" href="https://jihenghu.github.io/favicon.ico">
 <link rel="stylesheet" href="https://jihenghu.github.io/styles/main.css">
@@ -14,11 +14,19 @@
 <script src="https://jihenghu.github.io/media/js/view-image.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="脚本的内容：
+#!/bin/bash
+first=$1
+second=$2
+while [ &quot;$first&quot; -le &quot;$second&quot; ]
+do
+    echo + [thread-main] $..." />
+    <meta name="keywords" content="反演,MLSE" />
+    <script src="https://jihenghu.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://jihenghu.github.io/media/js/prism.min.js"></script>
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -97,44 +105,185 @@
         </div>
       </div>
 
-      <main id="tags" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://jihenghu.github.io/post-images/zi-dong-hua-fan-yan-jiao-ben.jpg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-09-06"><i class="fa fa-calendar"></i><span class="lately">6 分钟前</span></time>
+              
+              <a href="https://jihenghu.github.io/post/zi-dong-hua-fan-yan-jiao-ben/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/zi-dong-hua-fan-yan-jiao-ben/"> </span>
+              </a>
+              <span id="/zi-dong-hua-fan-yan-jiao-ben/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://jihenghu.github.io/tag/WeovbxsDT/" class="ctag ctag-0 ctag-WeovbxsDT" aria-label="">反演</a>
+                    
+                      <a href="https://jihenghu.github.io/tag/Roj_hOYMIY/" class="ctag ctag-1 ctag-Roj_hOYMIY" aria-label="">MLSE</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">自动化反演脚本</h1>
+            </div>
+          </div>
+        </div>  
+
         <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile widget_epcl_related_articles">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>脚本的内容：</p>
+<pre><code class="language-shell">#!/bin/bash
+first=$1
+second=$2
+while [ &quot;$first&quot; -le &quot;$second&quot; ]
+do
+    echo + [thread-main] $first  start ++++++++++++++++++++++++++++++++++
+	    ## 2a -------------------------------------
+		echo + [thread-2A] ---------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/2a
+		ncl -Q yyyymmdd=${first} preprocess.2a.ncl
+		
+		## rain ------------------------------------
+		echo + [thread-Rain] ---------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/rain
+		ncl -Q yyyymmdd=${first} preprocess.rain.ncl
+				
+		## Modis ------------------------------------
+		echo + [thread-Cloud] ----------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/06
+		ncl -Q yyyymmdd=${first} myd06.preprocess.ncl
+		
+	    ## ERA 20C -------------------------------------
+		echo + [thread-ERA] --------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/20c
+		# rm -v era20c.easia.37L.125deg.${first}
+		ncl -Q yyyymmdd=${first} era20c.preprocess.ncl
+		
+		## Collo ------------------------------------
+		echo + [thread-Collo] --------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/collocate
+		./collocate.exe $first
+		
+		## remove era preprocess data. too large (~700MB)		
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/20c/data
+		rm -v era20c.easia.37L.125deg.${first}
+		## remove myd06 data. too large (~100MB)		
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/06/data
+		rm -v MYD06.cloud.properties.res5km.${first}.txt
+		## retrieve ------------------------------------
+		echo + [thread-Retr] --------------------------
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/retrieve
+		./retrieve.exe $first
+		
+		## remove collocate profiles too large (300MB)
+		cd /data01/hjh/mlse.AMSRE.CN.V2020/res1/collocate/data
+		rm -v ael2a.ael2b.myd06.era20c.profile.${first}.txt
+		rm -v ael2a.ael2b.myd06.era20c.hydro.${first}.txt
+		rm -v ael2a.ael2b.myd06.era20c.basic.${first}.txt
+		
+    echo + [thread-main] $first finished
+    let first=`date -d &quot;-1 days ago ${first}&quot; +%Y%m%d`
+done
+echo + [thread-main] all days done
+</code></pre>
+<pre><code class="language-shell">[hjh@node03] /data01/hjh/mlse.AMSRE.CN.V2020/res1/main 
+$sh main.all.sh 20080426 20080426
++ [thread-main] 20080426 start ++++++++++++++++++++++++++++++++++++++++++++++
++ [thread-2A] ---------------------------
+- [thread-2A] 20080426 with 6 files
+- [thread-2A] finished
++ [thread-Rain] ---------------------------
+- [thread-Rain] 20080426 with 5 files
+- [thread-Rain] finished
++ [thread-Cloud] ----------------------------
+- [thread-Cloud] 20080426 with 19 files
+- [thread-Cloud] CWP avereging
+- [thread-Cloud] finished
++ [thread-ERA] --------------------------
+- [thread-ERA] 20080426 start
+- [thread-ERA] 20080426 finished
++ [thread-Collo] --------------------------
+- [thread-Collo] ../rain/data/aerain.rrsurf.20080426.txt input done
+- [thread-Collo] ../06/data/MYD06.cloud.properties.res5km.20080426.txt input done
+- [thread-Collo] ../20c/data/era20c.easia.37L.125deg.20080426 input done
+- [thread-Collo] ../2a/data/ael2a.masked.tb.res1.20080426.txt opened ....
+- [thread-Collo] 20080426 collocated done
+removed `era20c.easia.37L.125deg.20080426'
+removed `MYD06.cloud.properties.res5km.20080426.txt'
++ [thread-Retr] --------------------------
+- [thread-Retr] 20080426 start
+- [thread-Retr] basics/hydros/profiles read done
+- [thread-Retr] day:20080426 Finished!!
+ - [thread-Retr]  day:20080426 :    36353.156      secs
+removed `ael2a.ael2b.myd06.era20c.profile.20080426.txt'
+removed `ael2a.ael2b.myd06.era20c.hydro.20080426.txt'
+removed `ael2a.ael2b.myd06.era20c.basic.20080426.txt'
++ [thread-main] 20080426 finished
++ [thread-main] all days done
+</code></pre>
 
-          <div class="widget_tag_cloud tagcloud">
-            
-              <a href="https://jihenghu.github.io/tag/WeovbxsDT/" class="ctag ctag-0 ctag-WeovbxsDT" aria-label="">反演</a>
-            
-              <a href="https://jihenghu.github.io/tag/Roj_hOYMIY/" class="ctag ctag-1 ctag-Roj_hOYMIY" aria-label="">MLSE</a>
-            
-              <a href="https://jihenghu.github.io/tag/HcO2WUtna/" class="ctag ctag-2 ctag-HcO2WUtna" aria-label="">Permafrost</a>
-            
-              <a href="https://jihenghu.github.io/tag/NoO6bh5EP/" class="ctag ctag-3 ctag-NoO6bh5EP" aria-label="">Arctic</a>
-            
-              <a href="https://jihenghu.github.io/tag/zGYY0fgPU/" class="ctag ctag-4 ctag-zGYY0fgPU" aria-label="">Idea</a>
-            
-              <a href="https://jihenghu.github.io/tag/qUB0nuBxf/" class="ctag ctag-5 ctag-qUB0nuBxf" aria-label="">emissivity</a>
-            
-              <a href="https://jihenghu.github.io/tag/kmVLgrfqB/" class="ctag ctag-6 ctag-kmVLgrfqB" aria-label="">hamawari-8</a>
-            
-              <a href="https://jihenghu.github.io/tag/eucsB3DakY/" class="ctag ctag-7 ctag-eucsB3DakY" aria-label="">literas</a>
-            
-              <a href="https://jihenghu.github.io/tag/_lP4K1az4/" class="ctag ctag-8 ctag-_lP4K1az4" aria-label="">硬件</a>
-            
-              <a href="https://jihenghu.github.io/tag/Mx8hOBrxg/" class="ctag ctag-9 ctag-Mx8hOBrxg" aria-label="">数据</a>
-            
-              <a href="https://jihenghu.github.io/tag/jIOAQOjdp/" class="ctag ctag-10 ctag-jIOAQOjdp" aria-label="">Gridea</a>
-            
-          </div>
-        </div>
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
 
-        </div>
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/huan-bei-ji-bing-dong-quan-dong-tu-fen-bu.jpg');"></div>
+                 <a href="https://jihenghu.github.io/post/huan-bei-ji-bing-dong-quan-dong-tu-fen-bu/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-09-04">2020-09-04</time>
+                  <h4 class="title white no-margin">环北极冰冻圈冻土分布</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://jihenghu.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <div class="clear"></div>
+<script>
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+              </div>
+            
+
+            </div>
           </div>
-        </div>
       </main>
 
-        <footer id="footer" class="grid-container">
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -309,6 +458,9 @@
     })
 </script>
     
+
+      
+    <script src="https://jihenghu.github.io/media/js/functions-post.js"></script>
 
     </div>
     <!-- end: #wrapper -->
