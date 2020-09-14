@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-09-14T02:55:55.516Z</updated>
+    <updated>2020-09-14T03:15:42.583Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://jihenghu.github.io/images/avatar.png</logo>
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[数据比较方法类文献精选]]></title>
+        <id>https://jihenghu.github.io/post/shu-ju-bi-jiao-fang-fa-lei-wen-xian-jing-xuan/</id>
+        <link href="https://jihenghu.github.io/post/shu-ju-bi-jiao-fang-fa-lei-wen-xian-jing-xuan/">
+        </link>
+        <updated>2020-09-14T02:58:42.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Microwave Surface Emissivity Database]]></title>
         <id>https://jihenghu.github.io/post/microwave-surface-emissivity-database-jean-luc-moncet-2011/</id>
@@ -74,7 +81,7 @@
         <updated>2020-08-23T02:35:49.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Facts about emissivity]]></title>
+        <title type="html"><![CDATA[表面温度和透射效应相关研究]]></title>
         <id>https://jihenghu.github.io/post/facts-about-emissivity/</id>
         <link href="https://jihenghu.github.io/post/facts-about-emissivity/">
         </link>
@@ -86,12 +93,5 @@
         <link href="https://jihenghu.github.io/post/kui-hua-8-he-modis-wei-xing-yun-gai-chan-pin-jiao-yu-calipsovfm/">
         </link>
         <updated>2020-08-22T08:01:46.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[极地地区fire severity map构建]]></title>
-        <id>https://jihenghu.github.io/post/ji-di-di-qu-fire-severity-map-gou-jian/</id>
-        <link href="https://jihenghu.github.io/post/ji-di-di-qu-fire-severity-map-gou-jian/">
-        </link>
-        <updated>2020-08-22T07:55:25.000Z</updated>
     </entry>
 </feed>
