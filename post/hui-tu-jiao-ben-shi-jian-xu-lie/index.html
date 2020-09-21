@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>tech | Herrera Notes</title>
+<title>绘图脚本 时间序列 | Herrera Notes</title>
 <meta name="description" content="涉江采芙蓉，兰泽多芳草。" />
 <link rel="shortcut icon" href="https://jihenghu.github.io/favicon.ico">
 <link rel="stylesheet" href="https://jihenghu.github.io/styles/main.css">
@@ -14,11 +14,17 @@
 <script src="https://jihenghu.github.io/media/js/view-image.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="
+begin
+	    area=(/ &quot;A. Barren Soil&quot;,\
+				&quot;B. Tibet Plateau&quot;,\
+				&quot;C. Southern Forests&quot;,..." />
+    <meta name="keywords" content="脚本" />
+    <script src="https://jihenghu.github.io/media/js/waterfall.min.js"></script>
+    <script src="https://jihenghu.github.io/media/js/prism.min.js"></script>
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <div class="wrapper">
-      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -97,45 +103,338 @@
         </div>
       </div>
 
-      <main id="home" class="main fullcover no-sidebar content">
-        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
-        <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile widget_epcl_related_articles">
-                
-            <!-- start: .articles -->
-            <div class="main-article post">
-  <h2 class="year"># tech</h2>
-    
-      <article class="item default grid-33 tablet-grid-50 np-mobile">
-        <a href="https://jihenghu.github.io/post/mastodon-notes/" class="thumb hover-effect">
-          <span class="fullimage cover" style="display: block;background-image: url('https://s3.2heng.xin/mashiro.top/covers/2020-05-05-mastodon-notes.jpg');"></span>
-        </a>
-        <div class="info gradient-effect">
-          <time datetime="2020-07-25">2020-07-25</time>
-          <h4 class="title usmall">
-            <a href="https://jihenghu.github.io/post/mastodon-notes/">Mastodon Notes</a>
-          </h4>
-        </div>
-      </article>
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
-    
-    <div class="clear"></div>
-</div>
-            <!-- end: .articles -->
-            
-                        <div class="epcl-pagination section">
-              <div class="nav">
-                
-                
-              </div>
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://jihenghu.github.io/post-images/hui-tu-jiao-ben-shi-jian-xu-lie.jpg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-09-21"><i class="fa fa-calendar"></i><span class="lately">4 分钟前</span></time>
+              
+              <a href="https://jihenghu.github.io/post/hui-tu-jiao-ben-shi-jian-xu-lie/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/hui-tu-jiao-ben-shi-jian-xu-lie/"> </span>
+              </a>
+              <span id="/hui-tu-jiao-ben-shi-jian-xu-lie/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
             </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://jihenghu.github.io/tag/P6ApN3heF/" class="ctag ctag-0 ctag-P6ApN3heF" aria-label="">脚本</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">绘图脚本 时间序列</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <figure data-type="image" tabindex="1"><img src="https://jihenghu.github.io/post-images/1600652332647.png" alt="" loading="lazy"></figure>
+<pre><code class="language-NCL">begin
+	    area=(/ &quot;A. Barren Soil&quot;,\
+				&quot;B. Tibet Plateau&quot;,\
+				&quot;C. Southern Forests&quot;,\
+				&quot;D. Crop Lands&quot;,\
+				&quot;E. Boreal Forests&quot;/)
+
+	fout=addfile(&quot;ndvi.roi.mon.series/ndvi.climatic.roi.avg.nc&quot;,&quot;r&quot;)
+	ndvi=fout-&gt;ndvi_climatic
+	ndvistd=fout-&gt;std_climatic
+	
+
+	frain=addfile(&quot;gpcp.rain/precip.month.roi.nc&quot;,&quot;r&quot;)
+	rain=frain-&gt;precip_climatic
+	rain=where(rain.le.0,rain@_FillValue,rain)
+
+    filein=addfile(&quot;edvi.roi.mon.series/edvi.climatic.roi.avg.nc&quot;,&quot;r&quot;)
+	std6=filein-&gt;std6_climatic
+	std10=filein-&gt;std10_climatic
+	std18=filein-&gt;std18_climatic
+	
+	
+	edvi6=filein-&gt;edvi6_climatic
+	edvi10=filein-&gt;edvi10_climatic
+	edvi18=filein-&gt;edvi18_climatic
+	
+	
+		do im=0,11		
+			 if ((im .le.3) .or.(im .ge.10)) then
+				
+				edvi6(4,im)=edvi6@_FillValue
+				edvi10(4,im)=edvi10@_FillValue
+				edvi18(4,im)=edvi18@_FillValue
+			end if
+		end do
+	
+	; do roi=0,4
+		; print(&quot;roi&quot;)
+		; reg6= escorc(ndvi(roi,:),edvi6(roi,:))
+		; reg10= escorc(ndvi(roi,:),edvi10(roi,:))
+		; reg18= escorc(ndvi(roi,:),edvi18(roi,:))
+		
+		; print(&quot;reg6: &quot;+reg6)
+		; print(&quot;reg10: &quot;+reg10)
+		; print(&quot;reg18: &quot;+reg18)
+	; end do
+	do roi=0,4
+		print(&quot;roi&quot;)
+		reg6= escorc(rain(:,roi),edvi6(roi,:))
+		reg10= escorc(rain(:,roi),edvi10(roi,:))
+		reg18= escorc(rain(:,roi),edvi18(roi,:))
+		
+		print(&quot;reg6: &quot;+reg6)
+		print(&quot;reg10: &quot;+reg10)
+		print(&quot;reg18: &quot;+reg18)
+	end do
+	
+	xaxis=ispan(0,11,1)
+
+     plot=new(5,graphic)
+	plotpl=new((/12,5/),graphic)
+	wks = gsn_open_wks(&quot;png&quot;,&quot;edvi.ndvi.roi.climatic.snowfree&quot;)
+
+	
+	res           = True 
+	; res@gsnMaximize = True
+	res@gsnFrame  = False           ; Don't draw plot or advance frame
+	res@gsnDraw   = False
+	; res@vpXF      = 0.2
+	res@vpWidthF  = 0.7           ; Set width and height of plot.
+	; res@vpHeightF = 0.45
+	res@trXMinF = -1                ; Set min/max of X axis.
+	res@trXMaxF = 12
+	 ; res@trYMinF = -0.04             
+	 ; res@trYMaxF = 0.04
+	res@xyMarkLineMode = (/&quot;MarkLines&quot;,&quot;MarkLines&quot;,&quot;MarkLines&quot;/)
+    res@xyMarkers      =  (/16,16,16/)
+    res@xyMarkerSizeF      = 0.02
+    res@xyMarkerThicknessF      = 2
+	res@xyMarkerColors       = (/&quot;blue&quot;,&quot;orange&quot;, &quot;red&quot;/)
+	res@xyLineColors       = (/&quot;blue&quot;, &quot;orange&quot;,&quot;red&quot;/)
+	res@xyLineThicknesses = (/5,5,5/)      ; thicker line
+	res@xyDashPatterns  = (/0,0,0/)
+
+	;tickmarks:
+	res@tmXTOn              = False   ; Turn off top tickmarks
+    res@tmYLMinorOn         = True  ; Turn off left minor tickmarks
+	
+	res@tmXBMode            = &quot;Explicit&quot;
+
+	 res@tmXBLabels = (/1,2,3,4,5,6,7,8,9,10,11,12/)
+	 res@tmXBValues = (/0,1,2,3,4,5,6,7,8,9,10,11/)   
+	res@tmXBMinorOn = True
+	res@tmXBLabelStride=1
+	res@tmXMajorGrid                = False
+	res@tmYMajorGrid                = False
+
+	res@tiMainFontHeightF           = 0.015
+	
+	res@tiXAxisOn                   = False
+	res@tiYAxisFontColor            = &quot;Black&quot;
+	res@tiYAxisFontHeightF          = 0.02
+	
+	
+	res@tmXBLabelFontHeightF = 0.03
+	res@tmYLLabelFontHeightF = 0.03
+	res@tiXAxisFontHeightF   = 0.03
+	res@tiYAxisFontHeightF   = 0.03
+	
+	; res@tmXBPrecision =2
+	res@tmYRPrecision =3
+	
+
+	res@gsnLeftString = &quot;&quot;
+	res@gsnRightString= &quot;&quot;
+
+	
+	res@gsnLeftStringFontHeightF = 0.04
+	res@gsnRightStringFontHeightF = 0.04
+	res@lgOrientation         = &quot;Horizontal&quot;
+	; res@pmLegendDisplayMode = &quot;Always&quot;
+	res@pmLegendSide = &quot;top&quot;
+	res@pmLegendParallelPosF   = 0.82             
+	res@pmLegendOrthogonalPosF = -0.1             
+	res@pmLegendWidthF         = 0.6               
+	res@pmLegendHeightF        = 0.1             
+	res@lgPerimOn              = False            
+	res@lgAutoManage          = False
+	res@lgLabelFontHeightF     = 0.025            
+	; res@xyExplicitLegendLabels = (/&quot;ND 10.65&quot;,&quot;ND 18.7&quot;,&quot;ND 36.5&quot;/)
+   	res@tiYAxisString               = &quot;EDVI&quot; 
+
+	resndvi                        = True
+	resndvi@gsnMaximize = True               
+    ;resndvi@pmLegendDisplayMode = &quot;Always&quot;
+		resndvi@xyMarkerThicknessF      = 2
+		
+     resndvi@xyMarkerSizeF      = res@xyMarkerSizeF      
+    resndvi@tmYRPrecision =2 
+	;resndvi@xyDashPatterns         = 2                  
+	resndvi@xyMarkLineMode = &quot;MarkLines&quot;          
+	resndvi@xyLineColor     = &quot;green4&quot;	
+	resndvi@xyLineThicknessF     = 5
+	;resndvi@xyMarkerColors     = &quot;green&quot;	
+	resndvi@tiYAxisString    =  &quot;NDVI&quot;
+	resndvi@tiYAxisFontColor   = &quot;green4&quot;	
+	resndvi@tmYRMinorOn = False  
+	resndvi@xyMarker      =  16
+	
+	resrain                        = True
+	; resrain@gsnMaximize = True              
+    ;resrain@pmLegendDisplayMode = &quot;Always&quot;		
+    resrain@tmYRPrecision =3
+	;resrain@xyDashPatterns         = 2                  
+	resrain@xyMarkLineMode = &quot;Lines&quot;          
+	resrain@xyLineColor     = &quot;transparent&quot;	
+	resrain@xyMarkerColors     = &quot;green&quot;	
+	resrain@tiYAxisString    =  &quot;Rainfall (mm)&quot;
+	resrain@tiYAxisFontColor   = &quot;black&quot;	
+	resrain@tmYRMinorOn = False   
+   
+	 resrain@amOrthogonalPosF = 0.82 
+	respl=True
+	
+	respl@gsLineColor=&quot;grey34&quot;
+	respl@gsLineThicknessF=10
+	respl@gsLineOpacityF=0.3
+
+	do roi =0,4
+
+     res@gsnLeftString =area(roi)
+	 ; res@pmLegendDisplayMode = &quot;NoCreate&quot;
+	 ; resndvi@pmLegendDisplayMode = &quot;NoCreate&quot;
+	 res@gsnRightString= &quot;&quot;
+	
+	 ; res@tiYAxisOn=False
+    
+
+
+	 if (roi.ne.4) then
+       res@tmXBLabelsOn=False
+	  
+      else 
+	   	 ; res@trYMinF = -0.04             
+	   ; res@trYMaxF = 0.2
+	   res@tmXBLabelsOn=True
+	   end if
+	   ref6=edvi6(roi,:)     
+	   ref10=edvi10(roi,:)  
+	   ref18=edvi18(roi,:)  
+
+	  plot(roi) = gsn_csm_xy3(wks,xaxis,(/ref6,ref10,ref18/),(/ndvi(roi,:)/),(/rain(:,roi)/),res,resndvi,resrain)
+
+		plots=plot(roi)
+		; printVarSummary(plots)
+		xy3=plots@xy3
+		do im=0,11
+			plotpl(im,roi) = gsn_add_polyline(wks,xy3,(/im,im/),(/-1,rain(im,roi)/),respl)
+		end do
+		
+	end do
+	
+     resP=True	 	 
+	resP@gsnMaximize = True                ; maximize the plots
+	resP@gsnPanelFigureStringsPerimOn     = False
+	resP@gsnPanelFigureStringsFontHeightF = 0.012
+	resP@amJust  = &quot;TopLeft&quot;
+    resP@gsnPanelXWhiteSpacePercent=2
+    resP@gsnPanelYWhiteSpacePercent=2
+	resP@gsnPanelBottom= 0.05 
+	resP@gsnPanelCenter        = False                ; don't center
+	resP@gsnFrame              = False  
+	gsn_panel(wks,plot,(/3,2/),resP)
+
+    lgres                    = True
+    ; lgres@lgPerimOn        = False            ; turn off box around
+	lgres@lgAutoManage       = False
+    lgres@vpWidthF           = 0.2          ; width of legend (NDC)
+    lgres@vpHeightF          = 0.2           ; height of legend (NDC)
+	
+
+	lgres@lgItemType         = (/&quot;MarkLines&quot;,&quot;MarkLines&quot;,&quot;MarkLines&quot;,&quot;MarkLines&quot;,&quot;Lines&quot;/)
+	lgres@lgMonoLineThickness = False
+    lgres@lgLineThicknesses   = (/3,3,3,3,10/) 
+    lgres@lgDashIndexes      = (/0,0,0,0,0/)
+	lgres@lgLineColors   = (/&quot;blue&quot;,&quot;orange&quot;, &quot;red&quot;, &quot;green4&quot;, &quot;grey34&quot;/)	
+	
+	lgres@lgMonoMarkerSize= False 
+	lgres@lgMarkerSizes  = (/0.05,0.05,0.05,0.05,0.01/)
+	lgres@lgMarkerIndexes= (/1,1,1,1,1/)
+	lgres@lgMarkerColors = (/&quot;blue&quot;,&quot;orange&quot;,&quot;red&quot;,&quot;black&quot;,&quot;grey34&quot;/)	
+	lgres@lgItemOrder    = (/4,3,2,1,0/)
+	lgres@lgLabelFontHeightF= 0.05
+	lgres@LineLengthPercent  = 9
+	
+	label=(/&quot;EDVI(6,37)&quot;,&quot;EDVI(10,37)&quot;,&quot;EDVI(18,37)&quot;,&quot;NDVI&quot;,&quot;GPCP&quot;/)  
+	  gsn_legend_ndc(wks,5,label,0.58,0.34,lgres)     
+
+	
+	frame(wks)
+	print(&quot;done&quot;)
+
+end
+</code></pre>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/quan-guo-zhan-dian-shu-ju-jiang-shui-shu-ju-ji.jpg');"></div>
+                 <a href="https://jihenghu.github.io/post/quan-guo-zhan-dian-shu-ju-jiang-shui-shu-ju-ji/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-09-19">2020-09-19</time>
+                  <h4 class="title white no-margin">全国站点数据降水数据集</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://jihenghu.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
             
+              <div id="comments" class="bg-white hosted ">
+                <div class="clear"></div>
+<script>
+jQuery(document).ready(function($){
+    $('.vemoji-btn').text('😀');
+    $("#comments").on('click', 'span.vat',function(){
+        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+        $('textarea#veditor').focus();
+    })
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+})
+</script>
+
+              </div>
+            
+
+            </div>
           </div>
-          </div>
-        </div>
       </main>
 
-        <footer id="footer" class="grid-container">
+          <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -328,6 +627,9 @@
     })
 </script>
     
+
+      
+    <script src="https://jihenghu.github.io/media/js/functions-post.js"></script>
 
     </div>
     <!-- end: #wrapper -->
