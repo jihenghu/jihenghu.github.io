@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-09-23T08:34:58.211Z</updated>
+    <updated>2020-09-25T02:12:16.336Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://jihenghu.github.io/images/avatar.png</logo>
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[关于AMSR-E和GMI的通道信息速查]]></title>
+        <id>https://jihenghu.github.io/post/guan-yu-amsr-e-he-gmi-de-tong-dao-xin-xi-su-cha/</id>
+        <link href="https://jihenghu.github.io/post/guan-yu-amsr-e-he-gmi-de-tong-dao-xin-xi-su-cha/">
+        </link>
+        <updated>2020-09-25T02:05:49.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[无框中国地图]]></title>
         <id>https://jihenghu.github.io/post/wu-kuang-zhong-guo-di-tu/</id>
@@ -86,12 +93,5 @@
         <link href="https://jihenghu.github.io/post/yun-de-san-wei-bu-jun-yun-xing-dui-yu-emissivity-fan-yan-de-ying-xiang/">
         </link>
         <updated>2020-09-06T07:41:25.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[自动化反演脚本]]></title>
-        <id>https://jihenghu.github.io/post/zi-dong-hua-fan-yan-jiao-ben/</id>
-        <link href="https://jihenghu.github.io/post/zi-dong-hua-fan-yan-jiao-ben/">
-        </link>
-        <updated>2020-09-06T05:12:01.000Z</updated>
     </entry>
 </feed>
