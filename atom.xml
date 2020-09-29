@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jihenghu.github.io</id>
     <title>Herrera Notes</title>
-    <updated>2020-09-28T06:32:38.778Z</updated>
+    <updated>2020-09-29T06:29:31.848Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jihenghu.github.io"/>
     <link rel="self" href="https://jihenghu.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://jihenghu.github.io/images/avatar.png</logo>
     <icon>https://jihenghu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Herrera Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[误报率、漏报率、准确率和召回率（虚警率、漏警率）]]></title>
+        <id>https://jihenghu.github.io/post/wu-bao-lu-lou-bao-lu-zhun-que-lu-he-zhao-hui-lu-xu-jing-lu-lou-jing-lu/</id>
+        <link href="https://jihenghu.github.io/post/wu-bao-lu-lou-bao-lu-zhun-que-lu-he-zhao-hui-lu-xu-jing-lu-lou-jing-lu/">
+        </link>
+        <updated>2020-09-29T03:14:14.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[NCL 绘制一维数据的contour图]]></title>
         <id>https://jihenghu.github.io/post/ncl-hui-zhi-yi-wei-shu-ju-de-contour-tu/</id>
@@ -86,12 +93,5 @@
         <link href="https://jihenghu.github.io/post/vodca-wei-bo-zhi-bei-guang-xue-hou-du-umt/">
         </link>
         <updated>2020-09-13T09:10:23.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[哥白尼全球土地服务：年度100m全球土地覆盖数据]]></title>
-        <id>https://jihenghu.github.io/post/ge-bai-ni-quan-qiu-tu-di-fu-wu-nian-du-100m-quan-qiu-tu-di-fu-gai-shu-ju/</id>
-        <link href="https://jihenghu.github.io/post/ge-bai-ni-quan-qiu-tu-di-fu-wu-nian-du-100m-quan-qiu-tu-di-fu-gai-shu-ju/">
-        </link>
-        <updated>2020-09-13T03:16:17.000Z</updated>
     </entry>
 </feed>

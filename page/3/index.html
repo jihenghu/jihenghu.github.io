@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NCL 绘制一维数据的contour图 | Herrera Notes</title>
+<title>Herrera Notes</title>
 <meta name="description" content="涉江采芙蓉，兰泽多芳草。" />
 <link rel="shortcut icon" href="https://jihenghu.github.io/favicon.ico">
 <link rel="stylesheet" href="https://jihenghu.github.io/styles/main.css">
@@ -14,15 +14,11 @@
 <script src="https://jihenghu.github.io/media/js/view-image.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://jihenghu.github.io/media/js/functions.js"></script>
-    <meta name="referrer" content="never">
-    <meta name="description" content="参考来源，【官方文档】
-
-If you have X, Y, Z data represented by one-dimensional (1D) arrays of the same length, then NCL will conto..." />
-    <meta name="keywords" content="实例" />
-    <script src="https://jihenghu.github.io/media/js/waterfall.min.js"></script>
-    <script src="https://jihenghu.github.io/media/js/prism.min.js"></script>
   </head>
   <body>
+    <!-- start: #wrapper -->
+    <div class="wrapper">
+      
             <header id="header" class="grid-container">
         <!-- start: .menu-wrapper -->
         <div class="menu-mobile"> 
@@ -101,225 +97,71 @@ If you have X, Y, Z data represented by one-dimensional (1D) arrays of the same 
         </div>
       </div>
 
-      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
-
-        <div class="center content">
-          <div class="featured-image cover" style="background-image: url('https://jihenghu.github.io/post-images/ncl-hui-zhi-yi-wei-shu-ju-de-contour-tu.jpeg');">
-            <div class="meta top"> 
-              <time class="meta-info" style="float:left;" datetime="2020-09-28"><i class="fa fa-calendar"></i><span class="lately">1 天前</span></time>
-              
-              <a href="https://jihenghu.github.io/post/ncl-hui-zhi-yi-wei-shu-ju-de-contour-tu/#comments" class="comments meta-info" title="">
-                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/ncl-hui-zhi-yi-wei-shu-ju-de-contour-tu/"> </span>
-              </a>
-              <span id="/ncl-hui-zhi-yi-wei-shu-ju-de-contour-tu/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
-              
-            </div>
-            <div class="info">
-              <div class="tags ">
+      <main id="home" class="main">
+        <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
+        <div class="row">
+          <div class="content-wrapper grid-posts content">
                 
-                      <a href="https://jihenghu.github.io/tag/VgLwmPzoh/" class="ctag ctag-0 ctag-VgLwmPzoh" aria-label="">实例</a>
+            <!-- start: .articles -->
+            
+              
+              
+              <div class="articles columns-3">
+                
+                <article class="bgstyle grid-33 tablet-grid-50 mobile-grid-100 np-mobile post type-post status-publish format-standard has-post-thumbnail hentry" style="">
+                  <div class="article-wrapper  cover" style="background-image: url('https://jihenghu.github.io/post-images/hello-gridea.jpg');">
+                  <header>
                     
-              </div>
-              <h1 class="title ularge white bold">NCL 绘制一维数据的contour图</h1>
-            </div>
-          </div>
-        </div>  
-
-        <div class="epcl-page-wrapper">
-          <div class="left-content grid-70 np-mobile">
-            <article class="main-article post">
-              <section class="post-content">
-                <div class="text">
-                  <p>参考来源，<a href="http://www.ncl.ucar.edu/Applications/contour1d.shtml">【官方文档】</a></p>
-<blockquote>
-<p>If you have X, Y, Z data represented by one-dimensional (1D) arrays of the same length, then NCL will contour this data by first generating a triangular mesh of the data under the hood, and then contouring the triangular mesh. You can also choose to regrid or interpolate your data to a 2D grid before plotting.<br>
-Here are the options for contouring 1D data:<br>
-Set the sfXArray and sfYArray resources to the X and Y arrays respectively, and pass the 1D Z data to the appropriate gsn_csm contouring routine.<br>
-If your X/Y arrays are lon/lat arrays, then in NCL V6.4.0 and later you can attach the special &quot;lat1d&quot; / &quot;lon1d&quot; attributes to your data variable to be plotted. This effectively causes the sfXArray and sfYArray resources to be set for you under the hood.<br>
-See the &quot;Plotting data on map&quot; examples page for more information.<br>
-If you have arrays representing polygons that surround each data point, then you can additionally set sfXCellBounds and sfYCellBounds to these arrays for a (potentially) better plot.<br>
-You can first regrid or interpolate the data to a rectilinear, or curvilinear grid using ESMF regridding, or functions like like cssgrid, natgrid and triple2grid.<br>
-See the &quot;Random to Grid&quot; examples page.<br>
-In all cases, the quality of the resulting plot will be a function of the distribution of the X and Y arrays, the number of sampling points, and the 'shape' of the data be contoured.</p>
-</blockquote>
-<p>实际上一维变量是可以使用contour类函数绘制等值线填充图的，只需要设置sfYArray 和sfXArray  属性来指定对应的经纬度，但是在凹多边形区域会出现拉丝现象&quot;streaking effect&quot;<br>
-为了消除这个现象，必须指定每点的多边形边界属性sfXCellBounds、sfYCellBounds</p>
-<p>示例：<br>
-<img src="http://home.ustc.edu.cn/~hjh18305/ftpfiles/general/ncl-contour-1d-data-record/plot.cfr.cwp.png" alt="" loading="lazy"></p>
-<pre><code class="language-NCL">begin
-
-mlsefile=&quot;../data/mlse.cn.tbv12.myd06.era20c.res1.0_0001_improved_core.v2020.20080426.txt&quot;
-nrow=numAsciiRow(mlsefile)
-ncol=numAsciiCol(mlsefile)
-fio=asciiread(mlsefile,(/nrow,ncol/),&quot;float&quot;)
-lon=fio(:,1)
-lat=fio(:,2)
-stime=fio(:,3)
-land=fio(:,7)
-cwp=fio(:,32:34)
-cwp@units=&quot;g.m~S~-2~N~&quot;
-cfr=fio(:,44:46)
-cfr@units=&quot;%&quot;
-cwp=where(cwp.eq.0,cwp@_FillValue,cwp)
-cfr=where(cfr.eq.0,cfr@_FillValue,cfr)
-
-edgx=new((/nrow,3/),&quot;float&quot;)
-edgy=new((/nrow,3/),&quot;float&quot;)
-dx=0.075
-edgx(:,0)=lon
-edgx(:,1)=lon-dx*1.732
-edgx(:,2)=lon+dx*1.732
-edgy(:,0)=lat+dx*2
-edgy(:,1)=lat-dx
-edgy(:,2)=lat+dx
-
-wks=gsn_open_wks(&quot;png&quot;,&quot;plot.cfr.cwp&quot;)
-gsn_define_colormap(wks,&quot;NCV_bright&quot;)
-res=True
-res@gsnFrame=False
-res@gsnDraw=False
-res@cnFillOn=True
-res@cnLinesOn = False
-res@cnLineLabelsOn = False
-res@cnInfoLabelOn = False
-res@cnFillMode = &quot;CellFill&quot;
-res@lbLabelBarOn   =True;
-
-res@gsnAddCyclic = False 
-res@mpMinLatF = 10
-res@mpMaxLatF = 55
-res@mpMinLonF = 70	
-res@mpMaxLonF = 145
-
-res@mpFillOn = True
-res@cnFillDrawOrder      = &quot;PostDraw&quot;
-res@mpLandFillColor      = &quot;grey&quot;
-res@mpOceanFillColor     = &quot;lightblue&quot;  
-res@mpOutlineOn = True
-; res@mpOutlineBoundarySets = &quot;National&quot; 
-res@mpOutlineSpecifiers = &quot;China&quot;  	 
-res@mpGeophysicalLineThicknessF = 1.0     
-res@mpNationalLineThicknessF = 1
-res@mpDataBaseVersion = &quot;MediumRes&quot;             
-res@mpDataSetName = &quot;Earth..4&quot;      
-; res@mpAreaMaskingOn = True
-; res@mpMaskAreaSpecifiers = (/&quot;China:states&quot;,&quot;Taiwan&quot;/)   
-
-;;--- tickmark	 
-res@tmXBMode = &quot;Explicit&quot;
-res@tmYLMode = &quot;Explicit&quot;
-res@tmXBLabels = (/&quot;80&quot;+&quot;~S~o~N~E&quot;,&quot;&quot;,&quot;100&quot;+&quot;~S~o~N~E&quot;,&quot;&quot;,&quot;120&quot;+&quot;~S~o~N~E&quot;,&quot;&quot;,&quot;140&quot;+&quot;~S~o~N~E&quot;/)
-res@tmXBValues = (/80,90,100,110,120,130,140/)                                                   
-res@tmYLLabels = (/10,20,30,40,50/)+&quot;~S~o~N~N&quot;
-res@tmYLValues = (/10,20,30,40,50/)
-c = 0.013                                                        
-res@tmYLMajorLengthF = 0.008
-res@tmXBMajorLengthF = 0.008
-res@tmXBLabelFontHeightF = 0.018                                              
-res@tmYLLabelFontHeightF = 0.018 
-res@sfXArray  = lon
-res@sfYArray = lat
-res@sfXCellBounds =edgx
-res@sfYCellBounds =edgy
-res@cnLevelSelectionMode  = &quot;ExplicitLevels&quot;   
-res@cnLevels =  (/1,5,10,20,30,50,80,100,200,500,1000/) 
-res@cnMissingValFillColor=&quot;white&quot;
-
-res@lbLabelFontHeightF = 0.022
-res@lbBoxEndCapStyle = &quot;TriangleBothEnds&quot;
-res@pmLabelBarWidthF = 0.7
-res@gsnLeftStringFontHeightF =0.03	  
-res@gsnRightStringFontHeightF =0.03	  
-plot=new(6,graphic)
-title=&quot;(&quot;+(/&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;/)+&quot;)&quot;
-phase=(/&quot;liquid&quot;,&quot;ice&quot;,&quot;mixed&quot;/)
-do i=0,2
-	res@gsnLeftString=title(i)+&quot; CWP (&quot;+phase(i)+&quot; phase)&quot;
-	plot(i) = gsn_csm_contour_map(wks,cwp(:,i), res) 
-end do
-res@cnLevels := (/10,20,30,40,50,60,70,80,90/) 
-do i=3,5
-	res@gsnLeftString=title(i)+&quot; Cloud Fraction (&quot;+phase(i-3)+&quot; phase)&quot;
-	plot(i) = gsn_csm_contour_map(wks,cfr(:,i-3), res) 
-end do
-resP=True
-resP@gsnPanelMainString= &quot;MODIS Clouds on 26~S~th~N~ Apr,2008&quot;  
-resP@gsnPanelMainFontHeightF= 0.015 
-resP@gsnPanelMainFontThicknessF= 0.01 
-gsn_panel(wks,plot,(/2,3/),resP)
-end
-</code></pre>
-
+                      <div class="tags absolute">
+                        <a href="https://jihenghu.github.io/tag/jIOAQOjdp/" class="ctag ctag-0 ctag-jIOAQOjdp">Gridea</a>
+                      </div>
+                    
+                    <div class="meta">
+                      <time datetime="2018-12-12"><i class="fa fa-calendar"></i><span class="lately">2 年前</span></time>
+                      <div class="clear"></div>
+                    </div>
+                    <h1 class="title main-title gradient-effect"><a href="https://jihenghu.github.io/post/hello-gridea/">Hello Gridea</a></h1>
+                  </header>
+                  <footer class="author-meta">
+                    <a href="" class="author" title="">
+                      <span class="author-image cover" style="background-image: url('https://jihenghu.github.io/images/avatar.png');"></span>
+                      <span class="author-name">Herrera Notes</span>
+                    </a>
+                    
+                    <a href="https://jihenghu.github.io/post/hello-gridea/#comments" class="comments meta-info alignright" title="">
+                      <span class="comment-count valine-comment-count" data-xid="/hello-gridea/"> </span><i class="fa fa-comment"></i>
+                    </a>
+                    <div id="/hello-gridea/" class="leancloud_visitors views-counter meta-info alignright" title=""><span class="leancloud-visitors-count" style="vertical-align: middle;"></span><i class="fa fa-leancloud"></i></div>
+                    
+                    <div class="clear"></div>
+                  </footer>
+                  <div class="overlay"></div>       
                 </div>
-                <div class="clear"></div>
-              </section>
-            </article>
-            <div class="clear"></div>
-
-            <section class="related section">
-              
-              <article class="prev grid-50 tablet-grid-50 grid-parent">
-                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/wu-bao-lu-lou-bao-lu-zhun-que-lu-he-zhao-hui-lu-xu-jing-lu-lou-jing-lu.jpg');"></div>
-                 <a href="https://jihenghu.github.io/post/wu-bao-lu-lou-bao-lu-zhun-que-lu-he-zhao-hui-lu-xu-jing-lu-lou-jing-lu/" class="full-link"></a>
-                 <div class="info">
-                  <time datetime="2020-09-29">2020-09-29</time>
-                  <h4 class="title white no-margin">误报率、漏报率、准确率和召回率（虚警率、漏警率）</h4>
-                </div>
-                 <span class="epcl-button red">
-                  <img src="https://jihenghu.github.io/media/images/left-arrow.svg" width="15" alt="Left Arrow">
-                </span>
-                <div class="overlay"></div>
               </article>
+                
               
               
-              <article class="next grid-50 tablet-grid-50 grid-parent">
-                <div class="thumb cover lazy loaded" style="background-image: url('https://jihenghu.github.io/post-images/guan-yu-amsr-e-he-gmi-de-tong-dao-xin-xi-su-cha.jpg');"></div>
-                 <a href="https://jihenghu.github.io/post/guan-yu-amsr-e-he-gmi-de-tong-dao-xin-xi-su-cha/" class="full-link"></a>
-                 <div class="info">
-                  <time datetime="2020-09-25">2020-09-25</time>
-                  <h4 class="title white no-margin">关于AMSR-E和GMI的通道信息速查</h4>
-                </div>
-                 <span class="epcl-button red">
-                  <img src="https://jihenghu.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
-                </span>
-                <div class="overlay"></div>
-              </article>
-              
-
-                <div class="clear"></div>
-            </section>
-
               <div class="clear"></div>
-              
-            
-              <div id="comments" class="bg-white hosted ">
-                <div class="clear"></div>
-<script>
-jQuery(document).ready(function($){
-    $('.vemoji-btn').text('😀');
-    $("#comments").on('click', 'span.vat',function(){
-        $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
-        $('textarea#veditor').focus();
-    })
-    if(window.location.hash){
-        var checkExist = setInterval(function() {
-            if ($(window.location.hash).length) {
-                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-200}, 600);
-                clearInterval(checkExist);
-            }
-        }, 100);
-    }
-})
-</script>
-
-              </div>
-            
-
+              <div class="separator last hide-on-tablet hide-on-mobile"></div>
             </div>
+            <!-- end: .articles -->
+            
+                        <div class="epcl-pagination section">
+              <div class="nav">
+                
+                  <a href="https://jihenghu.github.io/page/2/" class="prev button red">上一页</a>
+                
+                
+              </div>
+            </div>
+
+            
           </div>
+          </div>
+        </div>
       </main>
 
-          <footer id="footer" class="grid-container">
+        <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
               <div class="grid-33 tablet-grid-50 mobile-grid-100">
@@ -524,9 +366,6 @@ jQuery(document).ready(function($){
     })
 </script>
     
-
-      
-    <script src="https://jihenghu.github.io/media/js/functions-post.js"></script>
 
     </div>
     <!-- end: #wrapper -->
