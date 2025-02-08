@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MSG SERV CLM数据集下载 | JIHENG's Space</title><meta name="author" content="JIHENG💕"><meta name="copyright" content="JIHENG💕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="MSG静止卫星云掩膜数据的下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSG SERV CLM数据集下载">
+<meta property="og:url" content="https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/index.html">
+<meta property="og:site_name" content="JIHENG&#39;s Space">
+<meta property="og:description" content="MSG静止卫星云掩膜数据的下载">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg">
+<meta property="article:published_time" content="2023-12-13T14:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T01:22:00.412Z">
+<meta property="article:author" content="JIHENG💕">
+<meta property="article:tag" content="Cloud">
+<meta property="article:tag" content="MSG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg"><link rel="shortcut icon" href="https://i.loli.net/2020/08/04/yS5rEkzbXu3ITJV.png"><link rel="canonical" href="https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MSG SERV CLM数据集下载',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-17 09:22:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#header-mask{background-image:url("/~jihenghu/space/img/grid.png")!important;height:100%;width:100%}</style><style>.relatedPosts i{color:#8e8cd8;}</style><style>.card-widget:not(.card-info):not(.card-announcement) i{color:#8e8cd8;}</style><style>#aside_content .card-info img{padding: 5px;border: 1px solid #ddd}</style><style>#toggle-sidebar{bottom:80px}</style><style>.card-content #posts-chart{height:0px;padding:0px;margin:0;}</style><style>.top-flag{display:inline-block;text-align:center;width:280px;line-height:20px;position:absolute;top:20px;right:-110px;z-index:2;overflow:hidden;transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);border:1px dashed;box-shadow:0 0 0 1px #fff,0 21px 5px -18px rgba(0,0,0,.6);background-color:#eef3fc;color:#F00;font-size:12px}</style><style>.recent-post-item{position:relative;overflow:hidden}</style><style>.label{display:inline;padding:0 2px}.label.default{background-color:#f0f0f0}.label.primary{background-color:#efe6f7}.label.info{background-color:#e5f2f8}.label.success{background-color:#e7f4e9}.label.warning{background-color:#fcf6e1}.label.danger{background-color:#fae8eb}</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="JIHENG's Space" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="JIHENG's Space"><span class="site-name">JIHENG's Space</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MSG SERV CLM数据集下载</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-13T14:00:00.000Z" title="Created 2023-12-13 22:00:00">2023-12-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-17T01:22:00.412Z" title="Updated 2023-12-17 09:22:00">2023-12-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Data-N-Method/">Data N' Method</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>10min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MSG SERV CLM数据集下载"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>&copy; 2023-2024, Jiheng Hu. 原创内容，禁止转载。</p>
+<h2 id="Meteosat-Second-Generation"><a href="#Meteosat-Second-Generation" class="headerlink" title="Meteosat Second Generation"></a>Meteosat Second Generation</h2><p>EUMETSAT第二代静止卫星系列包含两个卫星点位，分别是位于欧洲-非洲上方的0-degree点位，由在运行的METSAT-10和11业务覆盖；位于印度洋上空的Indian Ocean点位，先后由METSAT-8(41.5°E)和METSAT-9(45.5°E)业务覆盖。<br>这两点位的卫星视角如下图：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/14/hWznoxeqcZ7lybu.jpg" alt="MSG视角: 0-Degree(左)，Indian Ocean(右)"></p>
+<p>MSG的Cloud Mask产品主要有两个：<a target="_blank" rel="noopener" href="https://data.eumetsat.int/product/EO:EUM:DAT:MSG:CLM">Cloud Mask - MSG - 0 degree</a>和<a target="_blank" rel="noopener" href="https://data.eumetsat.int/product/EO:EUM:DAT:MSG:CLM-IODC">Cloud Mask - MSG - Indian Ocean</a>.其时间范围分别为 2004年01月至今和2017年1月至今。<br>该数据集是MSG搭载的SEVI中分辨率成像仪的全盘扫描结果，时间间隔为15分钟。</p>
+<p>考虑到个人需求，本次要下载的是Cloud Mask - MSG - Indian Ocean产品。该数据集的主要参数如下：</p>
+<div class="note danger no-icon flat"><p>Cloud Mask - MSG - Indian Ocean</p>
+<ul>
+<li>Status: Operational</li>
+<li>Temporal extent : 31&#x2F;01&#x2F;2017 to now</li>
+<li>Processing level : Level 2 Data</li>
+<li>Region:<ul>
+<li>Latitude : -67.5 to 67.5 degrees</li>
+<li>Longitude : -22 to 113 degrees</li>
+<li>Resolution: 0100*0100</li>
+<li>Interval: 15 min</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2 id="Cloud-Mask下载"><a href="#Cloud-Mask下载" class="headerlink" title="Cloud Mask下载"></a>Cloud Mask下载</h2><p>数据集的<a target="_blank" rel="noopener" href="https://data.eumetsat.int/product/EO:EUM:DAT:MSG:CLM-IODC">详情页</a>提供了下载地址：<a target="_blank" rel="noopener" href="https://data.eumetsat.int/data/map/EO:EUM:DAT:MSG:CLM">https://data.eumetsat.int/data/map/EO:EUM:DAT:MSG:CLM</a><br>我们可以输入时间范围进行文件筛选，订单下载或者下载单个文件。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/14/u1pe2UKFikLhHCj.png" alt="EUMSAT DATA SERVICE"><br>这里文件的详情可以看出，该数据集的单次扫描的文件为如下的zip格式打包文件，内部包含所需要的观测文件，格式是<code>grib2</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">+ MSG3-SEVI-MSGCLMK-0100-0100-20231214060000.000000000Z-NA.zip</span><br><span class="line"> - MSG3-SEVI-MSGCLMK-0100-0100-20231214060000.000000000Z-NA.grb</span><br><span class="line"> - metadata.xml</span><br><span class="line"> - manifest.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="调用API下载"><a href="#调用API下载" class="headerlink" title="调用API下载"></a>调用API下载</h2><p>考虑到该数据的文件名较为规律，可以通过调用API的方式直接从数据仓库中下载需要的数据。<br>点击右下角的API block可以发现有数据中心提供了好几个用于后台调用下载的API服务。</p>
+<ol>
+<li><p>注册网站，获取API Key。<br>点击右上角的<a target="_blank" rel="noopener" href="https://eoportal.eumetsat.int/cas/login">login</a>, 如果没有账号就注册并登录。<br>按照下图或者去<a target="_blank" rel="noopener" href="https://api.eumetsat.int/api-key/">api-key</a> 页面复制你的API Key和secret,这两者包含了你的账户信息和验证信息。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/14/buAjXIZiOJta1Tr.png" alt="GET YOUR API KEY"><br>页面下方的TOKEN不需要复制，系统会生成一小时时效的TOKEN,只要实时获取就可以了，后面的代码会实现验证功能。</p>
+</li>
+<li><p>安装emudac库<br>参考<a target="_blank" rel="noopener" href="https://eumetsatspace.atlassian.net/wiki/spaces/EUMDAC/pages/1760591873/Get+EUMDAC">Get EUMDAC</a>，这里可以直接使用bash安装或者python安装<br>考虑到计划使用python脚本进行下载，这里使用pip安装方式，注意pip版本必须&gt;3.7才能安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; pip install eumdac</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写代码<br>这里可以参考<a target="_blank" rel="noopener" href="https://eumetsatspace.atlassian.net/wiki/spaces/DSDS/pages/328531972/Jupyter+Notebook+Using+the+Download+API">Jupyter+Notebook+Using+the+Download+API</a>进行脚本的编写，也可以改写成python脚本。</p>
+</li>
+</ol>
+<ul>
+<li><p>首先引入必要的库，粘贴你刚才复制的API Key和Secret到对应的字符串。系统会自动验证身份并返回TOKEN,一般一个小时内有效。通过这种方式可以总是获取有效的TOKEN。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import eumdac     ## pip3 istall eumdac</span><br><span class="line">import datetime</span><br><span class="line">import shutil</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"># Insert your personal key and secret into the single quotes</span><br><span class="line"></span><br><span class="line">consumer_key = &#x27;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxa&#x27;</span><br><span class="line">consumer_secret = &#x27;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxa&#x27;</span><br><span class="line"></span><br><span class="line">credentials = (consumer_key, consumer_secret)</span><br><span class="line"></span><br><span class="line">token = eumdac.AccessToken(credentials)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    print(f&quot;This token &#x27;&#123;token&#125;&#x27; expires &#123;token.expiration&#125;&quot;)</span><br><span class="line">except requests.exceptions.HTTPError as error:</span><br><span class="line">    print(f&quot;Unexpected error: &#123;error&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>[OUT] This token ‘f88198d1-d2e5-33ae-b61e-4f7176e12941’ expires 2023-12-02 12:31:46.611048</p>
+</li>
+<li><p>按照产品编号<code>EO:EUM:DAT:MSG:CLM-IODC</code>来查询数据集，<br>Let’s start to select a collection we want to browse through. For more information on determining which collections are available, see the previous tutorial, Discovering collections</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">datastore = eumdac.DataStore(token)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:    </span><br><span class="line">    <span class="comment"># https://data.eumetsat.int/product/EO:EUM:DAT:MSG:CLM-IODC </span></span><br><span class="line"></span><br><span class="line">    selected_collection = datastore.get_collection(<span class="string">&#x27;EO:EUM:DAT:MSG:CLM-IODC&#x27;</span>) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;selected_collection&#125;</span> - <span class="subst">&#123;selected_collection.title&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> eumdac.datastore.DataStoreError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the data store: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> eumdac.collection.CollectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the collection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>设置起始结束时间来查询</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Set sensing start and end time</span></span><br><span class="line">start = datetime.datetime(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">0</span>)</span><br><span class="line">end = datetime.datetime(<span class="number">2021</span>, <span class="number">11</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Retrieve datasets that match our filter</span></span><br><span class="line">products = selected_collection.search(</span><br><span class="line">    dtstart=start,</span><br><span class="line">    dtend=end)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> product <span class="keyword">in</span> products:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(product)</span><br><span class="line">    <span class="keyword">except</span> eumdac.collection.CollectionError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the collection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>直接下载查询到的所有文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">###  Download all products from search</span></span><br><span class="line"><span class="keyword">for</span> product <span class="keyword">in</span> products:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> product.<span class="built_in">open</span>() <span class="keyword">as</span> fsrc, \</span><br><span class="line">                <span class="built_in">open</span>(fsrc.name, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fdst:</span><br><span class="line">            shutil.copyfileobj(fsrc, fdst)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Download of product <span class="subst">&#123;product&#125;</span> finished.&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> eumdac.product.ProductError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the product &#x27;<span class="subst">&#123;product&#125;</span>&#x27; while trying to download it: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;All downloads are finished.&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>或者指定文件名下载单个文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">## Download a single product</span></span><br><span class="line"></span><br><span class="line">selected_product = datastore.get_product(</span><br><span class="line">    product_id=<span class="string">&#x27;MSG2-SEVI-MSGCLMK-0100-0100-20231104141500.000000000Z-NA&#x27;</span>,</span><br><span class="line">    collection_id=<span class="string">&#x27;EO:EUM:DAT:MSG:CLM-IODC&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(selected_product) </span><br><span class="line"><span class="keyword">except</span> eumdac.product.ProductError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the product: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> selected_product.<span class="built_in">open</span>() <span class="keyword">as</span> fsrc, \</span><br><span class="line">            <span class="built_in">open</span>(fsrc.name, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fdst:</span><br><span class="line">        shutil.copyfileobj(fsrc, fdst)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Download of product <span class="subst">&#123;selected_product&#125;</span> finished.&#x27;</span>)</span><br><span class="line"><span class="keyword">except</span> eumdac.product.ProductError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the product &#x27;<span class="subst">&#123;selected_product&#125;</span>&#x27; while trying to download it: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>从单个zip文件中下载需要的文件，如<code>manifest.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Download a single file from product</span><br><span class="line">for entry in selected_product.entries:</span><br><span class="line">    try:</span><br><span class="line">        print(entry)</span><br><span class="line">    except eumdac.product.ProductError as error:</span><br><span class="line">        print(f&quot;Error related to the product: &#x27;&#123;error.msg&#125;&#x27;&quot;)</span><br><span class="line">    except requests.exceptions.ConnectionError as error:</span><br><span class="line">        print(f&quot;Error related to the connection: &#x27;&#123;error.msg&#125;&#x27;&quot;)</span><br><span class="line">    except requests.exceptions.RequestException as error:</span><br><span class="line">        print(f&quot;Unexpected error: &#123;error&#125;&quot;)</span><br><span class="line"></span><br><span class="line">### Files within the product may be downloaded by providing the file&#x27;s name, as demonstrated in the cell below.</span><br><span class="line">try:</span><br><span class="line">    with selected_product.open(entry=&#x27;manifest.xml&#x27;) as fsrc, \</span><br><span class="line">            open(fsrc.name, mode=&#x27;wb&#x27;) as fdst:</span><br><span class="line">        shutil.copyfileobj(fsrc, fdst)</span><br><span class="line">        print(f&#x27;Download of file &#123;fsrc.name&#125; finished.&#x27;)</span><br><span class="line">except eumdac.product.ProductError as error:</span><br><span class="line">    print(f&quot;Error related to the product &#x27;&#123;selected_product&#125;&#x27; while trying to download it: &#x27;&#123;error.msg&#125;&#x27;&quot;)</span><br><span class="line">except requests.exceptions.ConnectionError as error:</span><br><span class="line">    print(f&quot;Error related to the connection: &#x27;&#123;error.msg&#125;&#x27;&quot;)</span><br><span class="line">except requests.exceptions.RequestException as error:</span><br><span class="line">    print(f&quot;Unexpected error: &#123;error&#125;&quot;)	</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="python-脚本"><a href="#python-脚本" class="headerlink" title="python 脚本"></a>python 脚本</h2><p>这里提供了一种可能的python脚本的示例。该脚本接受三个参数，八位日期，四位时间和存放路径，下载对应的grib2文件到指定路径。<br>Example to call in Fortan90</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">yyyymmdd=<span class="string">&quot;20221104&quot;</span></span><br><span class="line">HHMM=<span class="string">&quot;1445&quot;</span></span><br><span class="line">MSG_CLM_DIR=<span class="string">&#x27;/data/jihenghu/data/MSG_CLM_IODC/&#x27;</span></span><br><span class="line"><span class="keyword">CALL</span> SYSTEM(<span class="string">&quot;python3.9 sub_download_msg_clm.py &quot;</span>//yyyymmdd//<span class="string">&quot; &quot;</span>//HHMM//<span class="string">&quot; &quot;</span>//<span class="built_in">trim</span>(MSG_CLM_DIR))			</span><br></pre></td></tr></table></figure>
+
+<p><code>sub_download_msg_clm.py</code>脚本内容如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> eumdac     <span class="comment">## pip3 istall eumdac</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &lt; <span class="number">3</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;ERROR! Non-adequate arguments for MSG Cloud Download Script !&quot;</span>)</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line">yyyymmdd= sys.argv[<span class="number">1</span>]</span><br><span class="line">HHMM= sys.argv[<span class="number">2</span>]</span><br><span class="line">dirc= sys.argv[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">## Download a single product</span></span><br><span class="line"></span><br><span class="line">year=<span class="built_in">int</span>(yyyymmdd[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line">month=<span class="built_in">int</span>(yyyymmdd[<span class="number">4</span>:<span class="number">6</span>])</span><br><span class="line">day=<span class="built_in">int</span>(yyyymmdd[<span class="number">6</span>:<span class="number">8</span>])</span><br><span class="line">hh=<span class="built_in">int</span>(HHMM[<span class="number">0</span>:<span class="number">2</span>])</span><br><span class="line">mm=<span class="built_in">int</span>(HHMM[<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">dir_msg=dirc+<span class="string">&#x27;/&#x27;</span>+yyyymmdd+<span class="string">&#x27;/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dir_msg):</span><br><span class="line">    os.mkdir(dir_msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Insert your personal key and secret into the single quotes</span></span><br><span class="line">consumer_key = <span class="string">&#x27;#########################Qa&#x27;</span></span><br><span class="line">consumer_secret = <span class="string">&#x27;#####################a&#x27;</span></span><br><span class="line"></span><br><span class="line">credentials = (consumer_key, consumer_secret)</span><br><span class="line"></span><br><span class="line">token = eumdac.AccessToken(credentials)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">pass</span><span class="comment"># print(f&quot;This token &#x27;&#123;token&#125;&#x27; expires &#123;token.expiration&#125;&quot;)</span></span><br><span class="line"><span class="keyword">except</span> requests.exceptions.HTTPError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">datastore = eumdac.DataStore(token)</span><br><span class="line"></span><br><span class="line"><span class="comment"># get collection</span></span><br><span class="line"><span class="keyword">try</span>:    </span><br><span class="line">    <span class="comment"># https://data.eumetsat.int/product/EO:EUM:DAT:MSG:CLM-IODC </span></span><br><span class="line">    selected_collection = datastore.get_collection(<span class="string">&#x27;EO:EUM:DAT:MSG:CLM-IODC&#x27;</span>) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;selected_collection&#125;</span> - <span class="subst">&#123;selected_collection.title&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> eumdac.datastore.DataStoreError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the data store: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> eumdac.collection.CollectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the collection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set sensing start and end time</span></span><br><span class="line">start = datetime.datetime(year, month, day, hh, mm)</span><br><span class="line">end = datetime.datetime(year, month, day, hh, mm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Retrieve datasets that match our filter</span></span><br><span class="line">products = selected_collection.search(dtstart=start, dtend=end)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> product <span class="keyword">in</span> products:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> product.<span class="built_in">open</span>(entry=<span class="built_in">str</span>(product)+<span class="string">&#x27;.grb&#x27;</span>) <span class="keyword">as</span> fsrc, \</span><br><span class="line">                <span class="built_in">open</span>(dir_msg+fsrc.name, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fdst:</span><br><span class="line">            shutil.copyfileobj(fsrc, fdst)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Download of file <span class="subst">&#123;fsrc.name&#125;</span> finished.&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> eumdac.product.ProductError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the product &#x27;<span class="subst">&#123;product&#125;</span>&#x27; while trying to download it: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error related to the connection: &#x27;<span class="subst">&#123;error.msg&#125;</span>&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> error:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Unexpected error: <span class="subst">&#123;error&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://eumetsatspace.atlassian.net/wiki/spaces/DSDS/pages/328531972/Jupyter+Notebook+Using+the+Download+API">https://eumetsatspace.atlassian.net/wiki/spaces/DSDS/pages/328531972/Jupyter+Notebook+Using+the+Download+API</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitlab.eumetsat.int/eumetlab/data-services/eumetsat_python_for_data_services">https://gitlab.eumetsat.int/eumetlab/data-services/eumetsat_python_for_data_services</a></li>
+<li><a target="_blank" rel="noopener" href="https://api.eumetsat.int/api-key/">https://api.eumetsat.int/api-key/</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io">JIHENG💕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/">https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Cloud/">Cloud</a><a class="post-meta__tags" href="/tags/MSG/">MSG</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/data-n-method/GOES-R-AWS-download-guide/" title="GOES16 ABI AWS Bucket数据集下载"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">GOES16 ABI AWS Bucket数据集下载</div></div></a></div><div class="next-post pull-right"><a href="/research/canoe-athena/canoe-source-output/" title="Canoe Source：Canoe的诊断量输出"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Canoe Source：Canoe的诊断量输出</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/data-n-method/GOES-R-AWS-download-guide/" title="GOES16 ABI AWS Bucket数据集下载"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-13</div><div class="title">GOES16 ABI AWS Bucket数据集下载</div></div></a></div><div><a href="/data-n-method/Himawari8-download-guide/" title="Himawari-8 AHI产品数据集下载"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-14</div><div class="title">Himawari-8 AHI产品数据集下载</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JIHENG💕</div><div class="author-info__description">向着温暖的地方出发</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" href="/about/"><i class="fas fa-bookmark"></i><span>关于我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jihenghu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:hjh18305@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">请邮件联系我 hjh18305[at]gmail.com</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Meteosat-Second-Generation"><span class="toc-number">1.</span> <span class="toc-text">Meteosat Second Generation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Mask%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text">Cloud Mask下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8API%E4%B8%8B%E8%BD%BD"><span class="toc-number">3.</span> <span class="toc-text">调用API下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E8%84%9A%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">python 脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/essays/dc-agu24/" title="Washington D.C."><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/YINay6K2SAHfU4b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Washington D.C."/></a><div class="content"><a class="title" href="/essays/dc-agu24/" title="Washington D.C.">Washington D.C.</a><time datetime="2024-12-16T14:00:00.000Z" title="Created 2024-12-16 22:00:00">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WRFv4.0 em-ideal 安装记录"/></a><div class="content"><a class="title" href="/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录">WRFv4.0 em-ideal 安装记录</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WRFv4.0 Ideal Case - A Tropical Cyclone"/></a><div class="content"><a class="title" href="/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone">WRFv4.0 Ideal Case - A Tropical Cyclone</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/essays/mexico_24/" title="Mexico"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/xo94mVPBw8b3Ukp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mexico"/></a><div class="content"><a class="title" href="/essays/mexico_24/" title="Mexico">Mexico</a><time datetime="2024-10-14T14:00:00.000Z" title="Created 2024-10-14 22:00:00">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/essays/skorea-aogs24/" title="South Korea"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/94aWR5UIZHqKjwF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="South Korea"/></a><div class="content"><a class="title" href="/essays/skorea-aogs24/" title="South Korea">South Korea</a><time datetime="2024-06-28T14:00:00.000Z" title="Created 2024-06-28 22:00:00">2024-06-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/12/03/robJ17vy4iTOuXR.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JIHENG💕</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Powered by public.websites.umich.edu</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+      appKey: 'zQf7AST9i7Tm9WWBMjWmxGCe',
+      avatar: 'monsterid',
+      serverURLs: 'https://tpaxop8k.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[image]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[link]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[code]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += 'No Comment'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://tpaxop8k.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+        "X-LC-Key": 'zQf7AST9i7Tm9WWBMjWmxGCe',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "Unable to get the data, please make sure the settings are correct."
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="5048673400" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

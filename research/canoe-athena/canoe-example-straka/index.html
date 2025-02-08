@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Canoe Example#1：Straka Sinking Bubble | JIHENG's Space</title><meta name="author" content="JIHENG💕"><meta name="copyright" content="JIHENG💕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="模拟一个冷空气团的下沉引起近地表流场传播的情形。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canoe Example#1：Straka Sinking Bubble">
+<meta property="og:url" content="https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/index.html">
+<meta property="og:site_name" content="JIHENG&#39;s Space">
+<meta property="og:description" content="模拟一个冷空气团的下沉引起近地表流场传播的情形。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png">
+<meta property="article:published_time" content="2023-11-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-28T02:25:31.199Z">
+<meta property="article:author" content="JIHENG💕">
+<meta property="article:tag" content="Canoe">
+<meta property="article:tag" content="Hydrodynamics">
+<meta property="article:tag" content="Thermodynaics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png"><link rel="shortcut icon" href="https://i.loli.net/2020/08/04/yS5rEkzbXu3ITJV.png"><link rel="canonical" href="https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Canoe Example#1：Straka Sinking Bubble',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-28 10:25:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#header-mask{background-image:url("/~jihenghu/space/img/grid.png")!important;height:100%;width:100%}</style><style>.relatedPosts i{color:#8e8cd8;}</style><style>.card-widget:not(.card-info):not(.card-announcement) i{color:#8e8cd8;}</style><style>#aside_content .card-info img{padding: 5px;border: 1px solid #ddd}</style><style>#toggle-sidebar{bottom:80px}</style><style>.card-content #posts-chart{height:0px;padding:0px;margin:0;}</style><style>.top-flag{display:inline-block;text-align:center;width:280px;line-height:20px;position:absolute;top:20px;right:-110px;z-index:2;overflow:hidden;transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);border:1px dashed;box-shadow:0 0 0 1px #fff,0 21px 5px -18px rgba(0,0,0,.6);background-color:#eef3fc;color:#F00;font-size:12px}</style><style>.recent-post-item{position:relative;overflow:hidden}</style><style>.label{display:inline;padding:0 2px}.label.default{background-color:#f0f0f0}.label.primary{background-color:#efe6f7}.label.info{background-color:#e5f2f8}.label.success{background-color:#e7f4e9}.label.warning{background-color:#fcf6e1}.label.danger{background-color:#fae8eb}</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="JIHENG's Space" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png')"><nav id="nav"><span id="blog-info"><a href="/" title="JIHENG's Space"><span class="site-name">JIHENG's Space</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Canoe Example#1：Straka Sinking Bubble</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-20T16:00:00.000Z" title="Created 2023-11-21 00:00:00">2023-11-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-28T02:25:31.199Z" title="Updated 2023-11-28 10:25:31">2023-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Research/">Research</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">5.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>25min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Canoe Example#1：Straka Sinking Bubble"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本节将通过一个具体的问题- Straka Problem的模拟来学习Canoe的编译和运行。<br>本模拟的模拟是通过考察高密度空气团的下沉和由此因此的边界层扰动，来评估模式在模拟刚性下表面情形的表现。空气的粘性流体，需要考虑由此引发的能量耗散。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Strake Problem是<a target="_blank" rel="noopener" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/fld.1650170103">Straka</a>提出的，描述的是一个具有冷空气泡在二维大气中的下沉情形。其中大气是等熵的，水平范围是25.6 km,垂直6.4 km,两个维度的分辨率均为100 m，地表（1 bar）处的物理温度为 300K。</p>
+<ul>
+<li><p>起始状态：<br>空气泡的起始位置在（0, 3 km）处，气泡内部的温度分布遵循以下方程：<br>\begin{align}<br>\Delta T&#x3D; -15 \text{K} \frac{\cos(\pi L)+1}{2}, \quad L&lt;1<br>\end{align}<br>其中, L 为点 $(x,z)$ 到冷空气气泡中心点$(x_c,z_c)$的椭圆距：<br>\begin{align} L &#x3D; \Big(\big(\frac{x - x_c}{x_r}\big)^2+\big(\frac{z - z_c}{z_r}\big)^2\Big)^{1&#x2F;2}.<br>\end{align}<br>其中, $x_c&#x3D;0$ km, $z_c&#x3D;3$ km, $x_r&#x3D;4$ km, $z_r&#x3D;2$ km。 </p>
+</li>
+<li><p>物理过程：<br>起初，气泡处于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hydrostatic_equilibrium">流体静力稳定状态（hydrostatically balanced）</a>；由于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Convective_instability">对流不稳定</a>，气泡从起始位置开始下沉，并带动周围的空气流动，由此产生的密度流在界面上传播，形成<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kelvin-Helmholtz_instability">Kelvin-Helmholtz不稳定</a>。本example的目的就是对这一过程进行模拟。</p>
+</li>
+</ul>
+<h2 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cd </span><br><span class="line">$ mkdir -p StrakaProj/build</span><br><span class="line">$ cd StrakaProj/build</span><br><span class="line">$ cmake ~/canoe -DTASK=straka</span><br><span class="line">$ make -j8</span><br><span class="line">$ cd ..</span><br><span class="line">$ln -s build/bin/straka.release .</span><br><span class="line">$ ln -s build/bin/straka.release .</span><br><span class="line">$ ln -s build/bin/combine.py .</span><br><span class="line">$ cp build/bin/straka.inp .</span><br><span class="line">$ ./straka.release -i straka.inp </span><br><span class="line">$ python combine.py -o test</span><br></pre></td></tr></table></figure>
+<p>实验进行了900s的模拟，生成了<code>straka-test-main.nc</code>文件，头信息：<a href="straka-test-main.headinfo">straka-test-main.headinfo</a>。<br>脚本：<a href="make_plots.py">make_plots.py</a>。<br>绘制0，300，600，900s四个时刻的位温场的模拟：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3 make_plots.py</span><br></pre></td></tr></table></figure>
+<img style="height:300px" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src='2d.straka-theta.png' alt='2d.straka-theta(点击查看大图)'/>
+
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><p>源码位置不在本编译目录下，在canoe安装目录下：<code>~canoe/examples/2019-Li-snap/straka.cpp</code><br>我们来逐行分析：</p>
+<h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>这里简单提一下，Athena++是原子物理层面，适用于量子力学&#x2F;流体力学的天文磁流体模式。Canoe是在其基础内核上开发的，基于其网格并行架构(mesh,meshblock)、流体力学模块(hydro)和类的封装风格（airparcel）、重力（gravity），坐标（coordinate）, I&#x2F;O等，加入了热力学模块（thermodynmics），辐射传输（radiation, opacity）等分子层面的宏观物理方法的大气模式。所以，canoe需要include很多athena++的类库，同时，自身要实现从atom到particle的转变。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/athena.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/athena_arrays.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/stride_iterator.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/parameter_input.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/coordinates/coordinates.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/eos/eos.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/hydro/hydro.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/field/field.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/mesh/mesh.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;impl.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;snap/thermodynamics/thermodynamics.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climath/core.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/athena.hpp"><em><strong>athena.hpp</strong></em></a>：定义了Athena++的各种各种变量、类型、常量、下标，指针，结构体等等。 如：Real型，ConsIndex,PrimIndex等枚举类；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/parameter_input.hpp"><em><strong>parameter_input.hpp</strong></em></a>：设定了用于读取、存储模式输入文件<code>&lt;straka.inp&gt;</code>中变量的<code>ParameterInput</code>类型和<code>GetInteger()</code>，<code>GetReal()</code>等函数；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/coordinates/coordinates.hpp"><em><strong>coordinates.hpp</strong></em></a>：定义，存储和计算坐标位置，网格距和几何特性（面积、体积、source term）的文件；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/eos/eos.hpp"><em><strong>eos.hpp</strong></em></a> ：定义用于计算状态方程（Equation of State）的数据和函数；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/hydro/hydro.hpp"><em><strong>hydro.hpp</strong></em></a> ：这位更是重量级，定义了处理流体力学过程的<code>Hydro</code>类，负责处理流体动力过程中压强、密度和速度场的演变。包含了指向特定meshblock的指针<code>*pmb</code>; Hydro类本身可以被指针*hydro引用；Athena++还可以用来模拟磁流体力学过程 <code>magnetohydrodynamics (MHD)</code>;</p>
+</li>
+<li><p><a href=""><em><strong>field.hpp</strong></em></a>：负责处理磁流体力学中的场的变化，大气模拟一般用不到；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/mesh/mesh.hpp"><em><strong>mesh.hpp</strong></em></a> ：负责处理mesh和meshblock的类库，并且协调不同处理器并行情形下的mesh分布式计算问题。</p>
+<ul>
+<li>MeshBlock class:格点类，控制单个格点的各种过程和位置信息；</li>
+<li>Mesh class:所有网格类型的总类，结构上是由大量meshBlock示例构成；类别上可以分成规则网格，三角形网格、变分网格等。</li>
+<li>Mesh网格的设计：参考Athena++团队发表的网格设计和工作原理：<a target="_blank" rel="noopener" href="https://doi.org/10.3847/1538-4365/ab929b">【The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers】</a>;<br>  <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/~jihenghu/space/research/canoe-athena/canoe-example-straka/athenapp-mesh-scheme.jpg" alt="Mesh网格结构示意图"><br>  详细内容会在mesh网格文章中介绍。（挖坑~）</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/chengcli/canoe/blob/main/src/impl.hpp"><em><strong>impl.hpp</strong></em></a> ：这是Canoe作为athena++扩展时为了灵活添加需要的物理方案和模块，留下的伪类，称为<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Opaque_pointer">Opaque pointer</a>，也可以理解为一个接口或后门，后续需要做任何模块的修改，只要子imp类中做扩展并具体实现就可以了。目前，impl类上插了以下几个canoe的实际物理&#x2F;化学&#x2F;辐射模块：<code>radiation</code>（辐射传输）,<code>inversion</code>（反演）,<code>decomposition</code>（分解）,<code>thermodynamics</code>（热力学）,<code>turbulence_model</code>（湍流）,<code>microphysics</code>（微物理）,<code>chemistry</code>（化学）,<code>tracer</code>（痕量气体）。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/mesh/mesh.hpp">MeshBlock类</a>：这里介绍以下MeshBlock类，被定义在Mesh类的里面，负责管理每个格点的坐标、状态和相关物理过程的实现，在逻辑上后于Mesh类的实例化。这些物理是由其内部封装的指针来访问的，包括：</p>
+<ul>
+<li>Coordinates *pcoord &#x2F;&#x2F; 格点的坐标系统</li>
+<li>Hydro *phydro     &#x2F;&#x2F; 流体力学过程</li>
+<li>EquationOfState *peos  &#x2F;&#x2F; 大气状态方程</li>
+<li>但是，如<code>*pthermo</code>,<code>*prad</code>等属于Canoe扩展的类的指针，定义在<code>impl</code>高级包装类中。因为不属于MeshBlock类的成员指针，不能在其实例中直接使用，需要先实例化：<code>auto pthermo = Thermodynamics::GetInstance();</code>，或者通过<code>impl</code>类的指针来访问:<code>auto prad = pimpl-&gt;prad;</code>。</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/chengcli/canoe/blob/main/src/impl.hpp"><b style="color:red"><em>thermodynamics.hpp</em></b></a> ：定义在<code>impl</code>类中，负责处理热力学相关的过程和状态的解算。包含了温度、压强、位温、能量等参数的求算，以及：</p>
+<ul>
+<li>几种大气层结假设：    <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum class</span> <span class="title class_">Method</span> &#123;</span><br><span class="line">ReversibleAdiabat = <span class="number">0</span>, <span class="comment">// 可逆绝热</span></span><br><span class="line">PseudoAdiabat = <span class="number">1</span>, <span class="comment">//假绝热</span></span><br><span class="line">DryAdiabat = <span class="number">2</span>, <span class="comment">//干绝热</span></span><br><span class="line">Isothermal = <span class="number">3</span>, <span class="comment">// 等温大气</span></span><br><span class="line">NeutralStability = <span class="number">4</span> <span class="comment">// 中性稳定</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>大气结构构建函数：  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//! Construct an 1d atmosphere</span></span><br><span class="line"><span class="comment">//! \param[in,out] qfrac mole fraction representation of air parcel</span></span><br><span class="line"><span class="comment">//! \param[in] dzORdlnp vertical grid spacing</span></span><br><span class="line"><span class="comment">//! \param[in] method choose from [reversible, pseudo, dry, isothermal]</span></span><br><span class="line"><span class="comment">//! \param[in] grav gravitational acceleration</span></span><br><span class="line"><span class="comment">//! \param[in] userp user parameter to adjust the temperature gradient</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Thermodynamics::Extrapolate</span><span class="params">(AirParcel* qfrac, Real dzORdlnp, Method method,</span></span></span><br><span class="line"><span class="params"><span class="function">                             Real grav, Real userp)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">qfrac-&gt;<span class="built_in">ToMoleFraction</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// equilibrate vapor with clouds</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= NVAPOR; ++i) &#123;</span><br><span class="line">    <span class="keyword">auto</span> rates = <span class="built_in">TryEquilibriumTP_VaporCloud</span>(*qfrac, i);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// vapor condensation rate</span></span><br><span class="line">    qfrac-&gt;w[i] += rates[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// cloud concentration rates</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; rates.<span class="built_in">size</span>(); ++j)</span><br><span class="line">    qfrac-&gt;c[cloud_index_set_[i][j - <span class="number">1</span>]] += rates[j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RK4 integration</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> HYDROSTATIC</span></span><br><span class="line"><span class="built_in">rk4IntegrateLnp</span>(qfrac, dzORdlnp, method, userp);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="built_in">rk4IntegrateZ</span>(qfrac, dzORdlnp, method, grav, userp);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  这部分内容会在<code>模式的大气热力学基础</code>中讲（又挖坑~~~）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="输出设置"><a href="#输出设置" class="headerlink" title="输出设置"></a>输出设置</h3><p>接下来，程序定义了几个全局变量。这里，<code>K</code> 是运动粘度，<code>p0</code>是表面压力，<code>cp</code> 是比热容，而<code>Rd</code> 是干燥空气的理想气体常数。这里的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Prandtl_number">普朗特数</a> 是1。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Real K, p0, cp, Rd;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>设置输出量：你在inp文件中看到的UOV就是这里的UserOutputVariable的缩写。这里输出了温度场和位温场作为诊断量。<br>为输出量分配内存：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::InitUserMeshBlockData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;   </span><br><span class="line">  <span class="built_in">AllocateUserOutputVariables</span>(<span class="number">2</span>);          <span class="comment">// 声明两个输出量</span></span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">0</span>, <span class="string">&quot;temp&quot;</span>);    <span class="comment">// 命名</span></span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">1</span>, <span class="string">&quot;theta&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于温度和位温仅用于输出目的，它们不需要在每个动态时间步长中计算。下面的子例程循环遍历所有网格，并在输出时间步长之前计算温度和位温的值。特别地，指向Thermodynamics类的指针<code>pthermo</code>使用其自己的成员函数Thermodynamics::GetTemp和PotentialTemp来计算温度和位温。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::UserWorkBeforeOutput</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line">  <span class="comment">// 循环遍历网格。js、je、is、ie是MeshBlock类的成员，</span></span><br><span class="line">  <span class="comment">// 它们是表示每个维度中网格的起始索引和结束索引的整数值。</span></span><br><span class="line">  <span class="type">int</span> k = ks; <span class="comment">//本个例是二维场的模拟，第三维k=ks=1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">      <span class="comment">// user_out_var存储实际数据。</span></span><br><span class="line">      <span class="comment">// phydro是指向Hydro类的指针，它具有成员w，该成员存储每个网格的密度、压力和速度。</span></span><br><span class="line">      <span class="built_in">user_out_var</span>(<span class="number">0</span>, j, i) = pthermo-&gt;<span class="built_in">GetTemp</span>(<span class="keyword">this</span>, k, j, i);</span><br><span class="line">      <span class="built_in">user_out_var</span>(<span class="number">1</span>, j, i) = pthermo-&gt;<span class="built_in">PotentialTemp</span>(<span class="keyword">this</span>, p0, k, j, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>*pthermo</code>是一个高级管理类MeshBlock的成员。因此，在MeshBlock类的成员函数中，您可以直接使用它。实际上，所有物理模块都由MeshBlock管理。只要您有一个指向MeshBlock的指针，您就可以访问模拟中的所有物理模块。</p>
+<hr>
+<h3 id="Forcing-function"><a href="#Forcing-function" class="headerlink" title="Forcing function"></a>Forcing function</h3><p>本个例中，明确要求考虑，下沉的气泡受到重力以及粘性和热耗散的影响。重力的作用已经由程序的其他部分处理，我们只需要编写几行代码来实现耗散。第一步是定义一个函数，该函数以指向MeshBlock的指针作为参数，以便通过该指针访问所有物理量。这个函数的名称并不重要，可以是任何名字。但是参数的顺序和类型必须是<br> <strong>void AnyName(MeshBlock*，Real const，Real const，AthenaArray<Real> const&amp;，AthenaArray<Real> const&amp;，AthenaArray<Real>&amp;)</strong><br> 它们被称为函数的签名。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Diffusion</span><span class="params">(MeshBlock *pmb, Real <span class="type">const</span> time, Real <span class="type">const</span> dt,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;w, AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;r,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;bcc, AthenaArray&lt;Real&gt; &amp;u,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; &amp;s)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// &lt;code&gt;pcoord&lt;/code&gt; is a pointer to the Coordinates class and it is a</span></span><br><span class="line">  <span class="comment">// member of the MeshBlock class. We use the pointer to the MeshBlock class,</span></span><br><span class="line">  <span class="comment">// &lt;code&gt;pmb&lt;/code&gt; to access &lt;code&gt;pcoord&lt;/code&gt; and use its member function</span></span><br><span class="line">  <span class="comment">// to get the spacing of the grid.</span></span><br><span class="line">  Real dx = pmb-&gt;pcoord-&gt;<span class="built_in">dx1f</span>(pmb-&gt;is);</span><br><span class="line">  Real dy = pmb-&gt;pcoord-&gt;<span class="built_in">dx2f</span>(pmb-&gt;js);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Similarly, we use &lt;code&gt;pmb&lt;/code&gt; to find the pointer to the</span></span><br><span class="line">  <span class="comment">// Thermodynamics class, &lt;code&gt;pthermo&lt;/code&gt;.</span></span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Loop over the grids.</span></span><br><span class="line">  <span class="type">int</span> k = pmb-&gt;ks;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = pmb-&gt;js; j &lt;= pmb-&gt;je; ++j)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = pmb-&gt;is; i &lt;= pmb-&gt;ie; ++i) &#123;</span><br><span class="line">      <span class="comment">// Similar to what we have done in MeshBlock::UserWorkBeforeOutput, we use</span></span><br><span class="line">      <span class="comment">// the Thermodynamics class to calculate temperature and potential</span></span><br><span class="line">      <span class="comment">// temperature.</span></span><br><span class="line">      Real temp = pthermo-&gt;<span class="built_in">GetTemp</span>(pmb, pmb-&gt;ks, j, i);</span><br><span class="line">      Real theta = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, pmb-&gt;ks, j, i);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// The thermal diffusion is applied to the potential temperature field,</span></span><br><span class="line">      <span class="comment">// which is not exactly correct. But this is the setting of the test</span></span><br><span class="line">      <span class="comment">// program.</span></span><br><span class="line">      Real theta_ip1_j = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j + <span class="number">1</span>, i);</span><br><span class="line">      Real theta_im1_j = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j - <span class="number">1</span>, i);</span><br><span class="line">      Real theta_i_jp1 = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j, i + <span class="number">1</span>);</span><br><span class="line">      Real theta_i_jm1 = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j, i - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">      <span class="built_in">u</span>(IM1, j, i) += dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) *</span><br><span class="line">                      (<span class="built_in">w</span>(IVX, j, i - <span class="number">1</span>) + <span class="built_in">w</span>(IVX, j, i + <span class="number">1</span>) + <span class="built_in">w</span>(IVX, j - <span class="number">1</span>, i) +</span><br><span class="line">                       <span class="built_in">w</span>(IVX, j + <span class="number">1</span>, i) - <span class="number">4.</span> * <span class="built_in">w</span>(IVX, j, i));</span><br><span class="line">      <span class="built_in">u</span>(IM2, j, i) += dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) *</span><br><span class="line">                      (<span class="built_in">w</span>(IVY, j, i - <span class="number">1</span>) + <span class="built_in">w</span>(IVY, j, i + <span class="number">1</span>) + <span class="built_in">w</span>(IVY, j - <span class="number">1</span>, i) +</span><br><span class="line">                       <span class="built_in">w</span>(IVY, j + <span class="number">1</span>, i) - <span class="number">4.</span> * <span class="built_in">w</span>(IVY, j, i));</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Adding thermal dissipation is similar to adding viscous dissipation.</span></span><br><span class="line">      <span class="built_in">u</span>(IEN, j, i) +=</span><br><span class="line">          dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) * cp * temp / theta *</span><br><span class="line">          (theta_ip1_j + theta_im1_j + theta_i_jp1 + theta_i_jm1 - <span class="number">4.</span> * theta);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>怎么理解这个Forcing function呢？Athena++的 hydro模块解决了一个流体力学的质量守恒和能量守恒问题。 </p>
+<div class="note primary no-icon flat"><p>首先，对与理想流体（粘性为0，受外力作用不发生粘性耗散），其满足的质量守恒方程（连续性方程）为：<br>\begin{align}<br>\frac{\partial \rho }{\partial t}+ \bigtriangledown \cdot (\rho u) &#x3D;0 ;<br>\end{align}</p>
+<ul>
+<li>$\rho$ is the density of the fluid.</li>
+<li>$u$ is the velocity of the fluid.</li>
+<li>$t$ is time.<br>理解起来就是：局地变化项&#x3D;平流项。</li>
+</ul>
+</div>
+<p>动量方程：</p>
+<div class="note primary no-icon flat"><p>理想流体的动量方程是欧拉方程的一部分，描述了流体中动量的守恒。在一维流动中，动量方程可以写成：<br>\begin{align}<br>\frac{\partial}{\partial t}(\rho u) + \frac{\partial}{\partial x}(\rho u^2 + P) &#x3D; 0<br>\end{align}</p>
+<ul>
+<li>$P$ is the pressure of the fluid.</li>
+<li>$x$ is the spatial coordinate.</li>
+<li>这个方程表示了流体中动量的守恒。左侧第一项表示动量的时间变化率，第二项表示空间域中动量的平流通量。<br><em>注：欧拉方程假设一个理想化的流体，没有粘性或热传导（无粘性和绝热）。在具有粘性和热效应的实际情况中，通常会使用包含粘性和热传导额外项的Navier-Stokes方程。</em></li>
+</ul>
+</div>
+
+<p>能量守恒方程：<br>理想流体的能量守恒方程可以通过欧拉方程来表示，该方程描述了无粘性和绝热的流体运动。欧拉方程包括连续性方程、动量方程和能量方程。</p>
+<div class="note primary no-icon flat"><p>对于一维流动，理想流体的能量守恒方程可以写成：<br>\begin{align} \frac{\partial}{\partial t} \left(\rho E + \frac{1}{2}\rho u^2\right) + \frac{\partial}{\partial x} \left(\rho u E + \frac{1}{2}\rho u^3 + P u\right) &#x3D; 0 \end{align}</p>
+<ul>
+<li>$E$ is the specific total energy, given by $ E &#x3D; e + \frac{1}{2}u^2$, where $e$ is the specific internal energy.</li>
+<li>这个方程表示了流体中总能量（内能和动能）的守恒。它考虑了总能量的时间变化率以及在空间域内的能量通量。<br><em>注：，欧拉方程假设了一个理想化的流体，没有粘性或热传导（无粘性和绝热）。在具有粘性和热效应的实际情况中，通常会使用包含粘性和热传导额外项的Navier-Stokes方程。</em></li>
+</ul>
+</div>
+
+
+<p>那么在Straka问题中，真实的大气是具有一定粘性的，受外力作用会发生热量耗散，方程就需要加上耗散项：</p>
+<div class="note primary no-icon flat"><p>动量耗散项：<br>\begin{align} M_{\text{x}}(j, i) +&#x3D; \frac{\partial t \cdot K}{\partial x \cdot \partial y} \left( u_{\text{x}}(j, i-1) + u_{\text{x}}(j, i+1) + u_{\text{x}}(j-1, i) + u_{\text{x}}(j+1, i) - 4 \cdot u_{\text{x}}(j, i) \right) \end{align}<br>热耗散项：<br>\begin{align} E(j, i) +&#x3D; \frac{\partial t \cdot K}{\partial x \cdot \partial y} \frac{c_p \cdot \text{T}}{\theta} \left( \theta_{i+1, j} + \theta_{i-1, j} + \theta_{i, j+1} + \theta_{i, j-1} - 4 \cdot \theta_{i, j} \right) \end{align}<br>其中 $M_x$表示$x$方向上的动量分量；$E$表示总能量，$u_x$为$x$方向的速度，$\theta$为位温，$T$为温度，$K$为粘度；</p>
+</div>
+<p>在添加了粘性耗散的Forcing之后，流体的运动方程就完整了，Hydro模块会结合重力场去求解流体的状态演变。</p>
+<div class="note primary no-icon flat"><p><strong>Primitive | Conserved</strong><br>Forcing部分的代码中涉及了u，w两个范参数，分别代表了保守量和状态量，这是继承与Athena++的特征。<br>Athena++使用<code>u</code>来表示<code>conserved variables</code>，如<code>density</code>, <code>momentums</code>, <code>total energy (kinetic + internal)</code>。这些量是保守量，也是广延量，可扩展量； 而使用<code>w</code>来并表示<code>primitive variables</code>，如<code>temperature</code>, <code>velocities</code>, and <code>pressure</code>，这些量都是强度量，也是状态量。这两者在&lt;AthenaArray.hpp&gt;类库中定义：<code>AthenaArray&lt;Real&gt; u, w</code></p>
+<p>这一问题的说明请见<a target="_blank" rel="noopener" href="https://doi.org/10.3847/1538-4365/aafdaa">【Appendix B: Conversion between Primitive Variables and Conserved Variables】</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PrincetonUniversity/athena/blob/master/src/athena.hpp">athena&#x2F;src&#x2F;athena.hpp</a> 里这样定义这些变量的枚举下标：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//! array indices for conserved u : density, momemtum, total energy</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">ConsIndex</span> &#123;IDN=<span class="number">0</span>, IM1=<span class="number">1</span>, IM2=<span class="number">2</span>, IM3=<span class="number">3</span>, IEN=<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//! array indices for face-centered field</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">MagneticIndex</span> &#123;IB1=<span class="number">0</span>, IB2=<span class="number">1</span>, IB3=<span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//! array indices for 1D primitives w: velocity, transverse components of field</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">PrimIndex</span> &#123;IVX=<span class="number">1</span>, IVY=<span class="number">2</span>, IVZ=<span class="number">3</span>, IPR=<span class="number">4</span>, IBY=(NHYDRO), IBZ=((NHYDRO)+<span class="number">1</span>)&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//! array indices for face-centered electric fields returned by Riemann solver</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">ElectricIndex</span> &#123;X1E2=<span class="number">0</span>, X1E3=<span class="number">1</span>, X2E3=<span class="number">0</span>, X2E1=<span class="number">1</span>, X3E1=<span class="number">0</span>, X3E2=<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//! array indices for metric matrices in GR</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">MetricIndex</span> &#123;I00=<span class="number">0</span>, I01=<span class="number">1</span>, I02=<span class="number">2</span>, I03=<span class="number">3</span>, I11=<span class="number">4</span>, I12=<span class="number">5</span>, I13=<span class="number">6</span>, I22=<span class="number">7</span>, I23=<span class="number">8</span>, I33=<span class="number">9</span>,</span><br><span class="line">                  NMETRIC=<span class="number">10</span>&#125;;</span><br><span class="line"><span class="comment">//! array indices for triangular matrices in GR</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">TriangleIndex</span> &#123;T00=<span class="number">0</span>, T10=<span class="number">1</span>, T11=<span class="number">2</span>, T20=<span class="number">3</span>, T21=<span class="number">4</span>, T22=<span class="number">5</span>, T30=<span class="number">6</span>, T31=<span class="number">7</span>, T32=<span class="number">8</span>, T33=<span class="number">9</span>,</span><br><span class="line">                    NTRIANGULAR=<span class="number">10</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>由此，常用的一些量在程序中表示为：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">w[IPR] = Press;</span><br><span class="line">w[IDN] = Temperature;</span><br><span class="line">w[IVX] = verlocity in dimension x</span><br><span class="line">u[IDN] = Density</span><br><span class="line">u[IM1] = Momentums in dimension x</span><br><span class="line">u[IEN] = Total Energy</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="初始化Mesh类参数"><a href="#初始化Mesh类参数" class="headerlink" title="初始化Mesh类参数"></a>初始化Mesh类参数</h3><p>这是初始化程序特定变量的地方。注意这个函数是Mesh类的成员函数，而不是我们一直在使用的MeshBlock类的成员函数。<br>Mesh类是一个全包括的类，管理多个MeshBlock，而MeshBlock类管理所有物理相关模块；在实例化这两个类的过程中，应该首先实例化Mesh类，然后它在内部实例化所有的MeshBlock。<br>因此，这个子程序在所有MeshBlock之前运行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Mesh::InitUserMeshData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 在这里设置程序特定的驱动参数。</span></span><br><span class="line">  <span class="comment">// 这些参数来自输入文件，由ParameterInput类解析。</span></span><br><span class="line">  Real gamma = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;hydro&quot;</span>, <span class="string">&quot;gamma&quot;</span>);  <span class="comment">// gamma = C_p/C_v   specific heats</span></span><br><span class="line">  K = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;K&quot;</span>);    <span class="comment">// viscious coefficient</span></span><br><span class="line">  p0 = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;p0&quot;</span>);  <span class="comment">//  surface pressure</span></span><br><span class="line">  Rd = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;thermodynamics&quot;</span>, <span class="string">&quot;Rd&quot;</span>);  <span class="comment">// specific gas constant for dry air [J/(kg·K)]</span></span><br><span class="line">  cp = gamma / (gamma - <span class="number">1.</span>) * Rd;   <span class="comment">// specific heat at constant pressure [J/(kg·K)]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这行代码注册我们在上一部分中编写的Forcing Function。</span></span><br><span class="line">  <span class="built_in">EnrollUserExplicitSourceFunction</span>(Diffusion);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上述的，$K, P_0, R_d, c_p,\gamma$ 等参数都属于Mesh类的成员参数，适用于所有MeshBlock实例，而且此处要注册一个forcingfunction，所以要在此处先读取并Initalize。</p>
+<h3 id="初始化MeshBlock参数"><a href="#初始化MeshBlock参数" class="headerlink" title="初始化MeshBlock参数"></a>初始化MeshBlock参数</h3><p>这是程序的最后一部分，我们在其中设置初始条件。在Athena++应用程序中，一般称为<code>problem generator</code>。<br>这部分可以理解成初始时刻，对每个MeshBlock进行设置。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::ProblemGenerator</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 获取重力的值。正值表示向上，负值表示向下。</span></span><br><span class="line">  <span class="comment">// 我们取负值以获得绝对值。</span></span><br><span class="line">  Real grav = -phydro-&gt;hsrc.<span class="built_in">GetG1</span>();</span><br><span class="line">  <span class="comment">// 这些行读取输入文件中的参数值，这些参数以节的形式组织。</span></span><br><span class="line">  <span class="comment">// 问题特定的参数通常放在`&lt;problem&gt;`节下。</span></span><br><span class="line">  Real Ts = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;Ts&quot;</span>);</span><br><span class="line">  Real xc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xc&quot;</span>);</span><br><span class="line">  Real xr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xr&quot;</span>);</span><br><span class="line">  Real zc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zc&quot;</span>);</span><br><span class="line">  Real zr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zr&quot;</span>);</span><br><span class="line">  Real dT = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;dT&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>循环遍历网格。目的是在每个单元格中心网格上设置温度、压力和密度场。<br>按照straka problem的情景，初始时刻应该是：<br>1）有一个绝热大气的温压场，使用了大气状态方程（EOS, Equation of State）先对大气进行构建；<br>$$<br>\begin{align}<br> p&#x3D;p_0(\frac{T}{T_s})^{c_p&#x2F;R_d}<br>\end{align}<br>$$<br>2）在此基础上叠加一个冷的气泡的温度异常导致的温度场，公式（1）。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">    <span class="comment">// 获取垂直和水平方向的笛卡尔坐标。`x1`通常是垂直方向，`x2`是水平方向。</span></span><br><span class="line">    <span class="comment">// `x1v`和`x2v`检索单元格中心的坐标。</span></span><br><span class="line">    Real x1 = pcoord-&gt;<span class="built_in">x1v</span>(i);</span><br><span class="line">    Real x2 = pcoord-&gt;<span class="built_in">x2v</span>(j);</span><br><span class="line">    <span class="comment">// 到（xc，zc）处冷空气泡中心的距离。</span></span><br><span class="line">    Real L = <span class="built_in">sqrt</span>(<span class="built_in">sqr</span>((x2 - xc) / xr) + <span class="built_in">sqr</span>((x1 - zc) / zr));</span><br><span class="line">    <span class="comment">// 绝热温度梯度。</span></span><br><span class="line">    Real temp = Ts - grav * x1 / cp;</span><br><span class="line">    <span class="comment">// 一旦知道温度，就可以计算绝热和静力压力，公式为</span></span><br><span class="line">    <span class="comment">// $p=p_0(\frac&#123;T&#125;&#123;T_s&#125;)^&#123;c_p/R_d&#125;$，其中$p_0$是地表压力，$T_s$是地表温度。</span></span><br><span class="line">    phydro-&gt;<span class="built_in">w</span>(IPR, j, i) = p0 * <span class="built_in">pow</span>(temp / Ts, cp / Rd);</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= <span class="number">1.</span>) temp += dT * (<span class="built_in">cos</span>(M_PI * L) + <span class="number">1.</span>) / <span class="number">2.</span>;</span><br><span class="line">    <span class="comment">// 使用理想气体定律设置密度。</span></span><br><span class="line">    phydro-&gt;<span class="built_in">w</span>(IDN, j, i) = phydro-&gt;<span class="built_in">w</span>(IPR, j, i) / (Rd * temp);</span><br><span class="line">    <span class="comment">// 将速度初始化为零。</span></span><br><span class="line">    phydro-&gt;<span class="built_in">w</span>(IVX, j, i) = phydro-&gt;<span class="built_in">w</span>(IVY, j, i) = <span class="number">0.</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们已经设置了所有的<code>primitive variables</code>。最后一步是基于<code>primitive variables</code>计算<code>conserved variables</code>。<br>这是通过调用成员函数<code>EquationOfState::PrimitiveToConserved</code>完成的。<br>注意，<code>pfield->bcc</code>是一个占位符，因为这个示例中没有MHD涉及。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">  peos-&gt;<span class="built_in">PrimitiveToConserved</span>(phydro-&gt;w, pfield-&gt;bcc, phydro-&gt;u, pcoord, is, ie, js, je, ks, ke);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码和输入文件"><a href="#源码和输入文件" class="headerlink" title="源码和输入文件"></a>源码和输入文件</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* -------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"> * SNAP Example Program</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Contributer:</span></span><br><span class="line"><span class="comment"> * Cheng Li, University of Michigan</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Year: 2021</span></span><br><span class="line"><span class="comment"> * Contact: chengcli@umich.edu</span></span><br><span class="line"><span class="comment"> * Reference: Straka et al., 1993</span></span><br><span class="line"><span class="comment"> * -------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/athena.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/athena_arrays.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/stride_iterator.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/parameter_input.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/coordinates/coordinates.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/eos/eos.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/hydro/hydro.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/field/field.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/mesh/mesh.hpp&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;impl.hpp&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;snap/thermodynamics/thermodynamics.hpp&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climath/core.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line">Real K, p0, cp, Rd;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::InitUserMeshBlockData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">AllocateUserOutputVariables</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">0</span>, <span class="string">&quot;temp&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">1</span>, <span class="string">&quot;theta&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::UserWorkBeforeOutput</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line"> </span><br><span class="line">  <span class="type">int</span> k = ks;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">      <span class="built_in">user_out_var</span>(<span class="number">0</span>, j, i) = pthermo-&gt;<span class="built_in">GetTemp</span>(<span class="keyword">this</span>, k, j, i);</span><br><span class="line">      <span class="built_in">user_out_var</span>(<span class="number">1</span>, j, i) = pthermo-&gt;<span class="built_in">PotentialTemp</span>(<span class="keyword">this</span>, p0, k, j, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Diffusion</span><span class="params">(MeshBlock *pmb, Real <span class="type">const</span> time, Real <span class="type">const</span> dt,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;w, AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;r,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; <span class="type">const</span> &amp;bcc, AthenaArray&lt;Real&gt; &amp;u,</span></span></span><br><span class="line"><span class="params"><span class="function">               AthenaArray&lt;Real&gt; &amp;s)</span> </span>&#123;</span><br><span class="line">  Real dx = pmb-&gt;pcoord-&gt;<span class="built_in">dx1f</span>(pmb-&gt;is);</span><br><span class="line">  Real dy = pmb-&gt;pcoord-&gt;<span class="built_in">dx2f</span>(pmb-&gt;js);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line"> </span><br><span class="line">  <span class="type">int</span> k = pmb-&gt;ks;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = pmb-&gt;js; j &lt;= pmb-&gt;je; ++j)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = pmb-&gt;is; i &lt;= pmb-&gt;ie; ++i) &#123;</span><br><span class="line">      Real temp = pthermo-&gt;<span class="built_in">GetTemp</span>(pmb, pmb-&gt;ks, j, i);</span><br><span class="line">      Real theta = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, pmb-&gt;ks, j, i);</span><br><span class="line"> </span><br><span class="line">      Real theta_ip1_j = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j + <span class="number">1</span>, i);</span><br><span class="line">      Real theta_im1_j = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j - <span class="number">1</span>, i);</span><br><span class="line">      Real theta_i_jp1 = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j, i + <span class="number">1</span>);</span><br><span class="line">      Real theta_i_jm1 = pthermo-&gt;<span class="built_in">PotentialTemp</span>(pmb, p0, k, j, i - <span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">u</span>(IM1, j, i) += dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) *</span><br><span class="line">                      (<span class="built_in">w</span>(IVX, j, i - <span class="number">1</span>) + <span class="built_in">w</span>(IVX, j, i + <span class="number">1</span>) + <span class="built_in">w</span>(IVX, j - <span class="number">1</span>, i) +</span><br><span class="line">                       <span class="built_in">w</span>(IVX, j + <span class="number">1</span>, i) - <span class="number">4.</span> * <span class="built_in">w</span>(IVX, j, i));</span><br><span class="line">      <span class="built_in">u</span>(IM2, j, i) += dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) *</span><br><span class="line">                      (<span class="built_in">w</span>(IVY, j, i - <span class="number">1</span>) + <span class="built_in">w</span>(IVY, j, i + <span class="number">1</span>) + <span class="built_in">w</span>(IVY, j - <span class="number">1</span>, i) +</span><br><span class="line">                       <span class="built_in">w</span>(IVY, j + <span class="number">1</span>, i) - <span class="number">4.</span> * <span class="built_in">w</span>(IVY, j, i));</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">u</span>(IEN, j, i) +=</span><br><span class="line">          dt * K * <span class="built_in">w</span>(IDN, j, i) / (dx * dy) * cp * temp / theta *</span><br><span class="line">          (theta_ip1_j + theta_im1_j + theta_i_jp1 + theta_i_jm1 - <span class="number">4.</span> * theta);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Mesh::InitUserMeshData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  Real gamma = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;hydro&quot;</span>, <span class="string">&quot;gamma&quot;</span>);</span><br><span class="line">  K = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;K&quot;</span>);</span><br><span class="line">  p0 = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;p0&quot;</span>);</span><br><span class="line">  Rd = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;thermodynamics&quot;</span>, <span class="string">&quot;Rd&quot;</span>);</span><br><span class="line">  cp = gamma / (gamma - <span class="number">1.</span>) * Rd;</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">EnrollUserExplicitSourceFunction</span>(Diffusion);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::ProblemGenerator</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  Real grav = -phydro-&gt;hsrc.<span class="built_in">GetG1</span>();</span><br><span class="line">  Real Ts = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;Ts&quot;</span>);</span><br><span class="line">  Real xc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xc&quot;</span>);</span><br><span class="line">  Real xr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xr&quot;</span>);</span><br><span class="line">  Real zc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zc&quot;</span>);</span><br><span class="line">  Real zr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zr&quot;</span>);</span><br><span class="line">  Real dT = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;dT&quot;</span>);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">      Real x1 = pcoord-&gt;<span class="built_in">x1v</span>(i);</span><br><span class="line">      Real x2 = pcoord-&gt;<span class="built_in">x2v</span>(j);</span><br><span class="line">      Real L = <span class="built_in">sqrt</span>(<span class="built_in">sqr</span>((x2 - xc) / xr) + <span class="built_in">sqr</span>((x1 - zc) / zr));</span><br><span class="line">      Real temp = Ts - grav * x1 / cp;</span><br><span class="line">      phydro-&gt;<span class="built_in">w</span>(IPR, j, i) = p0 * <span class="built_in">pow</span>(temp / Ts, cp / Rd);</span><br><span class="line">      <span class="keyword">if</span> (L &lt;= <span class="number">1.</span>) temp += dT * (<span class="built_in">cos</span>(M_PI * L) + <span class="number">1.</span>) / <span class="number">2.</span>;</span><br><span class="line">      phydro-&gt;<span class="built_in">w</span>(IDN, j, i) = phydro-&gt;<span class="built_in">w</span>(IPR, j, i) / (Rd * temp);</span><br><span class="line">      phydro-&gt;<span class="built_in">w</span>(IVX, j, i) = phydro-&gt;<span class="built_in">w</span>(IVY, j, i) = <span class="number">0.</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  peos-&gt;<span class="built_in">PrimitiveToConserved</span>(phydro-&gt;w, pfield-&gt;bcc, phydro-&gt;u, pcoord, is, ie,</span><br><span class="line">                             js, je, ks, ke);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#straks.inp</span></span><br><span class="line"><span class="string">&lt;comment&gt;</span></span><br><span class="line"><span class="string">sroblem</span>   <span class="string">=</span> <span class="string">Dense</span> <span class="string">sinking</span> <span class="string">bubble</span> <span class="string">test</span></span><br><span class="line"><span class="string">reference</span> <span class="string">=</span> <span class="string">Straka</span> <span class="string">et</span> <span class="string">al.,</span> <span class="number">1993</span></span><br><span class="line"><span class="string">configure</span> <span class="string">=</span> <span class="string">--prob=straka</span> <span class="string">--nghost=3</span> <span class="string">-netcdf</span> <span class="comment">## 不再使用这种方法</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;job&gt;</span></span><br><span class="line"><span class="string">problem_id</span> <span class="string">=</span> <span class="string">straka</span>       <span class="comment"># problem ID: basename of output filenames</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;output1&gt;</span></span><br><span class="line"><span class="string">file_type</span>  <span class="string">=</span> <span class="string">hst</span>          <span class="comment"># History data dump</span></span><br><span class="line"><span class="string">dt</span>         <span class="string">=</span> <span class="number">300</span><span class="string">.</span>          <span class="comment"># time increment between outputs</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;output2&gt;</span></span><br><span class="line"><span class="string">file_type</span>  <span class="string">=</span> <span class="string">netcdf</span>      <span class="comment"># Binary data dump</span></span><br><span class="line"><span class="string">variable</span>   <span class="string">=</span> <span class="string">prim</span>         <span class="comment"># variables to be output</span></span><br><span class="line"><span class="string">dt</span>         <span class="string">=</span> <span class="number">300</span><span class="string">.</span>          <span class="comment"># time increment between outputs</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;output3&gt;</span></span><br><span class="line"><span class="string">file_type</span>  <span class="string">=</span> <span class="string">netcdf</span></span><br><span class="line"><span class="string">variable</span>   <span class="string">=</span> <span class="string">uov</span></span><br><span class="line"><span class="string">dt</span>         <span class="string">=</span> <span class="number">300</span><span class="string">.</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;time&gt;</span></span><br><span class="line"><span class="string">cfl_number</span> <span class="string">=</span> <span class="number">0.9</span>          <span class="comment"># The Courant, Friedrichs, &amp; Lewy (CFL) Number</span></span><br><span class="line"><span class="string">nlim</span>       <span class="string">=</span> <span class="number">-1</span>           <span class="comment"># cycle limit</span></span><br><span class="line"><span class="string">tlim</span>       <span class="string">=</span> <span class="number">900</span>          <span class="comment"># time limit</span></span><br><span class="line"><span class="string">xorder</span>     <span class="string">=</span> <span class="number">5</span>            <span class="comment"># horizontal reconstruction order</span></span><br><span class="line"><span class="string">integrator</span> <span class="string">=</span> <span class="string">rk3</span>          <span class="comment"># integration method</span></span><br><span class="line"><span class="string">ncycle_out</span> <span class="string">=</span> <span class="number">10</span>           <span class="comment"># output frequency</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;mesh&gt;</span></span><br><span class="line"><span class="string">nx1</span>        <span class="string">=</span> <span class="number">64</span>           <span class="comment"># Number of zones in X1-direction</span></span><br><span class="line"><span class="string">x1min</span>      <span class="string">=</span> <span class="number">0</span><span class="string">.</span>           <span class="comment"># minimum value of X1</span></span><br><span class="line"><span class="string">x1max</span>      <span class="string">=</span> <span class="number">6.4E3</span>        <span class="comment"># maximum value of X1</span></span><br><span class="line"><span class="string">ix1_bc</span>     <span class="string">=</span> <span class="string">reflecting</span>   <span class="comment"># inner-X1 boundary flag</span></span><br><span class="line"><span class="string">ox1_bc</span>     <span class="string">=</span> <span class="string">reflecting</span>   <span class="comment"># outer-X1 boundary flag</span></span><br><span class="line"></span><br><span class="line"><span class="string">nx2</span>        <span class="string">=</span> <span class="number">256</span>          <span class="comment"># Number of zones in X2-direction</span></span><br><span class="line"><span class="string">x2min</span>      <span class="string">=</span> <span class="number">0</span><span class="string">.</span>           <span class="comment"># minimum value of X2</span></span><br><span class="line"><span class="string">x2max</span>      <span class="string">=</span> <span class="number">25.6E3</span>       <span class="comment"># maximum value of X2</span></span><br><span class="line"><span class="string">ix2_bc</span>     <span class="string">=</span> <span class="string">reflecting</span>   <span class="comment"># inner-X2 boundary flag</span></span><br><span class="line"><span class="string">ox2_bc</span>     <span class="string">=</span> <span class="string">reflecting</span>   <span class="comment"># outer-X2 boundary flag</span></span><br><span class="line"></span><br><span class="line"><span class="string">nx3</span>        <span class="string">=</span> <span class="number">1</span>            <span class="comment"># Number of zones in X3-direction</span></span><br><span class="line"><span class="string">x3min</span>      <span class="string">=</span> <span class="number">-0.5</span>         <span class="comment"># minimum value of X3</span></span><br><span class="line"><span class="string">x3max</span>      <span class="string">=</span> <span class="number">0.5</span>          <span class="comment"># maximum value of X3</span></span><br><span class="line"><span class="string">ix3_bc</span>     <span class="string">=</span> <span class="string">periodic</span>     <span class="comment"># inner-X3 boundary flag</span></span><br><span class="line"><span class="string">ox3_bc</span>     <span class="string">=</span> <span class="string">periodic</span>     <span class="comment"># outer-X3 boundary flag</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;hydro&gt;</span></span><br><span class="line"><span class="string">grav_acc1</span>   <span class="string">=</span> <span class="number">-9.8</span></span><br><span class="line"><span class="string">gamma</span>       <span class="string">=</span> <span class="number">1.4</span>         <span class="comment"># gamma = C_p/C_v</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;thermodynamics&gt;</span></span><br><span class="line"><span class="string">Rd</span>          <span class="string">=</span> <span class="number">287</span><span class="string">.</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;problem&gt;</span></span><br><span class="line"><span class="string">dT</span>    <span class="string">=</span> <span class="number">-15</span><span class="string">.</span></span><br><span class="line"><span class="string">xc</span>    <span class="string">=</span> <span class="number">0</span><span class="string">.</span></span><br><span class="line"><span class="string">xr</span>    <span class="string">=</span> <span class="number">4.E3</span></span><br><span class="line"><span class="string">zc</span>    <span class="string">=</span> <span class="number">3.E3</span></span><br><span class="line"><span class="string">zr</span>    <span class="string">=</span> <span class="number">2.E3</span></span><br><span class="line"><span class="string">p0</span>    <span class="string">=</span> <span class="number">1.E5</span></span><br><span class="line"><span class="string">Ts</span>    <span class="string">=</span> <span class="number">300</span><span class="string">.</span></span><br><span class="line"><span class="string">K</span>     <span class="string">=</span> <span class="number">75</span><span class="string">.</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO LIST"></a>TODO LIST</h2><ul>
+<li><input disabled="" type="checkbox"> Athena++ Mesh网格介绍；</li>
+<li><input disabled="" type="checkbox"> 模式的大气热力学基础；</li>
+<li><input disabled="" type="checkbox"> 大气流体力学基础</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io">JIHENG💕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/">https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Canoe/">Canoe</a><a class="post-meta__tags" href="/tags/Hydrodynamics/">Hydrodynamics</a><a class="post-meta__tags" href="/tags/Thermodynaics/">Thermodynaics</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/research/canoe-athena/canoe-example-robert/" title="Canoe Example#2：Robert Uprisng Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Canoe Example#2：Robert Uprisng Bubble</div></div></a></div><div class="next-post pull-right"><a href="/research/rttov/rttov132-telsem2-atlas/" title="TELSEM Emissivity Atlas的离线使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">TELSEM Emissivity Atlas的离线使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/research/canoe-athena/canoe-example-robert/" title="Canoe Example#2：Robert Uprisng Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-22</div><div class="title">Canoe Example#2：Robert Uprisng Bubble</div></div></a></div><div><a href="/research/canoe-athena/canoe-example-bryan/" title="Canoe Example#3：Bryan Moist Uprising Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-24</div><div class="title">Canoe Example#3：Bryan Moist Uprising Bubble</div></div></a></div><div><a href="/research/canoe-athena/canoe-example-juno_mwr_eq/" title="Canoe Example#4：Juno MWR辐射传输模拟"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-25</div><div class="title">Canoe Example#4：Juno MWR辐射传输模拟</div></div></a></div><div><a href="/research/canoe-athena/canoe-basis-mcmc/" title="Canoe Basis：Markov Chain Mont Carlo"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-26</div><div class="title">Canoe Basis：Markov Chain Mont Carlo</div></div></a></div><div><a href="/research/canoe-athena/canoe-column/" title="专栏：Canoe模式学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-18</div><div class="title">专栏：Canoe模式学习</div></div></a></div><div><a href="/research/canoe-athena/canoe-env/" title="Canoe模式的环境准备"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-18</div><div class="title">Canoe模式的环境准备</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JIHENG💕</div><div class="author-info__description">向着温暖的地方出发</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">70</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" href="/about/"><i class="fas fa-bookmark"></i><span>关于我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jihenghu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:hjh18305@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">请邮件联系我 hjh18305[at]gmail.com</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.</span> <span class="toc-text">模拟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">输出设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing-function"><span class="toc-number">3.3.</span> <span class="toc-text">Forcing function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96Mesh%E7%B1%BB%E5%8F%82%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">初始化Mesh类参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96MeshBlock%E5%8F%82%E6%95%B0"><span class="toc-number">3.5.</span> <span class="toc-text">初始化MeshBlock参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%92%8C%E8%BE%93%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">源码和输入文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO-LIST"><span class="toc-number">5.</span> <span class="toc-text">TODO LIST</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/essays/dc-agu24/" title="Washington D.C."><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/YINay6K2SAHfU4b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Washington D.C."/></a><div class="content"><a class="title" href="/essays/dc-agu24/" title="Washington D.C.">Washington D.C.</a><time datetime="2024-12-16T14:00:00.000Z" title="Created 2024-12-16 22:00:00">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WRFv4.0 em-ideal 安装记录"/></a><div class="content"><a class="title" href="/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录">WRFv4.0 em-ideal 安装记录</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WRFv4.0 Ideal Case - A Tropical Cyclone"/></a><div class="content"><a class="title" href="/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone">WRFv4.0 Ideal Case - A Tropical Cyclone</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/essays/mexico_24/" title="Mexico"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/xo94mVPBw8b3Ukp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mexico"/></a><div class="content"><a class="title" href="/essays/mexico_24/" title="Mexico">Mexico</a><time datetime="2024-10-14T14:00:00.000Z" title="Created 2024-10-14 22:00:00">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/essays/skorea-aogs24/" title="South Korea"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/94aWR5UIZHqKjwF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="South Korea"/></a><div class="content"><a class="title" href="/essays/skorea-aogs24/" title="South Korea">South Korea</a><time datetime="2024-06-28T14:00:00.000Z" title="Created 2024-06-28 22:00:00">2024-06-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JIHENG💕</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Powered by public.websites.umich.edu</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+      appKey: 'zQf7AST9i7Tm9WWBMjWmxGCe',
+      avatar: 'monsterid',
+      serverURLs: 'https://tpaxop8k.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[image]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[link]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[code]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += 'No Comment'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://tpaxop8k.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+        "X-LC-Key": 'zQf7AST9i7Tm9WWBMjWmxGCe',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "Unable to get the data, please make sure the settings are correct."
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="5048673400" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
