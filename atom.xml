@@ -6,7 +6,7 @@
   <link href="https://jihenghu.github.io/atom.xml" rel="self"/>
   
   <link href="https://jihenghu.github.io/"/>
-  <updated>2025-02-08T19:42:09.512Z</updated>
+  <updated>2025-04-30T17:16:49.539Z</updated>
   <id>https://jihenghu.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>San Antonio</title>
+    <link href="https://jihenghu.github.io/essays/sanantonio-25/"/>
+    <id>https://jihenghu.github.io/essays/sanantonio-25/</id>
+    <published>2025-04-12T14:00:00.000Z</published>
+    <updated>2025-04-30T17:16:49.539Z</updated>
+    
+    
+    <summary type="html">Science Team Meeting，River Walk, BBQ</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
+    
+    <category term="Texas" scheme="https://jihenghu.github.io/tags/Texas/"/>
+    
+    <category term="Meeting" scheme="https://jihenghu.github.io/tags/Meeting/"/>
+    
+  </entry>
   
   <entry>
     <title>Washington D.C.</title>
@@ -445,29 +468,6 @@
     
     
     <summary type="html">Robert问题的模拟解</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/tags/Canoe/"/>
-    
-    <category term="Hydrodynamics" scheme="https://jihenghu.github.io/tags/Hydrodynamics/"/>
-    
-    <category term="Thermodynaics" scheme="https://jihenghu.github.io/tags/Thermodynaics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Example#1：Straka Sinking Bubble</title>
-    <link href="https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/"/>
-    <id>https://jihenghu.github.io/research/canoe-athena/canoe-example-straka/</id>
-    <published>2023-11-20T16:00:00.000Z</published>
-    <updated>2023-11-28T02:25:31.199Z</updated>
-    
-    
-    <summary type="html">模拟一个冷空气团的下沉引起近地表流场传播的情形。</summary>
     
     
     
