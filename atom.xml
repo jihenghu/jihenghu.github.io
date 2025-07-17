@@ -173,9 +173,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/categories/Essay/"/>
     
     
-    <category term="Umich" scheme="https://jihenghu.github.io/tags/Umich/"/>
-    
     <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
+    
+    <category term="Umich" scheme="https://jihenghu.github.io/tags/Umich/"/>
     
   </entry>
   
@@ -242,9 +242,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/categories/Essay/"/>
     
     
-    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
-    
     <category term="Michigan" scheme="https://jihenghu.github.io/tags/Michigan/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
     
   </entry>
   
@@ -313,9 +313,30 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/categories/Data-N-Method/"/>
     
     
+    <category term="Himawari-8" scheme="https://jihenghu.github.io/tags/Himawari-8/"/>
+    
     <category term="Cloud" scheme="https://jihenghu.github.io/tags/Cloud/"/>
     
-    <category term="Himawari-8" scheme="https://jihenghu.github.io/tags/Himawari-8/"/>
+  </entry>
+  
+  <entry>
+    <title>MSG SERV CLM数据集下载</title>
+    <link href="https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/"/>
+    <id>https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/</id>
+    <published>2023-12-13T14:00:00.000Z</published>
+    <updated>2023-12-17T01:22:00.412Z</updated>
+    
+    
+    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/categories/Data-N-Method/"/>
+    
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/tags/Cloud/"/>
+    
+    <category term="MSG" scheme="https://jihenghu.github.io/tags/MSG/"/>
     
   </entry>
   
@@ -340,30 +361,9 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/categories/Data-N-Method/"/>
     
     
+    <category term="Cloud" scheme="https://jihenghu.github.io/tags/Cloud/"/>
+    
     <category term="GOES-R" scheme="https://jihenghu.github.io/tags/GOES-R/"/>
-    
-    <category term="Cloud" scheme="https://jihenghu.github.io/tags/Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MSG SERV CLM数据集下载</title>
-    <link href="https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/"/>
-    <id>https://jihenghu.github.io/data-n-method/MSG-SERV-download-guide/</id>
-    <published>2023-12-13T14:00:00.000Z</published>
-    <updated>2023-12-17T01:22:00.412Z</updated>
-    
-    
-    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
-    
-    
-    
-    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/categories/Data-N-Method/"/>
-    
-    
-    <category term="Cloud" scheme="https://jihenghu.github.io/tags/Cloud/"/>
-    
-    <category term="MSG" scheme="https://jihenghu.github.io/tags/MSG/"/>
     
   </entry>
   
