@@ -56,9 +56,30 @@
     
     <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
     
+    <category term="WashingtonDC" scheme="https://jihenghu.github.io/tags/WashingtonDC/"/>
+    
     <category term="AGU" scheme="https://jihenghu.github.io/tags/AGU/"/>
     
-    <category term="WashingtonDC" scheme="https://jihenghu.github.io/tags/WashingtonDC/"/>
+  </entry>
+  
+  <entry>
+    <title>WRFv4.0 em-ideal 安装记录</title>
+    <link href="https://jihenghu.github.io/research/WRF_ideal_installation/"/>
+    <id>https://jihenghu.github.io/research/WRF_ideal_installation/</id>
+    <published>2024-11-21T16:00:00.000Z</published>
+    <updated>2024-11-22T20:53:02.188Z</updated>
+    
+    
+    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/categories/Research/"/>
+    
+    
+    <category term="WRFV4" scheme="https://jihenghu.github.io/tags/WRFV4/"/>
+    
+    <category term="Model" scheme="https://jihenghu.github.io/tags/Model/"/>
     
   </entry>
   
@@ -86,27 +107,6 @@
   </entry>
   
   <entry>
-    <title>WRFv4.0 em-ideal 安装记录</title>
-    <link href="https://jihenghu.github.io/research/WRF_ideal_installation/"/>
-    <id>https://jihenghu.github.io/research/WRF_ideal_installation/</id>
-    <published>2024-11-21T16:00:00.000Z</published>
-    <updated>2024-11-22T20:53:02.188Z</updated>
-    
-    
-    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/categories/Research/"/>
-    
-    
-    <category term="WRFV4" scheme="https://jihenghu.github.io/tags/WRFV4/"/>
-    
-    <category term="Model" scheme="https://jihenghu.github.io/tags/Model/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mexico</title>
     <link href="https://jihenghu.github.io/essays/mexico_24/"/>
     <id>https://jihenghu.github.io/essays/mexico_24/</id>
@@ -121,6 +121,8 @@
     <category term="Essay" scheme="https://jihenghu.github.io/categories/Essay/"/>
     
     
+    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
+    
     <category term="Mexico" scheme="https://jihenghu.github.io/tags/Mexico/"/>
     
     <category term="Cancun" scheme="https://jihenghu.github.io/tags/Cancun/"/>
@@ -128,8 +130,6 @@
     <category term="Tulum" scheme="https://jihenghu.github.io/tags/Tulum/"/>
     
     <category term="ChichenItza" scheme="https://jihenghu.github.io/tags/ChichenItza/"/>
-    
-    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
     
   </entry>
   
@@ -173,9 +173,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/categories/Essay/"/>
     
     
-    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
-    
     <category term="Umich" scheme="https://jihenghu.github.io/tags/Umich/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
     
   </entry>
   
@@ -221,9 +221,9 @@
     <category term="Research" scheme="https://jihenghu.github.io/categories/Research/"/>
     
     
-    <category term="PHS" scheme="https://jihenghu.github.io/tags/PHS/"/>
-    
     <category term="LSM" scheme="https://jihenghu.github.io/tags/LSM/"/>
+    
+    <category term="PHS" scheme="https://jihenghu.github.io/tags/PHS/"/>
     
   </entry>
   
@@ -292,9 +292,9 @@
     
     <category term="Gallery" scheme="https://jihenghu.github.io/tags/Gallery/"/>
     
-    <category term="SanFrancisco" scheme="https://jihenghu.github.io/tags/SanFrancisco/"/>
-    
     <category term="AGU" scheme="https://jihenghu.github.io/tags/AGU/"/>
+    
+    <category term="SanFrancisco" scheme="https://jihenghu.github.io/tags/SanFrancisco/"/>
     
   </entry>
   
