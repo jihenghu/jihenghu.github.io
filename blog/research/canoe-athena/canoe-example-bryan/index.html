@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Canoe Example#3：Bryan Moist Uprising Bubble | Jiheng's Space</title><meta name="author" content="JIHENG💕"><meta name="copyright" content="JIHENG💕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="本节介绍对湿空气团的模拟，会涉及到相变和热力学的能量交换过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canoe Example#3：Bryan Moist Uprising Bubble">
+<meta property="og:url" content="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/index.html">
+<meta property="og:site_name" content="Jiheng&#39;s Space">
+<meta property="og:description" content="本节介绍对湿空气团的模拟，会涉及到相变和热力学的能量交换过程。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png">
+<meta property="article:published_time" content="2023-11-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-29T00:25:15.076Z">
+<meta property="article:author" content="JIHENG💕">
+<meta property="article:tag" content="Canoe">
+<meta property="article:tag" content="Hydrodynamics">
+<meta property="article:tag" content="Thermodynaics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png"><link rel="shortcut icon" href="https://i.loli.net/2020/08/04/yS5rEkzbXu3ITJV.png"><link rel="canonical" href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Canoe Example#3：Bryan Moist Uprising Bubble',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-29 08:25:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#header-mask{background-image:url("/~jihenghu/space/img/grid.png")!important;height:100%;width:100%}</style><style>.relatedPosts i{color:#8e8cd8;}</style><style>.card-widget:not(.card-info):not(.card-announcement) i{color:#8e8cd8;}</style><style>#aside_content .card-info img{padding: 5px;border: 1px solid #ddd}</style><style>#toggle-sidebar{bottom:80px}</style><style>.card-content #posts-chart{height:0px;padding:0px;margin:0;}</style><style>.top-flag{display:inline-block;text-align:center;width:280px;line-height:20px;position:absolute;top:20px;right:-110px;z-index:2;overflow:hidden;transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);border:1px dashed;box-shadow:0 0 0 1px #fff,0 21px 5px -18px rgba(0,0,0,.6);background-color:#eef3fc;color:#F00;font-size:12px}</style><style>.recent-post-item{position:relative;overflow:hidden}</style><style>.label{display:inline;padding:0 2px}.label.default{background-color:#f0f0f0}.label.primary{background-color:#efe6f7}.label.info{background-color:#e5f2f8}.label.success{background-color:#e7f4e9}.label.warning{background-color:#fcf6e1}.label.danger{background-color:#fae8eb}</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/blog/atom.xml" title="Jiheng's Space" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">72</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/blog/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/blog/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/blog/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/blog/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/blog/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/blog/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Jiheng's Space"><span class="site-name">Jiheng's Space</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/blog/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/blog/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/blog/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/blog/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/blog/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/blog/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Canoe Example#3：Bryan Moist Uprising Bubble</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-23T16:00:00.000Z" title="Created 2023-11-24 00:00:00">2023-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-29T00:25:15.076Z" title="Updated 2023-11-29 08:25:15">2023-11-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Research/">Research</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>14min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Canoe Example#3：Bryan Moist Uprising Bubble"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>前面两节的模拟都是干空气泡的情形，本节介绍对Bryan湿空气团的模拟，会涉及到相变和热力学的能量交换过程。<br>该实验由<a target="_blank" rel="noopener" href="https://doi.org/10.1175/1520-0493(2002)130%3C2917:ABSFMN%3E2.0.CO;2">Bryan &amp; Fritsch, 2002</a>提出，用来作为湿空气团的模拟标准。在情景上和Robert问题一样，不过是湿空气。</p>
+<div class="note danger no-icon flat"><p>以下内容来百度百科</p>
+<ul>
+<li><p>可逆干绝热过程<br>对于定质量的气块，它的状态是由气压（p）、温度（T）、和任意一个湿度参数（如比湿q）共同决定，而气块在垂直升降运动过程中其状态不断发生变化，因此必须获得气块状态变量随高度变化规律。<br>在垂直升降运动过程中，气块中所含的水汽始终未达到饱和，没有发生相变的绝热过程，称为干绝热过程。这里的干表示未饱和气块在绝热过程中没有发生水相的变化，并非指不含有水汽。由于满足垂直运动的三个基本假设，即绝热条件、准静态条件、静力平衡条件，因此他又是可逆过程，常称为可逆干绝热过程。</p>
+</li>
+<li><p>可逆湿绝热过程<br>气块上升时到等熵凝结高度以上，水汽开始<u>凝结并释放出潜热</u>，如果饱和气块继续上升且<u>凝结物全部保留</u>在气块内，并<u>与外界无热量交换</u>；当气块下沉增温湿，这些凝结物<u>又蒸发</u>，使气块始终维持饱和状态，所耗的潜热与原来释放的潜热相等，沿逆过程后仍能回到原来的状态，这样的过程称为<strong>可逆湿绝热过程</strong>，又称为<strong>湿绝热过程</strong>，这里的“湿”表示在饱和的绝热气块内发生水相变化。<br>可逆湿绝热过程是一个等熵过程，虽然在可逆式绝热过程中发生了相变，但水汽和凝结出来的液态水总质量（mv+mt）不变，干空气质量md也不变</p>
+</li>
+</ul>
+<p>可逆的绝热过程是等熵过程。等熵过程的对立面是等温过程，在等温过程中，最大限度的热量被转移到了外界，使得系统温度恒定如常。由于在热力学中，温度与熵是一组共轭变量，等温过程和等熵过程也可以视为“共轭”的一对过程。</p>
+</div>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>本例将干燥模拟扩展到潮湿模拟，引入水汽和云，我们将模拟在饱和大气环境中上升的饱和气团。<br>大气的初始温度廓线是湿绝热线（等熵），所有层的水汽和云总水混合比保持恒定。地表温度和压力分别为289.85 K和1 bar。<br>模拟场的近地表由一个温度场呈高斯分布的气团（同Robert问题），充满了水蒸气。<br>该气泡温度比环境略高2 K以内，使得其含有略多的水汽，以在热力学和成分上都具有浮力（大气的背景成分是O2+N2）。气泡上升时，气泡的温度和压力下降，导致水蒸气凝结和潜热释放。<br>模拟场的垂直尺寸为10公里，水平尺寸为20公里，空间分辨率为100米。</p>
+<h2 id="模拟和结果"><a href="#模拟和结果" class="headerlink" title="模拟和结果"></a>模拟和结果</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(<span class="built_in">env</span>) jihenghu@canopy:~/bryanproj/build [14:12] </span><br><span class="line">$ cmake ~/canoe -DTASK=bryan .</span><br><span class="line">$ make -j8</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">(<span class="built_in">env</span>) jihenghu@canopy:~/bryanproj [14:14] </span><br><span class="line">$ <span class="built_in">ln</span> -s build/bin/bryan.release .</span><br><span class="line">$ <span class="built_in">cp</span> build/bin/bryan.inp .  </span><br><span class="line">$ <span class="built_in">ln</span> -s build/bin/combine.py .</span><br></pre></td></tr></table></figure>
+<p>开始模拟</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mpirun -n 4 ./bryan.release -i bryan.inp </span><br><span class="line">time=1.0000e+03 cycle=7734</span><br><span class="line">Terminating on success</span><br><span class="line">cpu time used  = 2.459308e+02 (s)</span><br></pre></td></tr></table></figure>
+<p>模拟了1000s的变化，使用python进行输出的合并</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python combine.py -o <span class="built_in">test</span></span><br><span class="line">$ ncdump -h bryan-test-main.nc </span><br><span class="line">netcdf bryan-test-main &#123;</span><br><span class="line">dimensions:</span><br><span class="line">	time = UNLIMITED ; // (11 currently)</span><br><span class="line">	x1 = 200 ;</span><br><span class="line">	x1f = 201 ;</span><br><span class="line">	x2 = 400 ;</span><br><span class="line">	x2f = 401 ;</span><br><span class="line">	x3 = 1 ;</span><br><span class="line">variables:</span><br><span class="line">	<span class="built_in">float</span> time(time) ;</span><br><span class="line">		time:axis = <span class="string">&quot;T&quot;</span> ;</span><br><span class="line">		time:long_name = <span class="string">&quot;time&quot;</span> ;</span><br><span class="line">		time:units = <span class="string">&quot;seconds&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> x1(x1) ;</span><br><span class="line">		x1:axis = <span class="string">&quot;Z&quot;</span> ;</span><br><span class="line">		x1:units = <span class="string">&quot;meters&quot;</span> ;</span><br><span class="line">		x1:long_name = <span class="string">&quot;Z-coordinate at cell center&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> x1f(x1f) ;</span><br><span class="line">		x1f:axis = <span class="string">&quot;Z&quot;</span> ;</span><br><span class="line">		x1f:units = <span class="string">&quot;meters&quot;</span> ;</span><br><span class="line">		x1f:long_name = <span class="string">&quot;Z-coordinate at cell face&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> x2(x2) ;</span><br><span class="line">		x2:axis = <span class="string">&quot;Y&quot;</span> ;</span><br><span class="line">		x2:units = <span class="string">&quot;meters&quot;</span> ;</span><br><span class="line">		x2:long_name = <span class="string">&quot;Y-coordinate at cell center&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> x2f(x2f) ;</span><br><span class="line">		x2f:axis = <span class="string">&quot;Y&quot;</span> ;</span><br><span class="line">		x2f:units = <span class="string">&quot;meters&quot;</span> ;</span><br><span class="line">		x2f:long_name = <span class="string">&quot;Y-coordinate at cell face&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> x3(x3) ;</span><br><span class="line">		x3:axis = <span class="string">&quot;X&quot;</span> ;</span><br><span class="line">		x3:units = <span class="string">&quot;meters&quot;</span> ;</span><br><span class="line">		x3:long_name = <span class="string">&quot;X-coordinate at cell center&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> rho(time, x1, x2, x3) ;</span><br><span class="line">		rho:units = <span class="string">&quot;kg/m^3&quot;</span> ;</span><br><span class="line">		rho:long_name = <span class="string">&quot;density&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> press(time, x1, x2, x3) ;</span><br><span class="line">		press:units = <span class="string">&quot;pa&quot;</span> ;</span><br><span class="line">		press:long_name = <span class="string">&quot;pressure&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> vel1(time, x1, x2, x3) ;</span><br><span class="line">		vel1:units = <span class="string">&quot;m/s&quot;</span> ;</span><br><span class="line">		vel1:long_name = <span class="string">&quot;velocity&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> vel2(time, x1, x2, x3) ;</span><br><span class="line">		vel2:units = <span class="string">&quot;m/s&quot;</span> ;</span><br><span class="line">		vel2:long_name = <span class="string">&quot;velocity&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> vel3(time, x1, x2, x3) ;</span><br><span class="line">		vel3:units = <span class="string">&quot;m/s&quot;</span> ;</span><br><span class="line">		vel3:long_name = <span class="string">&quot;velocity&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> r0(time, x1, x2, x3) ;</span><br><span class="line">	<span class="built_in">float</span> vapor(time, x1, x2, x3) ;</span><br><span class="line">		vapor:units = <span class="string">&quot;kg/kg&quot;</span> ;</span><br><span class="line">		vapor:long_name = <span class="string">&quot;mass mixing ratio of vapor&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> mse(time, x1, x2, x3) ;</span><br><span class="line">		mse:units = <span class="string">&quot;J/kg&quot;</span> ;</span><br><span class="line">		mse:long_name = <span class="string">&quot;moist static energy&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> qtol(time, x1, x2, x3) ;</span><br><span class="line">	<span class="built_in">float</span> rh(time, x1, x2, x3) ;</span><br><span class="line">	<span class="built_in">float</span> temp(time, x1, x2, x3) ;</span><br><span class="line">		temp:units = <span class="string">&quot;K&quot;</span> ;</span><br><span class="line">		temp:long_name = <span class="string">&quot;temperature&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> theta(time, x1, x2, x3) ;</span><br><span class="line">		theta:units = <span class="string">&quot;K&quot;</span> ;</span><br><span class="line">		theta:long_name = <span class="string">&quot;potential temperature&quot;</span> ;</span><br><span class="line">	<span class="built_in">float</span> theta_e(time, x1, x2, x3) ;</span><br><span class="line">	<span class="built_in">float</span> theta_v(time, x1, x2, x3) ;</span><br><span class="line"></span><br><span class="line">// global attributes:</span><br><span class="line">		:Conventions = <span class="string">&quot;COARDS&quot;</span> ;</span><br><span class="line">		:<span class="built_in">history</span> = <span class="string">&quot;Fri Nov 24 14:34:47 2023: ncks -A ./bryan.out3.nc ./bryan.out2.nc&quot;</span> ;</span><br><span class="line">		:history_of_appended_files = <span class="string">&quot;Fri Nov 24 14:34:47 2023: Appended file ./bryan.out3.nc had no \&quot;history\&quot; attribute\n&quot;</span>,</span><br><span class="line">			<span class="string">&quot;&quot;</span> ;</span><br><span class="line">		:NCO = <span class="string">&quot;netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)&quot;</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>温度场、位温场的的演变：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="bryan_animation.gif"></p>
+<h2 id="源码解读"><a href="#源码解读" class="headerlink" title="源码解读"></a>源码解读</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>除了之前介绍的几个类库，这里新增了几个，这里使用注释的方式简介一下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;athena/bvals/bvals.hpp&gt;</span>  <span class="comment">// defines BoundaryBase, BoundaryValues classes used for setting BCs on all data</span></span></span><br><span class="line"><span class="comment">// application</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;application/application.hpp&gt;</span> <span class="comment">// app注册</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;application/exceptions.hpp&gt;</span>  <span class="comment">// 报错信息</span></span></span><br><span class="line"><span class="comment">// 定义了vapor,cloud,chemitry,tracer,particle等介质的索引和函数，如GetVaporId();</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;index_map.hpp&gt;</span>  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// climath</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climath/core.h&gt;</span> <span class="comment">//基础的数学函数和单位转换</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climath/interpolation.h&gt;</span> <span class="comment">// 插值工具包，包括定位，线性内插，样条等方法；</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climath/root.hpp&gt;</span> </span></span><br><span class="line"><span class="comment">// special includes</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;bryan_vapor_functions.hpp&quot;</span><span class="comment">//包含了本个例使用的湿空气物理，计算饱和水汽压</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="输出诊断量"><a href="#输出诊断量" class="headerlink" title="输出诊断量"></a>输出诊断量</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> iH2O, iH2Oc;  <span class="comment">// indices for water vapor and cloud</span></span><br><span class="line">Real p0, grav;  <span class="comment">//  global var declaration on surface pressure and the gravity</span></span><br></pre></td></tr></table></figure>
+<p>注册输出参数：temperature, potential temperature, virtual potential temperature, moist static energy, relatve humidity, total mixing ratio of water。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::InitUserMeshBlockData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">AllocateUserOutputVariables</span>(<span class="number">7</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">0</span>, <span class="string">&quot;temp&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">1</span>, <span class="string">&quot;theta&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">2</span>, <span class="string">&quot;theta_v&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">3</span>, <span class="string">&quot;mse&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">4</span>, <span class="string">&quot;theta_e&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">5</span>, <span class="string">&quot;rh&quot;</span>);</span><br><span class="line">  <span class="built_in">SetUserOutputVariableName</span>(<span class="number">6</span>, <span class="string">&quot;qtol&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Grid iterations to assign the value before ouput, Most of the diagnosis variables are members of Class <code>Thermoddynamics</code>, use a pinter to refer the instance.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::UserWorkBeforeOutput</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> k = ks; k &lt;= ke; ++k)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j)</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">0</span>, k, j, i) = pthermo-&gt;<span class="built_in">GetTemp</span>(<span class="keyword">this</span>, k, j, i);</span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">1</span>, k, j, i) = pthermo-&gt;<span class="built_in">PotentialTemp</span>(<span class="keyword">this</span>, p0, k, j, i);</span><br><span class="line">        <span class="comment">// theta_v</span></span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">2</span>, k, j, i) =</span><br><span class="line">            <span class="built_in">user_out_var</span>(<span class="number">1</span>, j, i) * pthermo-&gt;<span class="built_in">RovRd</span>(<span class="keyword">this</span>, k, j, i); <span class="comment">// Theta/Rd</span></span><br><span class="line">        <span class="comment">// mse</span></span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">3</span>, k, j, i) =</span><br><span class="line">            pthermo-&gt;<span class="built_in">MoistStaticEnergy</span>(<span class="keyword">this</span>, grav * pcoord-&gt;<span class="built_in">x1v</span>(i), k, j, i);</span><br><span class="line">        <span class="comment">// theta_e</span></span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">4</span>, k, j, i) =</span><br><span class="line">            pthermo-&gt;<span class="built_in">EquivalentPotentialTemp</span>(<span class="keyword">this</span>, p0, iH2O, k, j, i);</span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">5</span>, k, j, i) =</span><br><span class="line">            pthermo-&gt;<span class="built_in">RelativeHumidity</span>(<span class="keyword">this</span>, iH2O, k, j, i);</span><br><span class="line">        <span class="comment">// total mixing ratio</span></span><br><span class="line">        <span class="keyword">auto</span> &amp;&amp;air = AirParcelHelper::<span class="built_in">gather_from_primitive</span>(<span class="keyword">this</span>, k, j, i);</span><br><span class="line">        <span class="built_in">user_out_var</span>(<span class="number">6</span>, k, j, i) = air.w[iH2O] + air.c[iH2Oc];</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>AirParcel</code>类定义在<a target="_blank" rel="noopener" href="https://github.com/chengcli/canoe/blob/main/src/air_parcel.hpp"><code>air_parcel.hpp</code></a>, 定义了一系列的空气包的属性和计算函数，用来描述格点内气体、水凝物等介质的浓度状态。<br><code>AirParcel</code>类包含了数种介质类型的定义及其单位的换算函数。介质使用指针表示，一共6种：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Real *<span class="type">const</span> w; <span class="comment">//! hydro data</span></span><br><span class="line">Real *<span class="type">const</span> c; <span class="comment">//! cloud data</span></span><br><span class="line">Real *<span class="type">const</span> q; <span class="comment">//! chemistry data</span></span><br><span class="line">Real *<span class="type">const</span> x; <span class="comment">//! tracer data</span></span><br><span class="line">Real *<span class="type">const</span> t; <span class="comment">//! turbulence data</span></span><br><span class="line">Real <span class="type">const</span> *d; <span class="comment">//! particle data</span></span><br></pre></td></tr></table></figure>
+<p>分别表示对应物质的浓度值，可以采用<code>air.w[iH2O]</code>的形式引用对应的水汽含量；<br>浓度的单位由枚举类定义：<code>enum class Type &#123; MassFrac = 0, MassConc = 1, MoleFrac = 2, MoleConc = 3 &#125;;</code><br>并且定义了四种单位之间的转换函数：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">AirParcel &amp;<span class="title">ToMassFraction</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">AirParcel &amp;<span class="title">ToMassConcentration</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">AirParcel &amp;<span class="title">ToMoleFraction</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">AirParcel &amp;<span class="title">ToMoleConcentration</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>namespace:: AirParcelHelper</code>定义了几个用于更新&lt;void distribute_to_primitive()&gt;、获取&lt;AirParcel&#x2F;AirColumn  gather_from_conserved()&gt;一个或一段气柱的AirParcel信息的函数。此处用于获取水含量信息。</p>
+<hr>
+<h3 id="初始化Mesh类"><a href="#初始化Mesh类" class="headerlink" title="初始化Mesh类"></a>初始化Mesh类</h3><p>本个例依然不考虑额外的Forcing， 所以没有注册source function。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Mesh::InitUserMeshData</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> pindex = IndexMap::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">  grav = -pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;hydro&quot;</span>, <span class="string">&quot;grav_acc1&quot;</span>);</span><br><span class="line">  p0 = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;p0&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// index</span></span><br><span class="line">  iH2O = pindex-&gt;<span class="built_in">GetVaporId</span>(<span class="string">&quot;H2O&quot;</span>);</span><br><span class="line">  iH2Oc = pindex-&gt;<span class="built_in">GetCloudId</span>(<span class="string">&quot;H2O(c)&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="初始化MeshBlock类"><a href="#初始化MeshBlock类" class="headerlink" title="初始化MeshBlock类"></a>初始化MeshBlock类</h3><p>依然是先获取热力学的实例指针*pthermo，以便对热力学参数机型操控；<br>读取<problem>block中设定的初始参数: 地表温度，气团中心坐标，椭圆轴长，温度梯度参数，气团初始时刻的水汽混合比 vapor mixing ratio。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MeshBlock::ProblemGenerator</span><span class="params">(ParameterInput *pin)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> pthermo = Thermodynamics::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">  Real Ps = p0;</span><br><span class="line">  Real Ts = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;Ts&quot;</span>);  <span class="comment">// 289.85</span></span><br><span class="line">  Real xc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xc&quot;</span>);  <span class="comment">// 10,000 m</span></span><br><span class="line">  Real zc = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zc&quot;</span>);  <span class="comment">// 2,000 m</span></span><br><span class="line">  Real xr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;xr&quot;</span>);  <span class="comment">// 2,000</span></span><br><span class="line">  Real zr = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;zr&quot;</span>);  <span class="comment">// 2,000</span></span><br><span class="line">  Real dT = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;dT&quot;</span>);  <span class="comment">// 1E5 pa</span></span><br><span class="line">  Real qt = pin-&gt;<span class="built_in">GetReal</span>(<span class="string">&quot;problem&quot;</span>, <span class="string">&quot;qt&quot;</span>);  <span class="comment">// 0.0196</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">AirParcel <span class="title">air</span><span class="params">(AirParcel::Type::MassFrac)</span></span>; <span class="comment">// 定义一个MassFrac为单位的空气块</span></span><br><span class="line">air.w[iH2O] = qt; <span class="comment">// 设定比湿</span></span><br><span class="line">air.c[iH2Oc] = <span class="number">0.</span>; </span><br><span class="line"></span><br><span class="line">air.<span class="built_in">ToMoleFraction</span>();  <span class="comment">// 转换为摩尔分数</span></span><br><span class="line">qt = air.w[iH2O];</span><br></pre></td></tr></table></figure>
+
+<p>遍历格点，（1）首先使用地表气压和地表温度插值出第一层（is）和地表(0)中间高度处的气温和气压，水汽，也就是 <code>pcoord-&gt;dx1f(is) / 2.</code>高度处的空气参数，注意is表示其实下标；<br>（2）再循环空气柱，自下而上构建出一条湿绝热廓线。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// construct a reversible adiabat</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> k = ks; k &lt;= ke; ++k)</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j) &#123;</span><br><span class="line">    air.w[iH2O] = qt;</span><br><span class="line">    air.w[IPR] = Ps;</span><br><span class="line">    air.w[IDN] = Ts;</span><br><span class="line">    air.c[iH2Oc] = <span class="number">0.</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里先使用地表气压和地表温度插值出第一层（is）和地表(0)中间高度处的气温和气压，水汽</span></span><br><span class="line">    pthermo-&gt;<span class="built_in">Extrapolate</span>(&amp;air, pcoord-&gt;<span class="built_in">dx1f</span>(is) / <span class="number">2.</span>,</span><br><span class="line">                         Thermodynamics::Method::ReversibleAdiabat, grav);</span><br><span class="line">    <span class="comment">// 循环空气柱，自下而上构建出一条湿绝热廓线</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">      AirParcelHelper::<span class="built_in">distribute_to_conserved</span>(<span class="keyword">this</span>, k, j, i, air);</span><br><span class="line">      pthermo-&gt;<span class="built_in">Extrapolate</span>(&amp;air, pcoord-&gt;<span class="built_in">dx1f</span>(i),</span><br><span class="line">                           Thermodynamics::Method::ReversibleAdiabat, grav);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note warning no-icon flat"><p><code>Extrapolate()</code>函数的定义如下,此处用来构建一个满足固定大气模型的廓线：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Thermodynamics::Extrapolate</span>	<span class="params">(	AirParcel * 	qfrac,</span></span></span><br><span class="line"><span class="params"><span class="function">Real 	dzORdlnp,</span></span></span><br><span class="line"><span class="params"><span class="function">Method 	method,</span></span></span><br><span class="line"><span class="params"><span class="function">Real 	grav = <span class="number">0.</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">Real 	userp = <span class="number">0.</span> </span></span></span><br><span class="line"><span class="params"><span class="function">)</span>		<span class="type">const</span></span></span><br><span class="line"><span class="function">Construct an 1d atmosphere</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">Parameters</span></span><br><span class="line"><span class="function">[in,out]	qfrac	mole fraction representation of air parcel</span></span><br><span class="line"><span class="function">[in]	dzORdlnp	vertical grid spacing</span></span><br><span class="line"><span class="function">[in]	method	choose from [reversible, pseudo, dry, isothermal]</span></span><br><span class="line"><span class="function">[in]	grav	gravitational acceleration</span></span><br><span class="line"><span class="function">[in]	userp	user parameter to adjust the temperature gradient</span></span><br></pre></td></tr></table></figure>
+
+<p>这个怎么实现呢，实际上Extrapolate调用了<code>rk4IntegrateLnp()</code>函数进行微分方程的数值积分：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span>  <span class="title">Thermodynamics::rk4IntegrateLnp</span><span class="params">(AirParcel *air, Real dlnp, Method method,</span></span></span><br><span class="line"><span class="params"><span class="function">                                      Real adlnTdlnP)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>rk4IntegrateLnp()</code>进一步调用了<code>calDlnTDlnP()</code>函数来计算温压关系：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Real <span class="title">Thermodynamics::calDlnTDlnP</span><span class="params">(AirParcel <span class="type">const</span>&amp; qfrac, Real latent[])</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">  <span class="comment">// calculate gammad</span></span><br><span class="line">  Real gammad = <span class="built_in">GetGammad</span>(qfrac);</span><br><span class="line"> </span><br><span class="line">  Real q_gas = <span class="number">1.</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> n = <span class="number">0</span>; n &lt; NCLOUD; ++n) q_gas -= qfrac.c[n];</span><br><span class="line"> </span><br><span class="line">  Real f_sig = <span class="number">1.</span>;</span><br><span class="line">  <span class="comment">// vapor</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> n = <span class="number">1</span>; n &lt;= NVAPOR; ++n)</span><br><span class="line">    f_sig += qfrac.w[n] * (cp_ratio_mole_[n] - <span class="number">1.</span>);</span><br><span class="line">  <span class="comment">// cloud</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> n = <span class="number">0</span>; n &lt; NCLOUD; ++n)</span><br><span class="line">    f_sig += qfrac.c[n] * (cp_ratio_mole_[<span class="number">1</span> + NVAPOR + n] - <span class="number">1.</span>);</span><br><span class="line">  Real cphat_ov_r = gammad / (gammad - <span class="number">1.</span>) * f_sig / q_gas;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// vapor</span></span><br><span class="line">  Real xd = q_gas;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> n = <span class="number">1</span>; n &lt;= NVAPOR; ++n) xd -= qfrac.w[n];</span><br><span class="line"> </span><br><span class="line">  Real c1 = <span class="number">0.</span>, c2 = <span class="number">0.</span>, c3 = <span class="number">0.</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> iv = <span class="number">1</span>; iv &lt;= NVAPOR; ++iv) &#123;</span><br><span class="line">    c1 += qfrac.w[iv] / xd * latent[iv];</span><br><span class="line">    c2 += qfrac.w[iv] / xd * latent[iv] * latent[iv];</span><br><span class="line">    c3 += qfrac.w[iv] / xd;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">return</span> (<span class="number">1.</span> + c1) / (cphat_ov_r + (c2 + c1 * c1) / (<span class="number">1.</span> + c3));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数的来源与Cheng Li博士期间的工作：<a target="_blank" rel="noopener" href="https://doi.org/10.1175/JAS-D-17-0257.1">《Moist Adiabats with Multiple Condensing Species: A New Theory with Application to Giant-Planet Atmospheres》</a>，其提出了适用于多种可凝结气体共存情形下的湿绝热温压关系（经典理论只适用于水蒸气存在的地球大气，不适用于巨行星的大气廓线构建），形式是这样的，大家感兴趣可以去研读：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/26/v5AKio6xkCrm3Oa.png" alt="Moist Adiabats T-P with Multiple Condensing Species"></p>
+</div>
+
+<hr>
+<p>最后这部分是再初始场中叠加Guassian气团的温湿度异常场，然后计算水的相变平衡点。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">  <span class="comment">// add temperature anomaly</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> k = ks; k &lt;= ke; ++k)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = js; j &lt;= je; ++j)</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> i = is; i &lt;= ie; ++i) &#123;</span><br><span class="line">        Real x1 = pcoord-&gt;<span class="built_in">x1v</span>(i);</span><br><span class="line">        Real x2 = pcoord-&gt;<span class="built_in">x2v</span>(j);</span><br><span class="line">        Real L = <span class="built_in">sqrt</span>(<span class="built_in">sqr</span>((x2 - xc) / xr) + <span class="built_in">sqr</span>((x1 - zc) / zr));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (L &lt; <span class="number">1.</span>) &#123;</span><br><span class="line">          <span class="keyword">auto</span> &amp;&amp;air = AirParcelHelper::<span class="built_in">gather_from_conserved</span>(<span class="keyword">this</span>, k, j, i);</span><br><span class="line">          air.<span class="built_in">ToMoleFraction</span>();</span><br><span class="line">          Real temp_v = air.w[IDN] * pthermo-&gt;<span class="built_in">RovRd</span>(air);   <span class="comment">/// 计算虚温</span></span><br><span class="line">          temp_v *= <span class="number">1.</span> + dT * <span class="built_in">sqr</span>(<span class="built_in">cos</span>(M_PI * L / <span class="number">2.</span>)) / <span class="number">300.</span>;   <span class="comment">/// 叠加保护水汽的虚温</span></span><br><span class="line"></span><br><span class="line">          Real temp;</span><br><span class="line">          <span class="type">int</span> err = <span class="built_in">root</span>(air.w[IDN], air.w[IDN] + dT, <span class="number">1.E-8</span>, &amp;temp,</span><br><span class="line">                         [&amp;pthermo, &amp;air, temp_v](Real temp) &#123;</span><br><span class="line">                           air.w[IDN] = temp;</span><br><span class="line"></span><br><span class="line">                           <span class="keyword">auto</span> rates =</span><br><span class="line">                               pthermo-&gt;<span class="built_in">TryEquilibriumTP_VaporCloud</span>(air, iH2O);</span><br><span class="line">                           air.w[iH2O] += rates[<span class="number">0</span>];</span><br><span class="line">                           air.c[iH2Oc] += rates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">                           <span class="keyword">return</span> temp * pthermo-&gt;<span class="built_in">RovRd</span>(air) - temp_v;</span><br><span class="line">                         &#125;);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">RuntimeError</span>(<span class="string">&quot;pgen&quot;</span>, <span class="string">&quot;TVSolver doesn&#x27;t converge&quot;</span>);</span><br><span class="line"></span><br><span class="line">          air.w[IDN] = temp;</span><br><span class="line">          <span class="keyword">auto</span> rates = pthermo-&gt;<span class="built_in">TryEquilibriumTP_VaporCloud</span>(air, iH2O);</span><br><span class="line">          air.w[iH2O] += rates[<span class="number">0</span>];</span><br><span class="line">          air.c[iH2Oc] += rates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">          AirParcelHelper::<span class="built_in">distribute_to_conserved</span>(<span class="keyword">this</span>, k, j, i, air);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li><p>try_equilibrium_tp_vapor_cloud.cpp 相变平衡点的计算问题</p>
+</li>
+<li><p>multiple condensing species dLnTdLnP 的计算问题</p>
+</li>
+<li><p>RK4微分方程的积分问题</p>
+</li>
+<li><p>提取热力学假设和大气廓线构建的相关内容</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/blog">JIHENG💕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/">https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Canoe/">Canoe</a><a class="post-meta__tags" href="/blog/tags/Hydrodynamics/">Hydrodynamics</a><a class="post-meta__tags" href="/blog/tags/Thermodynaics/">Thermodynaics</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/research/canoe-athena/canoe-example-juno_mwr_eq/" title="Canoe Example#4：Juno MWR辐射传输模拟"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Canoe Example#4：Juno MWR辐射传输模拟</div></div></a></div><div class="next-post pull-right"><a href="/blog/research/canoe-athena/canoe-example-robert/" title="Canoe Example#2：Robert Uprisng Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Canoe Example#2：Robert Uprisng Bubble</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/research/canoe-athena/canoe-example-robert/" title="Canoe Example#2：Robert Uprisng Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-22</div><div class="title">Canoe Example#2：Robert Uprisng Bubble</div></div></a></div><div><a href="/blog/research/canoe-athena/canoe-example-straka/" title="Canoe Example#1：Straka Sinking Bubble"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-21</div><div class="title">Canoe Example#1：Straka Sinking Bubble</div></div></a></div><div><a href="/blog/research/canoe-athena/canoe-example-juno_mwr_eq/" title="Canoe Example#4：Juno MWR辐射传输模拟"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-25</div><div class="title">Canoe Example#4：Juno MWR辐射传输模拟</div></div></a></div><div><a href="/blog/research/canoe-athena/canoe-basis-mcmc/" title="Canoe Basis：Markov Chain Mont Carlo"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-26</div><div class="title">Canoe Basis：Markov Chain Mont Carlo</div></div></a></div><div><a href="/blog/research/canoe-athena/canoe-column/" title="专栏：Canoe模式学习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-18</div><div class="title">专栏：Canoe模式学习</div></div></a></div><div><a href="/blog/research/canoe-athena/canoe-env/" title="Canoe模式的环境准备"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-18</div><div class="title">Canoe模式的环境准备</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JIHENG💕</div><div class="author-info__description">向着温暖的地方出发</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">72</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" href="/about/"><i class="fas fa-bookmark"></i><span>关于我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jihenghu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:hjh18305@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><li> 联系我 hjh18305[at]gmail.com <li>RTTOV的笔记和源码已经转载到了我的<a href=https://github.com/jihenghu/rttov-mwrt-tutorial.git>Github仓库，更加详尽.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E5%92%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">模拟和结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-number">3.</span> <span class="toc-text">源码解读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%AF%8A%E6%96%AD%E9%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text">输出诊断量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96Mesh%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">初始化Mesh类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96MeshBlock%E7%B1%BB"><span class="toc-number">3.4.</span> <span class="toc-text">初始化MeshBlock类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO"><span class="toc-number">4.</span> <span class="toc-text">TODO</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/sanantonio-25/" title="San Antonio"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/05/01/n3v4pgD6GodqhLB.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="San Antonio"/></a><div class="content"><a class="title" href="/blog/essays/sanantonio-25/" title="San Antonio">San Antonio</a><time datetime="2025-04-12T14:00:00.000Z" title="Created 2025-04-12 22:00:00">2025-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/dc-agu24/" title="Washington D.C."><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/YINay6K2SAHfU4b.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Washington D.C."/></a><div class="content"><a class="title" href="/blog/essays/dc-agu24/" title="Washington D.C.">Washington D.C.</a><time datetime="2024-12-16T14:00:00.000Z" title="Created 2024-12-16 22:00:00">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="WRFv4.0 em-ideal 安装记录"/></a><div class="content"><a class="title" href="/blog/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录">WRFv4.0 em-ideal 安装记录</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="WRFv4.0 Ideal Case - A Tropical Cyclone"/></a><div class="content"><a class="title" href="/blog/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone">WRFv4.0 Ideal Case - A Tropical Cyclone</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/mexico_24/" title="Mexico"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/xo94mVPBw8b3Ukp.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Mexico"/></a><div class="content"><a class="title" href="/blog/essays/mexico_24/" title="Mexico">Mexico</a><time datetime="2024-10-14T14:00:00.000Z" title="Created 2024-10-14 22:00:00">2024-10-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/11/24/1IfNYXbvdTOywMJ.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JIHENG💕</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Powered by public.websites.umich.edu</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+      appKey: 'zQf7AST9i7Tm9WWBMjWmxGCe',
+      avatar: 'monsterid',
+      serverURLs: 'https://tpaxop8k.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[image]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[link]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[code]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += 'No Comment'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://tpaxop8k.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+        "X-LC-Key": 'zQf7AST9i7Tm9WWBMjWmxGCe',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "Unable to get the data, please make sure the settings are correct."
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="5048673400" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js"></script></div></div></body></html>

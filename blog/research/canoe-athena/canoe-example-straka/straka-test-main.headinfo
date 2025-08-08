@@ -1,0 +1,58 @@
+netcdf straka-test-main {
+dimensions:
+	time = UNLIMITED ; // (4 currently)
+	x1 = 64 ;
+	x1f = 65 ;
+	x2 = 256 ;
+	x2f = 257 ;
+	x3 = 1 ;
+variables:
+	float time(time) ;
+		time:axis = "T" ;
+		time:units = "s" ;
+		time:long_name = "time" ;
+	float x1(x1) ;
+		x1:axis = "Z" ;
+		x1:units = "m" ;
+		x1:long_name = "Z-coordinate at cell center" ;
+	float x1f(x1f) ;
+		x1f:units = "m" ;
+		x1f:long_name = "Z-coordinate at cell face" ;
+	float x2(x2) ;
+		x2:axis = "Y" ;
+		x2:units = "m" ;
+		x2:long_name = "Y-coordinate at cell center" ;
+	float x2f(x2f) ;
+		x2f:units = "m" ;
+		x2f:long_name = "Y-coordinate at cell face" ;
+	float x3(x3) ;
+		x3:axis = "X" ;
+		x3:units = "m" ;
+		x3:long_name = "X-coordinate at cell center" ;
+	float rho(time, x1, x2, x3) ;
+		rho:units = "kg/m^3" ;
+		rho:long_name = "density" ;
+	float press(time, x1, x2, x3) ;
+		press:units = "pa" ;
+		press:long_name = "pressure" ;
+	float vel1(time, x1, x2, x3) ;
+		vel1:units = "m/s" ;
+		vel1:long_name = "velocity" ;
+	float vel2(time, x1, x2, x3) ;
+		vel2:units = "m/s" ;
+		vel2:long_name = "velocity" ;
+	float vel3(time, x1, x2, x3) ;
+		vel3:units = "m/s" ;
+		vel3:long_name = "velocity" ;
+	float temp(time, x1, x2, x3) ;
+		temp:units = "K" ;
+		temp:long_name = "temperature" ;
+	float theta(time, x1, x2, x3) ;
+		theta:units = "K" ;
+		theta:long_name = "potential temperature" ;
+
+// global attributes:
+		:history = "Wed Nov 15 16:54:21 2023: ncks -A ./straka.out3.nc ./straka.out2.nc" ;
+		:history_of_appended_files = "Wed Nov 15 16:54:21 2023: Appended file ./straka.out3.nc had no \"history\" attribute\n" ;
+		:NCO = "netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)" ;
+}

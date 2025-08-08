@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jiheng&#39;s Space</title>
+  
+  <subtitle>向着温暖的地方出发</subtitle>
+  <link href="https://jihenghu.github.io/blog/atom.xml" rel="self"/>
+  
+  <link href="https://jihenghu.github.io/blog/"/>
+  <updated>2025-04-30T17:24:18.551Z</updated>
+  <id>https://jihenghu.github.io/blog/</id>
+  
+  <author>
+    <name>JIHENG💕</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>San Antonio</title>
+    <link href="https://jihenghu.github.io/blog/essays/sanantonio-25/"/>
+    <id>https://jihenghu.github.io/blog/essays/sanantonio-25/</id>
+    <published>2025-04-12T14:00:00.000Z</published>
+    <updated>2025-04-30T17:24:18.551Z</updated>
+    
+    
+    <summary type="html">Science Team Meeting，River Walk, BBQ</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Texas" scheme="https://jihenghu.github.io/blog/tags/Texas/"/>
+    
+    <category term="Meeting" scheme="https://jihenghu.github.io/blog/tags/Meeting/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Washington D.C.</title>
+    <link href="https://jihenghu.github.io/blog/essays/dc-agu24/"/>
+    <id>https://jihenghu.github.io/blog/essays/dc-agu24/</id>
+    <published>2024-12-16T14:00:00.000Z</published>
+    <updated>2025-02-08T19:42:09.512Z</updated>
+    
+    
+    <summary type="html">AGU24，Washington D.C.</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="WashingtonDC" scheme="https://jihenghu.github.io/blog/tags/WashingtonDC/"/>
+    
+    <category term="AGU" scheme="https://jihenghu.github.io/blog/tags/AGU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WRFv4.0 em-ideal 安装记录</title>
+    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_installation/"/>
+    <id>https://jihenghu.github.io/blog/research/WRF_ideal_installation/</id>
+    <published>2024-11-21T16:00:00.000Z</published>
+    <updated>2024-11-22T20:53:02.188Z</updated>
+    
+    
+    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
+    
+    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WRFv4.0 Ideal Case - A Tropical Cyclone</title>
+    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/"/>
+    <id>https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/</id>
+    <published>2024-11-21T16:00:00.000Z</published>
+    <updated>2024-11-25T23:20:53.130Z</updated>
+    
+    
+    <summary type="html">mpirun -np 8 wrf.exe</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
+    
+    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
+    
+    <category term="Cyclone" scheme="https://jihenghu.github.io/blog/tags/Cyclone/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mexico</title>
+    <link href="https://jihenghu.github.io/blog/essays/mexico_24/"/>
+    <id>https://jihenghu.github.io/blog/essays/mexico_24/</id>
+    <published>2024-10-14T14:00:00.000Z</published>
+    <updated>2025-02-08T19:40:44.378Z</updated>
+    
+    
+    <summary type="html">Cancun, Tulum, Chichen Itza</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Mexico" scheme="https://jihenghu.github.io/blog/tags/Mexico/"/>
+    
+    <category term="Cancun" scheme="https://jihenghu.github.io/blog/tags/Cancun/"/>
+    
+    <category term="Tulum" scheme="https://jihenghu.github.io/blog/tags/Tulum/"/>
+    
+    <category term="ChichenItza" scheme="https://jihenghu.github.io/blog/tags/ChichenItza/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>South Korea</title>
+    <link href="https://jihenghu.github.io/blog/essays/skorea-aogs24/"/>
+    <id>https://jihenghu.github.io/blog/essays/skorea-aogs24/</id>
+    <published>2024-06-28T14:00:00.000Z</published>
+    <updated>2025-02-08T19:10:21.688Z</updated>
+    
+    
+    <summary type="html">AOGS24，Pyeongchang, Incheon, Seoul</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="AGU" scheme="https://jihenghu.github.io/blog/tags/AGU/"/>
+    
+    <category term="Korea" scheme="https://jihenghu.github.io/blog/tags/Korea/"/>
+    
+    <category term="AOGS" scheme="https://jihenghu.github.io/blog/tags/AOGS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bon Appetite!!</title>
+    <link href="https://jihenghu.github.io/blog/essays/bon-Appetite/"/>
+    <id>https://jihenghu.github.io/blog/essays/bon-Appetite/</id>
+    <published>2024-03-20T13:55:20.000Z</published>
+    <updated>2024-03-29T21:11:38.246Z</updated>
+    
+    
+    <summary type="html">留学生生命体征维持技巧...</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Umich" scheme="https://jihenghu.github.io/blog/tags/Umich/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ED2-Hydro模式安装</title>
+    <link href="https://jihenghu.github.io/blog/research/ed2/ed2-hydro-install/"/>
+    <id>https://jihenghu.github.io/blog/research/ed2/ed2-hydro-install/</id>
+    <published>2024-02-17T16:00:00.000Z</published>
+    <updated>2024-03-29T21:28:40.268Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装HDF5-Parallel&quot;&gt;&lt;a href=&quot;#安装HDF5-Parallel&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="ED2" scheme="https://jihenghu.github.io/blog/tags/ED2/"/>
+    
+    <category term="Hydro" scheme="https://jihenghu.github.io/blog/tags/Hydro/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Plant Hydraulics Schemes</title>
+    <link href="https://jihenghu.github.io/blog/research/ed2/ed2-hydro-plant-hydraulics/"/>
+    <id>https://jihenghu.github.io/blog/research/ed2/ed2-hydro-plant-hydraulics/</id>
+    <published>2024-02-16T14:00:00.000Z</published>
+    <updated>2024-03-29T21:28:48.166Z</updated>
+    
+    
+    <summary type="html">plant hydraulics scheme 相关模式</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="LSM" scheme="https://jihenghu.github.io/blog/tags/LSM/"/>
+    
+    <category term="PHS" scheme="https://jihenghu.github.io/blog/tags/PHS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安娜堡的冬天</title>
+    <link href="https://jihenghu.github.io/blog/essays/winter-in-ann-arbor/"/>
+    <id>https://jihenghu.github.io/blog/essays/winter-in-ann-arbor/</id>
+    <published>2024-01-13T14:00:00.000Z</published>
+    <updated>2025-02-08T19:50:52.083Z</updated>
+    
+    
+    <summary type="html">这是一个照片墙，我会持续更新...</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Name or service not known问题解决</title>
+    <link href="https://jihenghu.github.io/blog/devops/resolve-ip-address/"/>
+    <id>https://jihenghu.github.io/blog/devops/resolve-ip-address/</id>
+    <published>2023-12-25T16:00:00.000Z</published>
+    <updated>2023-12-27T04:51:32.445Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Name-or-service-not-known&quot;&gt;&lt;a href=&quot;#Name-or-service-not-known&quot; class=&quot;headerlink&quot; title=&quot;Name or service not known&quot;&gt;&lt;/a&gt;Name or</summary>
+        
+      
+    
+    
+    
+    <category term="Dev&amp;Ops" scheme="https://jihenghu.github.io/blog/categories/Dev-Ops/"/>
+    
+    
+    <category term="Server" scheme="https://jihenghu.github.io/blog/tags/Server/"/>
+    
+    <category term="Linux" scheme="https://jihenghu.github.io/blog/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>San Francisco</title>
+    <link href="https://jihenghu.github.io/blog/essays/san-francisco-agu23/"/>
+    <id>https://jihenghu.github.io/blog/essays/san-francisco-agu23/</id>
+    <published>2023-12-16T14:00:00.000Z</published>
+    <updated>2025-02-08T18:56:32.284Z</updated>
+    
+    
+    <summary type="html">AGU23，Golden Gate Bridge，渔人码头...</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="AGU" scheme="https://jihenghu.github.io/blog/tags/AGU/"/>
+    
+    <category term="SanFrancisco" scheme="https://jihenghu.github.io/blog/tags/SanFrancisco/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Himawari-8 AHI产品数据集下载</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/Himawari8-download-guide/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/Himawari8-download-guide/</id>
+    <published>2023-12-14T10:00:00.000Z</published>
+    <updated>2023-12-17T01:20:38.592Z</updated>
+    
+    
+    <summary type="html">Himawari-8静止卫星AHI云参数数据的下载</summary>
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+    <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MSG SERV CLM数据集下载</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/</id>
+    <published>2023-12-13T14:00:00.000Z</published>
+    <updated>2023-12-17T01:22:00.412Z</updated>
+    
+    
+    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="MSG" scheme="https://jihenghu.github.io/blog/tags/MSG/"/>
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GOES16 ABI AWS Bucket数据集下载</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/GOES-R-AWS-download-guide/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/GOES-R-AWS-download-guide/</id>
+    <published>2023-12-13T14:00:00.000Z</published>
+    <updated>2023-12-17T01:21:16.666Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&amp;copy; 2023-2024 Jiheng HU, &lt;span style=&quot;color:purple&quot;&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+    <category term="GOES-R" scheme="https://jihenghu.github.io/blog/tags/GOES-R/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Canoe Source：Canoe的诊断量输出</title>
+    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-source-output/"/>
+    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-source-output/</id>
+    <published>2023-11-26T16:00:00.000Z</published>
+    <updated>2023-11-27T18:50:44.497Z</updated>
+    
+    
+    <summary type="html">介绍如何自定义输出诊断量及其工作原理</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Canoe Basis：Markov Chain Mont Carlo</title>
+    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-basis-mcmc/"/>
+    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-basis-mcmc/</id>
+    <published>2023-11-25T16:00:00.000Z</published>
+    <updated>2023-11-27T18:36:33.525Z</updated>
+    
+    
+    <summary type="html">基于MCMC方法的样本抽样和参数反演一般方法。</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
+    
+    <category term="C++" scheme="https://jihenghu.github.io/blog/tags/C/"/>
+    
+    <category term="MCMC" scheme="https://jihenghu.github.io/blog/tags/MCMC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Canoe Example#4：Juno MWR辐射传输模拟</title>
+    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-juno_mwr_eq/"/>
+    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-juno_mwr_eq/</id>
+    <published>2023-11-24T16:00:00.000Z</published>
+    <updated>2024-03-22T00:14:42.761Z</updated>
+    
+    
+    <summary type="html">本节介绍基于Canoe模式的Juno_MWR正向微波辐射传输模拟。</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
+    
+    <category term="Juno" scheme="https://jihenghu.github.io/blog/tags/Juno/"/>
+    
+    <category term="MWR" scheme="https://jihenghu.github.io/blog/tags/MWR/"/>
+    
+    <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
+    
+    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Canoe Example#3：Bryan Moist Uprising Bubble</title>
+    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/"/>
+    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/</id>
+    <published>2023-11-23T16:00:00.000Z</published>
+    <updated>2023-11-29T00:25:15.076Z</updated>
+    
+    
+    <summary type="html">本节介绍对湿空气团的模拟，会涉及到相变和热力学的能量交换过程。</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
+    
+    <category term="Hydrodynamics" scheme="https://jihenghu.github.io/blog/tags/Hydrodynamics/"/>
+    
+    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Canoe Example#2：Robert Uprisng Bubble</title>
+    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-robert/"/>
+    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-robert/</id>
+    <published>2023-11-21T16:00:00.000Z</published>
+    <updated>2023-11-27T18:45:32.503Z</updated>
+    
+    
+    <summary type="html">Robert问题的模拟解</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
+    
+    <category term="Hydrodynamics" scheme="https://jihenghu.github.io/blog/tags/Hydrodynamics/"/>
+    
+    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
+    
+  </entry>
+  
+</feed>

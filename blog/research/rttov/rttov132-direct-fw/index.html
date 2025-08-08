@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RTTOV模式笔记：(五) 基于Direct Forward的晴空模拟 | Jiheng's Space</title><meta name="author" content="JIHENG💕"><meta name="copyright" content="JIHENG💕"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="本节主要介绍晴空正向微波辐射传输的源码结构及模拟实践。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RTTOV模式笔记：(五) 基于Direct Forward的晴空模拟">
+<meta property="og:url" content="https://jihenghu.github.io/blog/research/rttov/rttov132-direct-fw/index.html">
+<meta property="og:site_name" content="Jiheng&#39;s Space">
+<meta property="og:description" content="本节主要介绍晴空正向微波辐射传输的源码结构及模拟实践。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg">
+<meta property="article:published_time" content="2023-08-10T14:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-12T17:46:05.250Z">
+<meta property="article:author" content="JIHENG💕">
+<meta property="article:tag" content="RTM">
+<meta property="article:tag" content="RTTOV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg"><link rel="shortcut icon" href="https://i.loli.net/2020/08/04/yS5rEkzbXu3ITJV.png"><link rel="canonical" href="https://jihenghu.github.io/blog/research/rttov/rttov132-direct-fw/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":150},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RTTOV模式笔记：(五) 基于Direct Forward的晴空模拟',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-13 01:46:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#header-mask{background-image:url("/~jihenghu/space/img/grid.png")!important;height:100%;width:100%}</style><style>.relatedPosts i{color:#8e8cd8;}</style><style>.card-widget:not(.card-info):not(.card-announcement) i{color:#8e8cd8;}</style><style>#aside_content .card-info img{padding: 5px;border: 1px solid #ddd}</style><style>#toggle-sidebar{bottom:80px}</style><style>.card-content #posts-chart{height:0px;padding:0px;margin:0;}</style><style>.top-flag{display:inline-block;text-align:center;width:280px;line-height:20px;position:absolute;top:20px;right:-110px;z-index:2;overflow:hidden;transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);border:1px dashed;box-shadow:0 0 0 1px #fff,0 21px 5px -18px rgba(0,0,0,.6);background-color:#eef3fc;color:#F00;font-size:12px}</style><style>.recent-post-item{position:relative;overflow:hidden}</style><style>.label{display:inline;padding:0 2px}.label.default{background-color:#f0f0f0}.label.primary{background-color:#efe6f7}.label.info{background-color:#e5f2f8}.label.success{background-color:#e7f4e9}.label.warning{background-color:#fcf6e1}.label.danger{background-color:#fae8eb}</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/blog/atom.xml" title="Jiheng's Space" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">72</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/blog/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/blog/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/blog/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/blog/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/blog/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/blog/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Jiheng's Space"><span class="site-name">Jiheng's Space</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/blog/categories/Research/"><i class="fa-fw fa fa-graduation-cap"></i><span> 科研</span></a></li><li><a class="site-page child" href="/blog/categories/Blog/"><i class="fa-fw fa fa-terminal"></i><span> 建站</span></a></li><li><a class="site-page child" href="/blog/categories/Learn-note/"><i class="fa-fw fa fa-code"></i><span> 笔记</span></a></li><li><a class="site-page child" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 更多</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 专栏</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/blog/research/canoe-athena/canoe-column"><i class="fa-fw fas fa-archive"></i><span> Canoe模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/research/rttov/rttov132-column"><i class="fa-fw fas fa-archive"></i><span> RTTOV模式学习笔记</span></a></li><li><a class="site-page child" href="/blog/devops/devops-column/"><i class="fa-fw fas fa-archive"></i><span> 运维笔记</span></a></li><li><a class="site-page child" href="/blog/categories/Data-N-Method/"><i class="fa-fw fas fa-archive"></i><span> Data N' Method</span></a></li><li><a class="site-page child" href="/blog/tags/CRTM/"><i class="fa-fw fas fa-archive"></i><span> LandEM笔记</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/blog/trickbox/"><i class="fa-fw fas fa-archive"></i><span> TrickBox</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RTTOV模式笔记：(五) 基于Direct Forward的晴空模拟</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-10T14:00:00.000Z" title="Created 2023-08-10 22:00:00">2023-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-02-12T17:46:05.250Z" title="Updated 2025-02-13 01:46:05">2025-02-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Research/">Research</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>14min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RTTOV模式笔记：(五) 基于Direct Forward的晴空模拟"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note primary flat"><p>本笔记属于<a href="../rttov132-column">RTTOV辐射传输模式学习笔记</a>专栏，包含以下文章：</p>
+<div class="btn-center" style="margin-bottom:0px">
+<a class="btn-beautify outline blue larger" href="/blog/research/rttov/rttov132-installlibs/" 
+  title="(一) 依赖安装"><i class="far fa-hand-point-right"></i><span>(一) 依赖安装</span></a>
+<a class="btn-beautify outline pink larger" href="/blog/research/rttov/rttov132-install/" 
+  title="(二) RTTOV V13.2安装"><i class="far fa-hand-point-right"></i><span>(二) RTTOV V13.2安装</span></a>
+<a class="btn-beautify outline red larger" href="/blog/research/rttov/rttov132-conventions/" 
+  title="(三) 一些约定和特性"><i class="far fa-hand-point-right"></i><span>(三) 一些约定和特性</span></a>
+<a class="btn-beautify outline purple larger" href="/blog/research/rttov/rttov132-variables/" 
+  title="(四) RTTOV 变量和结构体"><i class="far fa-hand-point-right"></i><span>(四) RTTOV 变量和结构体</span></a>
+<a class="btn-beautify outline green larger" href="/blog/research/rttov/rttov132-direct-fw/" 
+  title="(五) 基于Direct Forward的晴空模拟"><i class="far fa-hand-point-right"></i><span>(五) 基于Direct Forward的晴空模拟</span></a>
+<a class="btn-beautify outline orange larger" href="/blog/research/rttov/rttov132-mw-scat/" 
+  title="(六) 基于MW-SCAT的水凝物模拟"><i class="far fa-hand-point-right"></i><span>(六) 基于MW-SCAT的水凝物模拟</span></a>
+<a class="btn-beautify outline navy larger" href="/blog/research/rttov/rttov132-emissivity-retrieve/" 
+  title="(七) 全天气地表微波比辐射反演方案"><i class="far fa-hand-point-right"></i><span>(七) 全天气地表微波比辐射反演方案</span></a>
+</div>
+&copy; 2023-2030, Jiheng Hu. 本专栏内容禁止转载。</div>
+
+<h2 id="晴空模拟流程"><a href="#晴空模拟流程" class="headerlink" title="晴空模拟流程"></a>晴空模拟流程</h2><ul>
+<li>example_fwd例程<br><a target="_blank" rel="noopener" href="https://public.websites.umich.edu/~jihenghu/filzoo/example_fwd.F90"><code>/src/test/example_fwd.F90</code></a>展示了对最通用简单的RTTOV晴空模拟案例，你只需要根据需求修改自己模拟输入即可。<br>RTTOV模拟通常包含以下步骤，这也是本例程的结构。<blockquote>
+<p>  The usual steps to take when running RTTOV are as follows:</p>
+</blockquote>
+<ol>
+<li>Specify required RTTOV options</li>
+<li>Read coefficients</li>
+<li>Allocate RTTOV input and output structures</li>
+<li>Set up the chanprof array with the channels&#x2F;profiles to simulate</li>
+<li>Read input profile(s)</li>
+<li>Set up surface emissivity and&#x2F;or reflectance</li>
+<li>Call rttov_direct and store results</li>
+<li>Deallocate all structures and arrays</li>
+</ol>
+</li>
+</ul>
+<p>rttov coefficient输入字符串地址，例如可以输入54层FY3D MWRI应用先行数据集提供的coefficient参数表：<br><a target="_blank" rel="noopener" href="https://public.websites.umich.edu/~jihenghu/filzoo/rtcoef_fy3_4_mwri.dat"><code>/home/hjh/rttov13/rtcoef_rttov13/rttov13pred54L/rtcoef_fy3_4_mwri.dat</code></a>。<br>rttov profile 输入，例程是按照格式化方式读入的，示例的廓线为:<br><a target="_blank" rel="noopener" href="https://public.websites.umich.edu/~jihenghu/filzoo/prof.dat"><code>/home/hjh/rttov13/rttov_test/test_example.1/prof.dat</code></a>。</p>
+<ul>
+<li>跳过文件中的注释行：CALL rttov_skipcommentline(iup, errorstatus)</li>
+<li>指定气体的单位:  <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">! 0 =&gt; ppmv over dry air</span></span><br><span class="line"><span class="comment">! 1 =&gt; kg/kg over moist air</span></span><br><span class="line"><span class="comment">! 2 =&gt; ppmv over moist air</span></span><br><span class="line">READ(iup,*) profiles(<span class="number">1</span>) % gas_units</span><br><span class="line">profiles(:) % gas_units = profiles(<span class="number">1</span>) % gas_units </span><br></pre></td></tr></table></figure>
+  如果使用ERA5的水汽混合比Q，其单位是kg&#x2F;kg，应当gas_units&#x3D;1；</li>
+<li>随后依次是Pressure levels (hPa)Temperature profile (K)Water vapour profile (ppmv)的自上而下的51层廓线，Ozone profile (ppmv)的轮廓线没有考虑，在源码和廓线示例中都被注释了</li>
+<li>最下面是近地表和surface的参数，仪器参数，分别被读进profiles(iprof)%s2m； profiles(iprof)%skin； profiles(iprof)%elevation等结构中；</li>
+<li>这里还有一个simple cloud 参数，对于晴空，将cloud fraction设为0.0就可以忽略云的考虑：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! Cloud top pressure (hPa) and cloud fraction for simple cloud scheme</span><br><span class="line">   500.00    0.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="个例实战-一-理想晴空单柱正向模拟"><a href="#个例实战-一-理想晴空单柱正向模拟" class="headerlink" title="个例实战(一) 理想晴空单柱正向模拟"></a>个例实战(一) 理想晴空单柱正向模拟</h2><p>设定：</p>
+<ol>
+<li>使用参考大气廓线；</li>
+<li>使用理想的地表发射率</li>
+<li>只考虑水汽的吸收，不考虑O3、云等水凝物的吸收和散射</li>
+</ol>
+<p>输入的设置如下：</p>
+<figure class="highlight fortran"><figcaption><span>example_fwd.F90</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">!========== Interactive inputs == start ==============</span></span><br><span class="line"><span class="comment">! coeff 文件</span></span><br><span class="line">coef_filename=<span class="string">&#x27;/home/hjh/rttov13/rtcoef_rttov13/rttov13pred54L/rtcoef_fy3_4_mwri.dat&#x27;</span></span><br><span class="line">prof_filename=<span class="string">&#x27;./prof.dat&#x27;</span> <span class="comment">! 理想廓线</span></span><br><span class="line">nprof=<span class="number">1</span>   <span class="comment">! 单柱模拟</span></span><br><span class="line">nlevels=<span class="number">51</span> </span><br><span class="line">dosolar=<span class="number">0</span>  <span class="comment">! 不考虑日光</span></span><br><span class="line">nchannels=<span class="number">10</span> <span class="comment">! 10个通道</span></span><br><span class="line">channel_list=(/<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>/)  <span class="comment">! 通道列表</span></span><br><span class="line">nthreads=<span class="number">1</span>  <span class="comment">! 单线程</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ make -f Makefile_examples <span class="comment"># 编译</span></span><br><span class="line">$ ./example_fwd.exe <span class="comment">## 执行</span></span><br><span class="line">	path of coefficient file   --------------  </span><br><span class="line">        /home/hjh/rttov13/rtcoef_rttov13/rttov13pred54L/rtcoef_fy3_4_mwri.dat                                                                                                                                                                                       </span><br><span class="line">	path of file containing profile data ------------ ./prof.dat                                                                                                                                                                                                                                                      </span><br><span class="line">	number of profiles ---------------           1</span><br><span class="line">	number of profile levels -------------          51</span><br><span class="line">	turn on solar simulations? (0=no, 1=<span class="built_in">yes</span>)  --------       0</span><br><span class="line">	number of channels to simulate per profile -----------      10</span><br><span class="line">	enter space-separated channel list ---------------</span><br><span class="line">	 1    2    3    4    5    6    7    8     9    10</span><br><span class="line">	number of threads to use  --------------------       1</span><br></pre></td></tr></table></figure>
+<h3 id="洋面模拟结果"><a href="#洋面模拟结果" class="headerlink" title="洋面模拟结果"></a>洋面模拟结果</h3><p>这里是洋面的模拟结果（Surface type&#x3D;1）:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALCULATED BRIGHTNESS TEMPERATURES (K):</span><br><span class="line">  114.68  114.71  133.38  133.23  159.48  159.25  158.36  157.81  215.07  213.82</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE TO SPACE TRANSMITTANCE:</span><br><span class="line">  0.9867  0.9867  0.9530  0.9530  0.8799  0.8799  0.9214  0.9214  0.7887  0.7887</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE EMISSIVITIES:</span><br><span class="line">   0.379   0.379   0.408   0.407   0.427   0.426   0.472   0.470   0.606   0.599</span><br></pre></td></tr></table></figure>
+<p>这里可以看出，洋面的模拟emissivity在0.5以下，这是一个非常典型的洋面发射率值，并且随着频率升高，这是由Debye方程决定的，并且由于洋面的spacular特性，发射率存在极化差。<br>在如此低的背景输出情况下，模拟得到的天顶亮温在200K以下，对于晴空洋面，也较为合理。如果这时候出现云（240K以上），那么对比度会非常高，所以洋面云和降水反演算法的精度较高。</p>
+<blockquote>
+<p>关于表面发射率的模拟<br>洋面的发射率模拟会考虑海温、盐度、洋面风速等物理量。一般来说，先计算海水的节点常数，随后进行Fresnel反射率计算，最后还要进行风速作用下的表面粗糙洋面的反射率修正。这个思想和陆面发射率模拟的思想是相通的，只不过陆面考虑的介质更复杂，表面的粗糙和风速也无关。所以，整个RTTOV模式只考虑了近地面风场，并且只有在进行洋面发射率模拟时才用到，在进行发射率反演及陆面模拟时，风速的输入是可选的。</p>
+</blockquote>
+<h3 id="陆面模拟结果"><a href="#陆面模拟结果" class="headerlink" title="陆面模拟结果"></a>陆面模拟结果</h3><p>我们修改一下Surface type&#x3D;0,可以进行陆面上空的辐射传输模拟。<br>输出结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALCULATED BRIGHTNESS TEMPERATURES (K):</span><br><span class="line">  256.79  256.79  253.56  253.56  256.05  256.05  252.24  252.24  261.27  261.27</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE TO SPACE TRANSMITTANCE:</span><br><span class="line">  0.9867  0.9867  0.9530  0.9530  0.8799  0.8799  0.9214  0.9214  0.7887  0.7887</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE EMISSIVITIES:</span><br><span class="line">   0.893   0.893   0.875   0.875   0.869   0.869   0.864   0.864   0.874   0.874</span><br></pre></td></tr></table></figure>
+<p>可以看出，RTTOV的MEM模块算出来的陆面emissivity在0.9左右，相应的TB模拟在250K以上，这个结果对于陆面理想模拟来说，较为合理。</p>
+<h3 id="自定义Emissivity"><a href="#自定义Emissivity" class="headerlink" title="自定义Emissivity"></a>自定义Emissivity</h3><p>除了把Emissivity交给表面模块来计算，我们还可以手动设定输入，以服务于敏感性研究或变分反演方法：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">...... </span><br><span class="line">  <span class="comment">! --------------------------------------------------------------------------</span></span><br><span class="line">  <span class="comment">! 6. Specify surface emissivity and reflectance</span></span><br><span class="line">  <span class="comment">! --------------------------------------------------------------------------</span></span><br><span class="line">.......</span><br><span class="line">  <span class="comment">! Calculate emissivity within RTTOV where the input emissivity value is</span></span><br><span class="line">  <span class="comment">! zero or less (all channels in this case)</span></span><br><span class="line">  <span class="comment">! 不进行地表发射率计算</span></span><br><span class="line">  calcemis(:) = .false.</span><br><span class="line">  <span class="comment">! calcemis(:) = (emissivity(:) % emis_in &lt;= 0._jprb)</span></span><br><span class="line">  <span class="comment">! 为所有通道指定0.9的发射率</span></span><br><span class="line">  emissivity(:) % emis_in=<span class="number">0.9</span></span><br></pre></td></tr></table></figure>
+<p>输出的亮温模拟结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CALCULATED BRIGHTNESS TEMPERATURES (K):</span><br><span class="line">  258.71  258.71  260.13  260.13  262.91  262.91  261.00  261.00  265.89  265.89</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE TO SPACE TRANSMITTANCE:</span><br><span class="line">  0.9867  0.9867  0.9530  0.9530  0.8799  0.8799  0.9214  0.9214  0.7887  0.7887</span><br><span class="line"> </span><br><span class="line">CALCULATED SURFACE EMISSIVITIES:</span><br><span class="line">   0.900   0.900   0.900   0.900   0.900   0.900   0.900   0.900   0.900   0.900</span><br></pre></td></tr></table></figure>
+<p>这里可以看出，天顶亮温模拟的极化差为0，这是因为手动设定的Emissivity忽略了地表几何特征引起的反射率的极化差。而大气辐射传输则不会考虑偏振差异，因此有这样的结果；</p>
+<p>除了以上方法，发射率还可以使用Emissivity Atlas作为输入，这个前面讲过，后面用到了会做相应介绍。</p>
+<blockquote>
+<p>注意到上述三种情形：洋面、陆面和手动陆面情形下的大气透过率是一样的，也就是说，大气的辐射传输贡献和地表本身的辐射背景输入无关，基于这一原理，我们可以实现自上而下的反演计算。<br>辐射传输模式也表明了这一点：<br>$$<br>\begin{align}<br>Tb_{v,p}&#x3D;T_u+Γ_v [e_{v,p} T_s+(1-e_{v,p}) T_d]<br>\\<br>e_{v,p}&#x3D;(Tb_{v,p} - T_u - \tau_v T_d)&#x2F;(τ_v (T_s-T_d))<br>\end{align}<br>$$</p>
+</blockquote>
+<h2 id="个例实战-二-晴空轨道模拟"><a href="#个例实战-二-晴空轨道模拟" class="headerlink" title="个例实战(二) 晴空轨道模拟"></a>个例实战(二) 晴空轨道模拟</h2><p>本个例将使用再分析资料进行2023.06.27日的FY上行轨道进行模拟, 模拟卫星观测到的轨道天顶亮温</p>
+<h3 id="试验设置"><a href="#试验设置" class="headerlink" title="试验设置"></a>试验设置</h3><p>使用ERA5相关资料为RTTOV提供输入量，并使用风云的轨道经纬度信息模拟出卫星的实时观测。模拟设定如下：</p>
+<ol>
+<li>不涉及像斑卷积和频率运算；</li>
+<li>不考虑积雪、海冰和云的存在；</li>
+<li>采用最邻近匹配廓线和地表近地表参数；</li>
+<li>廓线取50GHz以下诸层，共29层；</li>
+<li>2m比湿取廓线最底层的值；</li>
+<li>洋面发射率和地表发射率交给模式模拟；</li>
+<li>逐轨道模拟。</li>
+</ol>
+<h3 id="主要步骤："><a href="#主要步骤：" class="headerlink" title="主要步骤："></a>主要步骤：</h3><ul>
+<li>读取卫星Swath的观测几何参数<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">call</span> read_FY_Vars(FY_FILENAME,nscan,npix,FYlon,FYlat,FYtbs,minsec,igbp,lsmask,dem,retcode)</span><br><span class="line"><span class="keyword">call</span> read_FY_Geometry(FY_FILENAME,nscan,npix,sea,sez,soa,soz,retcode)</span><br></pre></td></tr></table></figure></li>
+<li>匹配和下载ERA5资料<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">call</span> system(<span class="string">&quot;python3 &quot;</span>//<span class="built_in">trim</span>(<span class="built_in">adjustl</span>(pwd))//<span class="string">&quot;ERA5/era5-pl-download.py &quot;</span>//yyyymmdd//<span class="string">&quot; &quot;</span>//UTC_str )	</span><br><span class="line"><span class="keyword">call</span> system(<span class="string">&quot;python3 &quot;</span>//<span class="built_in">trim</span>(<span class="built_in">adjustl</span>(pwd))//<span class="string">&quot;ERA5/era5-land-download.py &quot;</span>//yyyymmdd//<span class="string">&quot; &quot;</span>//UTC_str )	</span><br><span class="line"><span class="keyword">call</span> system(<span class="string">&quot;python3 &quot;</span>//<span class="built_in">trim</span>(<span class="built_in">adjustl</span>(pwd))//<span class="string">&quot;ERA5/era5-single-download.py &quot;</span>//yyyymmdd//<span class="string">&quot; &quot;</span>//UTC_str )	</span><br></pre></td></tr></table></figure></li>
+<li>读取ERA5参数<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">call</span> read_ERA5_profs(req_era5,lon,lat,qw,rh,ta,zg)</span><br><span class="line"><span class="keyword">call</span> read_ERA5_surfs(req_surf,lst,psrf,t2m)        <span class="comment">!! K, hPa, K     !!  1 (top) -&gt; 29 (bottom)</span></span><br><span class="line"><span class="keyword">call</span> read_ERA5_sigls(req_sigl,sst,psrf,t2m,u10,v10)</span><br></pre></td></tr></table></figure></li>
+<li>调用RTTOV <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">call</span> rttov_clearsky_fwd(npix,FYlon,FYlat,plevel,&amp;</span><br><span class="line">			 qw,ta,skt,psrf,t2m,u10,v10,dem,lsmask,sea,sez,soa,soz,simu) </span><br></pre></td></tr></table></figure></li>
+<li>写出亮温模拟<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">call</span> write_hdf5_var(fileout,nscan,npix,nchn,simu,FYlon,FYlat,retcode)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h3><p>连接网络（服务器环境）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$wlt</span>&gt;wlt.log</span><br><span class="line">  --2023-08-16 16:52:18--  http://wlt.ustc.edu.cn/cgi-bin/ip</span><br><span class="line">  正在解析主机 wlt.ustc.edu.cn (wlt.ustc.edu.cn)... 202.38.64.59</span><br><span class="line">  正在连接 wlt.ustc.edu.cn (wlt.ustc.edu.cn)|202.38.64.59|:80... 已连接。</span><br><span class="line">  已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">  长度： 未指定 [text/html]</span><br><span class="line">  正在保存至: “STDOUT”</span><br><span class="line">  -   [ &lt;=&gt;                   ]   4.74K  --.-KB/s    用时 0s    </span><br><span class="line">  2023-08-16 16:52:18 (18.8 MB/s) - 已写入标准输出 [4858]</span><br></pre></td></tr></table></figure>
+<p>编译。这里可能会出现一类似<code>The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG</code>和<code>stack overflow</code>的报错或warning，你可以适当使用<code>-mcmodel=large</code>、<code>-ffpe-summary=none</code>的编译选项来解决问题。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$sh</span> bash.sh </span><br><span class="line"><span class="variable">$tree</span></span><br><span class="line">.</span><br><span class="line">├── bash.sh                     <span class="comment">## 编译脚本</span></span><br><span class="line">├── ERA5                        <span class="comment">## 存放下载的ERA5文件目录</span></span><br><span class="line">│   ├── 20230626</span><br><span class="line">│   ├── era5-land-download.py      <span class="comment">## 下载脚本</span></span><br><span class="line">│   ├── era5-pl-download.py</span><br><span class="line">│   └── era5-single-download.py</span><br><span class="line">├── fyxx_mwri_fwd_clear.f90        <span class="comment">## main prgram</span></span><br><span class="line">├── fyxx_mwri_fwd_clear.o          <span class="comment">## 编译生成的动态库</span></span><br><span class="line">├── fyxx_mwri_fwd_clear_swath.exe  <span class="comment">## 编译生成的可执行文件</span></span><br><span class="line">├── output                         <span class="comment">## 模拟输出文件夹</span></span><br><span class="line">├── rttov_clearsky_fwd.f90         <span class="comment">## RTTOV调用接口</span></span><br><span class="line">├── rttov_clearsky_fwd.o           <span class="comment">## RTTOV调用接口的动态库</span></span><br><span class="line">├── subs                           <span class="comment">## 读写子程序NETCDF, HDF5</span></span><br><span class="line">│   ├── read_ERA5_vars.f90</span><br><span class="line">│   ├── read_FY_vars.f90</span><br><span class="line">│   └── write_hdf5_var.f90</span><br><span class="line">└── wlt.log                        <span class="comment">## 网络日志</span></span><br></pre></td></tr></table></figure>
+<p>运行。运行的时候可能会出现大量的limits超出的判断，可以再源码中使用<code>opts%config%apply_reg_limits= .false.</code>来禁用这些廓线和地表参数的检查。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$./fyxx_mwri_fwd_clear_swath.exe 20230627</span><br><span class="line"> ├──Start proc. - /data04/0/MWRI/FYxx_IOT/ASCEND/20230627/FYxx_MWRI-_ORBA_L1_20230627_0048_7000M_V0.HDF</span><br><span class="line"> │	├── FYxx vars <span class="built_in">read</span> <span class="keyword">done</span>!   </span><br><span class="line"> │	├──  ERA5 file Not Found, calling Python downloading script</span><br><span class="line">download- ERA5 20230626  UTC:  01</span><br><span class="line">2023-08-16 16:52:52,406 INFO Welcome to the CDS</span><br><span class="line">2023-08-16 16:52:52,407 INFO Sending request to https://cds.climate.coperni........e-levels</span><br><span class="line">2023-08-16 16:52:52,920 INFO Request is queued</span><br><span class="line">2023-08-16 16:52:55,960 INFO Request is running</span><br><span class="line">2023-08-16 16:53:15,341 INFO Request is completed</span><br><span class="line">2023-08-16 16:53:15,341 INFO Downloading https://download-0010-clon.....65.nc to ERA5/20230626/xxxxx-xxx-20230626-0100.nc (373.5M)</span><br><span class="line">2023-08-16 16:55:30,643 INFO Download rate 2.8M/s </span><br><span class="line"> │	├── ERA5 vars <span class="built_in">read</span> <span class="keyword">done</span>!  </span><br><span class="line"> │	├── Start RTTOV simulations</span><br><span class="line"> │	└── Write down: output/RTTOV_CLEAR_SIMU_Swath_FYxx_MWRI-_ORBA_L1_20230627_0048_7000M_V0.HDF</span><br><span class="line"> ├──Start proc. - /data04/0/MWRI/FYxx_IOT/ASCEND/20230627/FYxx_MWRI-_ORBA_L1_20230627_0221_7000M_V0.HDF</span><br><span class="line"> .......</span><br><span class="line"> │	└── Write down: output/RTTOV_CLEAR_SIMU_Swath_FYxx_MWRI-_ORBA_L1_20230627_2357_7000M_V0.HDF</span><br><span class="line"> └── 20230627: process <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>程序会自动根据需要下载ERA5文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$tree</span></span><br><span class="line">.</span><br><span class="line">├── ERA5</span><br><span class="line">│   └── 20230627</span><br><span class="line">│      └── ERA5-xxx-xxx-20230627-0100.nc      <span class="comment">## 自动下载的ERA5</span></span><br><span class="line">├── FY_filelist_20230627.txt                  <span class="comment">## 轨道表 </span></span><br><span class="line">├── output                                    <span class="comment">## 输出文件</span></span><br><span class="line">│   └── RTTOV_CLEAR_SIMU_Swath_FYxx_MWRI-_ORBA_L1_20230627_0048_7000M_V0.HDF  </span><br><span class="line">└── output_clearsky_fw.dat                    <span class="comment">## RTTOV样式输出</span></span><br></pre></td></tr></table></figure>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>模拟和观测的比较：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/03/30/eShjiYv8m9aIcbo.jpg" alt="三通道亮温模拟"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2024/03/30/QqCvL3wR4XZNfsY.jpg" alt="三通道亮温观测"><br>可以看出，两者在海陆、森林、沙漠、草地等区域的分布格局是一致的，比如亚马逊雨林中等，沙漠是高值，青藏高原是低值。<br>但是，两者在细节上存在较为明显的差异：陆面上模拟值显著偏低；洋面和漠北存在细节没有模拟出来。这可能的原因包括地表温度、地表发射率的模拟误差和以及没有考虑云的影响。在后面的章节我们会作这方面的模拟。</p>
+<hr>
+<h2 id="个例实战-三-使用Emissvity-Atlas"><a href="#个例实战-三-使用Emissvity-Atlas" class="headerlink" title="个例实战(三) 使用Emissvity Atlas"></a>个例实战(三) 使用Emissvity Atlas</h2><p>本个例个例二的设置和假设基本一致，只不过我们会使用TELSEM2的EmissivityAtlas来替换原有的模拟自己计算的emissivtity。</p>
+<h3 id="下载TELSEM2-Atlas"><a href="#下载TELSEM2-Atlas" class="headerlink" title="下载TELSEM2 Atlas"></a>下载TELSEM2 Atlas</h3><p>下载页：<a target="_blank" rel="noopener" href="https://nwp-saf.eumetsat.int/site/software/rttov/download/#Emissivity_BRDF_atlas_data">https://nwp-saf.eumetsat.int/site/software/rttov/download/#Emissivity_BRDF_atlas_data</a><br>下载telsem2_mw_atlas.tar.bz2解压在<code>/home/hjh/rttov13/emis_data/</code>目录下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /home/hjh/rttov13/emis_data</span><br><span class="line">$ tar -xvf telsem2_mw_atlas.tar.bz2</span><br><span class="line">├── ssmi_mean_emis_climato_01_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_02_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_03_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_04_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_05_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_06_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_07_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_08_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_09_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_10_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_11_cov_interpol_M2</span><br><span class="line">├── ssmi_mean_emis_climato_12_cov_interpol_M2</span><br><span class="line">├── telsem2</span><br><span class="line">│   ├── Makefile</span><br><span class="line">│   ├── mod_mwatlas_m2.F90</span><br><span class="line">│   ├── README_TELSEM2.pdf</span><br><span class="line">│   ├── readme.txt</span><br><span class="line">│   └── test_telsem2.F90</span><br><span class="line">└── correlations</span><br></pre></td></tr></table></figure>
+<p>telsem包含了ASCII方式存储的Atlas和独立的Fortran读取代码，可以在别的地方使用。RTTOV内置了针对TELSEM2的发射率地图和相应的插值工具的支持。</p>
+<h3 id="使用Atlas"><a href="#使用Atlas" class="headerlink" title="使用Atlas"></a>使用Atlas</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/research/rttov/rttov132-mw-scat/rttov-atlas-xminder.png"></p>
+<figure class="highlight fortran"><figcaption><span>根据提供的月份读取emissivity</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">! Use emissivity atlas</span></span><br><span class="line"><span class="keyword">CALL</span> rttov_get_emis(             &amp;</span><br><span class="line">          errorstatus,           &amp;</span><br><span class="line">          opts,                  &amp;</span><br><span class="line">          chanprof,              &amp;</span><br><span class="line">          profiles,              &amp;</span><br><span class="line">          coefs,                 &amp;</span><br><span class="line">          emis_atlas,            &amp;</span><br><span class="line">          emissivity(:) % emis_in)</span><br></pre></td></tr></table></figure>
+<p>如果是海洋或者没有telsem2 atlas的地方，使用RTTOV地表模式进行计算:</p>
+<figure class="highlight fortran"><figcaption><span>example_atlas_fwd.F90</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">! Calculate emissivity within RTTOV where the atlas emissivity value is zero or less</span></span><br><span class="line">calcemis(:) = (emissivity(:) % emis_in &lt;= <span class="number">0._jprb</span>)</span><br><span class="line"><span class="comment">! Use the RTTOV emissivity calculations over sea surfaces</span></span><br><span class="line"><span class="keyword">DO</span> j = <span class="number">1</span>, <span class="built_in">SIZE</span>(chanprof)</span><br><span class="line">  <span class="keyword">IF</span> (profiles(chanprof(j)%prof) % skin % surftype == surftype_sea) <span class="keyword">THEN</span></span><br><span class="line">    calcemis(j) = .TRUE.</span><br><span class="line">  <span class="keyword">ENDIF</span></span><br><span class="line"><span class="keyword">ENDDO</span></span><br></pre></td></tr></table></figure>
+<p>调用RTTOV进行计算：</p>
+<figure class="highlight fortran"><figcaption><span>example_atlas_fwd.F90</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">CALL</span> rttov_direct(                &amp;</span><br><span class="line">        errorstatus,              &amp;<span class="comment">! out   error flag</span></span><br><span class="line">        chanprof,                 &amp;<span class="comment">! in    channel and profile index structure</span></span><br><span class="line">        opts,                     &amp;<span class="comment">! in    options structure</span></span><br><span class="line">        profiles,                 &amp;<span class="comment">! in    profile array</span></span><br><span class="line">        coefs,                    &amp;<span class="comment">! in    coefficients structure</span></span><br><span class="line">        transmission,             &amp;<span class="comment">! inout computed transmittances</span></span><br><span class="line">        radiance,                 &amp;<span class="comment">! inout computed radiances</span></span><br><span class="line">        calcemis    = calcemis,   &amp;<span class="comment">! in    flag for internal emissivity calcs</span></span><br><span class="line">        emissivity  = emissivity, &amp;<span class="comment">! inout input/output emissivities per channel</span></span><br><span class="line">        calcrefl    = calcrefl,   &amp;<span class="comment">! in    flag for internal BRDF calcs</span></span><br><span class="line">        reflectance = reflectance) <span class="comment">! inout input/output BRDFs per channel</span></span><br></pre></td></tr></table></figure>
+<p>RTTOV计算的地表发射率：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/research/rttov/rttov132-mw-scat/RTTOV_Modeled_Emiss_20230627.jpg" alt="RTTOV计算的地表发射率"></p>
+<p>Fastem海表发射率模拟+TELSEM2地表发射率<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/research/rttov/rttov132-mw-scat/TELSEM2_FASTEM_Emiss_20230627.jpg" alt="RTTOV计算的地表发射率"></p>
+<p>晴空亮温模拟（TELSEM2 Atlas提供地表发射率）<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/research/rttov/rttov132-mw-scat/FYxx_TBs_RTTOV-TELSEM2_20230627.png"></p>
+<h2 id="参数的敏感性研究"><a href="#参数的敏感性研究" class="headerlink" title="参数的敏感性研究"></a>参数的敏感性研究</h2><p>略。有时间的话补充，计划交给师妹练手。</p>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ol>
+<li>在进行轨道模拟的时候，如果内存允许，应当将模拟样本一次性输入RTTOV中,这比循环每次样本并调用一次接口快很多。RTTOV的每次运行需要先inital，allocate, deallocate, check profile, check coefficents,等一系列的流程。频繁的结构体的创建、检查、赋值、释放，消耗绝大部分的时间；并且Fortran（formula transform）的优势就是进行快速的矩阵运算，所以大批量的数据一次性计算效率非常高。<br>在本个例中，单个样本的循环模拟的方案下，完成一轨的模拟[294,1640]需要消耗约3小时；而逐Scan的模拟只需要3~4分钟，这其中约有2分钟用来下载数据。当然了，还可以整轨一次模拟（需要转成一维），这样会更快，但是需要恢复输出值的轨道形状，比较麻烦。如果后续速度成为卡脖子问题（目前已经很快了，不做循环迭代的情况下），再进行优化。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/blog">JIHENG💕</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://jihenghu.github.io/blog/research/rttov/rttov132-direct-fw/">https://jihenghu.github.io/blog/research/rttov/rttov132-direct-fw/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/RTM/">RTM</a><a class="post-meta__tags" href="/blog/tags/RTTOV/">RTTOV</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/research/rttov/rttov132-mw-scat/" title="RTTOV模式学习笔记：(六) 基于MW-SCATT的水凝物模拟"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://public.websites.umich.edu/~jihenghu/filzoo/rttov_cover2.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">RTTOV模式学习笔记：(六) 基于MW-SCATT的水凝物模拟</div></div></a></div><div class="next-post pull-right"><a href="/blog/essays/road-to-umich/" title="Go Blue!"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://home.ustc.edu.cn/~hjh18305/filzoo/umich-engineering.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Go Blue!</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/research/rttov/rttov132-column/" title="专栏：RTTOV辐射传输模式学习笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-20</div><div class="title">专栏：RTTOV辐射传输模式学习笔记</div></div></a></div><div><a href="/blog/research/rttov/rttov132-emissivity-retrieve/" title="RTTOV模式笔记：(七) 全天气地表微波比辐射反演方案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-24</div><div class="title">RTTOV模式笔记：(七) 全天气地表微波比辐射反演方案</div></div></a></div><div><a href="/blog/research/rttov/rttov132-install/" title="RTTOV模式笔记：(二) RTTOV V13.2安装"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-30</div><div class="title">RTTOV模式笔记：(二) RTTOV V13.2安装</div></div></a></div><div><a href="/blog/research/rttov/rttov132-installlibs/" title="RTTOV模式笔记：(一) 依赖安装"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-21</div><div class="title">RTTOV模式笔记：(一) 依赖安装</div></div></a></div><div><a href="/blog/research/rttov/rttov132-mw-scat/" title="RTTOV模式学习笔记：(六) 基于MW-SCATT的水凝物模拟"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://public.websites.umich.edu/~jihenghu/filzoo/rttov_cover2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-18</div><div class="title">RTTOV模式学习笔记：(六) 基于MW-SCATT的水凝物模拟</div></div></a></div><div><a href="/blog/research/rttov/rttov132-conventions/" title="RTTOV模式笔记：(三) 一些约定和特性"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-31</div><div class="title">RTTOV模式笔记：(三) 一些约定和特性</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/08/03/Zg3cmI6wTi8EH1X.jpg" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JIHENG💕</div><div class="author-info__description">向着温暖的地方出发</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">96</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">72</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" href="/about/"><i class="fas fa-bookmark"></i><span>关于我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jihenghu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:hjh18305@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"><li> 联系我 hjh18305[at]gmail.com <li>RTTOV的笔记和源码已经转载到了我的<a href=https://github.com/jihenghu/rttov-mwrt-tutorial.git>Github仓库，更加详尽.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%B4%E7%A9%BA%E6%A8%A1%E6%8B%9F%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">晴空模拟流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BE%8B%E5%AE%9E%E6%88%98-%E4%B8%80-%E7%90%86%E6%83%B3%E6%99%B4%E7%A9%BA%E5%8D%95%E6%9F%B1%E6%AD%A3%E5%90%91%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.</span> <span class="toc-text">个例实战(一) 理想晴空单柱正向模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B4%8B%E9%9D%A2%E6%A8%A1%E6%8B%9F%E7%BB%93%E6%9E%9C"><span class="toc-number">2.1.</span> <span class="toc-text">洋面模拟结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%86%E9%9D%A2%E6%A8%A1%E6%8B%9F%E7%BB%93%E6%9E%9C"><span class="toc-number">2.2.</span> <span class="toc-text">陆面模拟结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Emissivity"><span class="toc-number">2.3.</span> <span class="toc-text">自定义Emissivity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BE%8B%E5%AE%9E%E6%88%98-%E4%BA%8C-%E6%99%B4%E7%A9%BA%E8%BD%A8%E9%81%93%E6%A8%A1%E6%8B%9F"><span class="toc-number">3.</span> <span class="toc-text">个例实战(二) 晴空轨道模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%95%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text">试验设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">主要步骤：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="toc-number">3.3.</span> <span class="toc-text">编译运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-number">3.4.</span> <span class="toc-text">结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BE%8B%E5%AE%9E%E6%88%98-%E4%B8%89-%E4%BD%BF%E7%94%A8Emissvity-Atlas"><span class="toc-number">4.</span> <span class="toc-text">个例实战(三) 使用Emissvity Atlas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDTELSEM2-Atlas"><span class="toc-number">4.1.</span> <span class="toc-text">下载TELSEM2 Atlas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Atlas"><span class="toc-number">4.2.</span> <span class="toc-text">使用Atlas</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E7%9A%84%E6%95%8F%E6%84%9F%E6%80%A7%E7%A0%94%E7%A9%B6"><span class="toc-number">5.</span> <span class="toc-text">参数的敏感性研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E9%AA%8C"><span class="toc-number">6.</span> <span class="toc-text">经验</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/sanantonio-25/" title="San Antonio"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/05/01/n3v4pgD6GodqhLB.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="San Antonio"/></a><div class="content"><a class="title" href="/blog/essays/sanantonio-25/" title="San Antonio">San Antonio</a><time datetime="2025-04-12T14:00:00.000Z" title="Created 2025-04-12 22:00:00">2025-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/dc-agu24/" title="Washington D.C."><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/YINay6K2SAHfU4b.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Washington D.C."/></a><div class="content"><a class="title" href="/blog/essays/dc-agu24/" title="Washington D.C.">Washington D.C.</a><time datetime="2024-12-16T14:00:00.000Z" title="Created 2024-12-16 22:00:00">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="WRFv4.0 em-ideal 安装记录"/></a><div class="content"><a class="title" href="/blog/research/WRF_ideal_installation/" title="WRFv4.0 em-ideal 安装记录">WRFv4.0 em-ideal 安装记录</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="WRFv4.0 Ideal Case - A Tropical Cyclone"/></a><div class="content"><a class="title" href="/blog/research/WRF_ideal_tropical_cyclone/" title="WRFv4.0 Ideal Case - A Tropical Cyclone">WRFv4.0 Ideal Case - A Tropical Cyclone</a><time datetime="2024-11-21T16:00:00.000Z" title="Created 2024-11-22 00:00:00">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/essays/mexico_24/" title="Mexico"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2025/02/09/xo94mVPBw8b3Ukp.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Mexico"/></a><div class="content"><a class="title" href="/blog/essays/mexico_24/" title="Mexico">Mexico</a><time datetime="2024-10-14T14:00:00.000Z" title="Created 2024-10-14 22:00:00">2024-10-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/11/27/LtPk9WIfbrmwsDY.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By JIHENG💕</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Powered by public.websites.umich.edu</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addModeChange('mermaid', runMermaid)
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+      appKey: 'zQf7AST9i7Tm9WWBMjWmxGCe',
+      avatar: 'monsterid',
+      serverURLs: 'https://tpaxop8k.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[image]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[link]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[code]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=monsterid'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += 'No Comment'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://tpaxop8k.lc-cn-n1-shared.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'tPAxop8kPcJE0VJSLJDk9PJq-gzGzoHsz',
+        "X-LC-Key": 'zQf7AST9i7Tm9WWBMjWmxGCe',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "Unable to get the data, please make sure the settings are correct."
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><div class="aplayer no-destroy" data-id="5048673400" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/npm/echarts@4.8.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js"></script></div></div></body></html>
