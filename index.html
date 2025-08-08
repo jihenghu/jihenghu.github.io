@@ -19,7 +19,7 @@
 <body class="bg-light d-flex flex-column min-vh-100" >
     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
     <div class="container-lg">
-        <a class="navbar-brand" href="//"><strong>Jiheng's Page</strong></a>
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
         <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-map"></i> Menu
         </button>
@@ -53,7 +53,7 @@
                 
                 <li class="nav-item ">
 					
-						<a class="nav-link" href="https://jihenghu.github.io/" target="_blank" >Blog</a>
+						<a class="nav-link" href="/blog" target="_blank" >Blog</a>
 					
                 </li>
                 
@@ -239,7 +239,7 @@ if (location.hostname.search("github.io") != -1 && striped_pathname != ""){
             <h5><i class="fas fa-exclamation-triangle"></i> Action required</h5>
             <strong>Problem:</strong>
             The current root path of this site is "<code class="root-path-text"></code>",
-            which does not match the <code>baseurl</code> ("<code>/</code>") configured in <code>_config.yml</code>.
+            which does not match the <code>baseurl</code> ("<code></code>") configured in <code>_config.yml</code>.
             <br>
 
             <strong>Solution:</strong>
@@ -250,7 +250,7 @@ if (location.hostname.search("github.io") != -1 && striped_pathname != ""){
 
 <script>
 striped_pathname = location.pathname.replace(/\/+$/, "");
-if(striped_pathname != "/"){
+if(striped_pathname != ""){
     document.getElementById("url-debug-message").classList.remove('d-none');
 }
 document.querySelectorAll(".root-path-text").forEach(function(element){
