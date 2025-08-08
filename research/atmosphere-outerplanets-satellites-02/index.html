@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thermal Structure</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 780px;
+        padding: 0 15px;
+    }
+</style>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="//"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publist" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/showcase" >Showcase</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="https://jihenghu.github.io/" target="_blank" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <p><br />
+<br /></p>
+
+<p><strong>行星的热力结构取决于它们吸收的太阳短波辐射能量，内能的释放，以及极光能量。</strong></p>
+
+<hr />
+
+<h3 id="equilibrium-temperatrue-effective-temperatrue-and-internal-heat">Equilibrium Temperatrue, Effective Temperatrue, and Internal Heat</h3>
+
+<p>一个<code class="language-plaintext highlighter-rouge">旋转行星</code>的<strong>平衡能温度$T_{eq}$</strong>, 可以由Stefan-Boltzmann law计算得到：</p>
+<div class="text-center">
+	$T_{eq}=[\frac{S_i (1-\alpha)}{4\sigma}]^{1/4}$  
+</div>
+
+<p>这里，$S_i$是太阳短波辐射通量， $\alpha$是短波反照率，$\sigma$是Stefan-Boltzmann constant。</p>
+
+<p>这是通过热辐射和短波辐射的平衡关系得到的：</p>
+<div class="text-center">  
+$\sigma T_{eq}^4 \cdot 4\pi R^2=S_i(1-\alpha) \cdot\pi R^2$    
+</div>
+<p>这里要注意长波热辐射是全球面积分的，但是短波接收只有向阳面的星球截面积分。</p>
+
+<p>如果这个行星不自己发射能量，那么，它的有效能温度$T_{eff}$等于它的平衡温度；
+但是如果这个行星拥有一个内部的热源（Internal Heat），其自身会释放一部分能量。那么它的有效温度就会大于平衡温度。</p>
+
+<p>行星总热能是所有波长热辐射的积分：</p>
+<div class="text-center">  
+$I=\int F_\lambda d\lambda$
+</div>
+
+<hr />
+
+<h3 id="source-of-internal-heat">Source of Internal Heat</h3>
+
+<p>类地行星实际上不具有内部热源，相对于他们接受的太阳能量而言。但这个情况对于巨行星来说，却是相反的。
+对于木星和土星来说，旅行者号红外辐射器（Voyager/IRIS）可以估算出这些行星的热辐射通量。但是对于天王星和海王星来说，估算较为困难，因为很难确定的准确的shortwave albedo。</p>
+
+<p>对于木星和土星而言，它们的有效温度远远超过了他们的平衡温度，也就意味着他们有一个巨大的内部热源，并且辐射的热量是吸收的太阳热量的两倍；对于海王星来说，这个比例是2-3，天王星没有发现内部热源。</p>
+
+<div class="text-center">
+<img src="/assets/images/research/planetary_erb.jpg" class="img-fluid rounded-xl" style="max-height:400px;" />
+<br />
+Major planets Energy Radiation Budget
+</div>
+
+<p>木星的引力收缩(Gravitational contraction or <code class="language-plaintext highlighter-rouge">Helmholtz contraction</code>)是产生其内部热量的根源。
+土星的质量只有木星的三分之一，因此没有足够的原始热量来解释其内部能量。
+多余的这部分热量大概是通过释放引力能量来提供，即液态氦从土星内部的金属氢中分离出来。
+如果没有这种分离过程，土星在不到太阳系年龄一半的时间内就会衰减到其目前的亮度水平。 
+奇怪的是，海王星上几乎没有类似于木星和土星上的内部能量来源，但是仍然拥有一个巨大的内部热储备。
+Triton and Neptune海王星之间的潮汐相互作用也无法解释海王星轨道上的内部能量。
+更有趣的是，天王星虽然它的大小、质量和大气温度预计与海王星相似，却没有内热源。</p>
+
+<hr />
+
+<h4 id="大气的能量传递方式">大气的能量传递方式</h4>
+<p>在巨行星稀薄的热层（<code class="language-plaintext highlighter-rouge">Thermosphere</code>）中，能量以热传导的形式(因为opacity较小，辐射效率低)向下一直到能够发生辐射的高度（压力大于10微巴）。
+然而，观测到的热层温度（至少在木星和土星上）需要除了太阳极紫外辐射（EUV）之外的额外能量输入。
+对流层和平流层的大气温度结构在很大程度上受辐射平衡过程控制。在更深的对流层（约0.5~1 bar）中，这里光学厚度变大，温度梯度过大使大气层不再稳定，对流开始占主导地位。
+在<code class="language-plaintext highlighter-rouge">对流层</code>更深处，随着各种volatiles开始凝结，干绝热温度递减率受到潜热释放的影响而变小。</p>
+
+<p>在对流层中，He和H2的opactiy远大于CH4，主导的热辐射贡献，一直到0.5~1 bar。甲烷的较弱吸收带、<code class="language-plaintext highlighter-rouge">dust</code>和<code class="language-plaintext highlighter-rouge">aerosol</code>在对流层的能量交换中也同样具有重要作用。
+尘埃（或气溶胶）的来源仍不明确，在木星的研究背景下有时被称为 Axel dust或 Danielson dust。
+它可能是由氨的光化学反应中肼凝结形成的光化学烟雾，也可能是某种被困在逆温层附近的外星物质（例如来自陨石、行星环等）。</p>
+
+<p>在<code class="language-plaintext highlighter-rouge">平流层</code>（p&lt;0.1 bar）辐射传输仍然占主导地位。由于气体碰撞次数相对较多，局部热力学平衡（LTE）得以维持。</p>
+
+<p>当大气的压力低于大约10 ubar时，由于热运动不再高效，局部热力学平衡（LTE）就不成立了。</p>
+
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Aug 2025</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

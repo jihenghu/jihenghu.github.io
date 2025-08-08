@@ -313,28 +313,7 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
     
     
-    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
-    
     <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MSG SERV CLM数据集下载</title>
-    <link href="https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/"/>
-    <id>https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/</id>
-    <published>2023-12-13T14:00:00.000Z</published>
-    <updated>2023-12-17T01:22:00.412Z</updated>
-    
-    
-    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
-    
-    
-    
-    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
-    
-    
-    <category term="MSG" scheme="https://jihenghu.github.io/blog/tags/MSG/"/>
     
     <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
     
@@ -364,6 +343,27 @@
     <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
     
     <category term="GOES-R" scheme="https://jihenghu.github.io/blog/tags/GOES-R/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MSG SERV CLM数据集下载</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/</id>
+    <published>2023-12-13T14:00:00.000Z</published>
+    <updated>2023-12-17T01:22:00.412Z</updated>
+    
+    
+    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+    <category term="MSG" scheme="https://jihenghu.github.io/blog/tags/MSG/"/>
     
   </entry>
   
