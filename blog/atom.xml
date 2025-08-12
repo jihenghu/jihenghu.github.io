@@ -6,7 +6,7 @@
   <link href="https://jihenghu.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://jihenghu.github.io/blog/"/>
-  <updated>2025-04-30T17:24:18.551Z</updated>
+  <updated>2025-08-12T19:36:01.528Z</updated>
   <id>https://jihenghu.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Frankenmuth, MI</title>
+    <link href="https://jihenghu.github.io/blog/essays/frankenmuth-mi-25/"/>
+    <id>https://jihenghu.github.io/blog/essays/frankenmuth-mi-25/</id>
+    <published>2025-05-25T14:00:00.000Z</published>
+    <updated>2025-08-12T19:36:01.528Z</updated>
+    
+    
+    <summary type="html">Doggy Festival, Hot Air Balloon, River Cruise, Memorial Day</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Frankenmuth" scheme="https://jihenghu.github.io/blog/tags/Frankenmuth/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Holland, MI</title>
+    <link href="https://jihenghu.github.io/blog/essays/holland-mi-25/"/>
+    <id>https://jihenghu.github.io/blog/essays/holland-mi-25/</id>
+    <published>2025-05-08T14:00:00.000Z</published>
+    <updated>2025-08-12T19:18:15.399Z</updated>
+    
+    
+    <summary type="html">Tulip Time Festival, The Lake Michigan, Windmill Island Gardens</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Holland" scheme="https://jihenghu.github.io/blog/tags/Holland/"/>
+    
+    <category term="Tulip" scheme="https://jihenghu.github.io/blog/tags/Tulip/"/>
+    
+  </entry>
   
   <entry>
     <title>San Antonio</title>
@@ -431,52 +479,6 @@
     <category term="MWR" scheme="https://jihenghu.github.io/blog/tags/MWR/"/>
     
     <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
-    
-    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Example#3：Bryan Moist Uprising Bubble</title>
-    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/"/>
-    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-bryan/</id>
-    <published>2023-11-23T16:00:00.000Z</published>
-    <updated>2023-11-29T00:25:15.076Z</updated>
-    
-    
-    <summary type="html">本节介绍对湿空气团的模拟，会涉及到相变和热力学的能量交换过程。</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
-    
-    <category term="Hydrodynamics" scheme="https://jihenghu.github.io/blog/tags/Hydrodynamics/"/>
-    
-    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Example#2：Robert Uprisng Bubble</title>
-    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-robert/"/>
-    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-robert/</id>
-    <published>2023-11-21T16:00:00.000Z</published>
-    <updated>2023-11-27T18:45:32.503Z</updated>
-    
-    
-    <summary type="html">Robert问题的模拟解</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
-    
-    <category term="Hydrodynamics" scheme="https://jihenghu.github.io/blog/tags/Hydrodynamics/"/>
     
     <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
     
