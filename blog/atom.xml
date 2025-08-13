@@ -111,27 +111,6 @@
   </entry>
   
   <entry>
-    <title>WRFv4.0 em-ideal 安装记录</title>
-    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_installation/"/>
-    <id>https://jihenghu.github.io/blog/research/WRF_ideal_installation/</id>
-    <published>2024-11-21T16:00:00.000Z</published>
-    <updated>2024-11-22T20:53:02.188Z</updated>
-    
-    
-    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
-    
-    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
-    
-  </entry>
-  
-  <entry>
     <title>WRFv4.0 Ideal Case - A Tropical Cyclone</title>
     <link href="https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/"/>
     <id>https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/</id>
@@ -151,6 +130,27 @@
     <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
     
     <category term="Cyclone" scheme="https://jihenghu.github.io/blog/tags/Cyclone/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WRFv4.0 em-ideal 安装记录</title>
+    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_installation/"/>
+    <id>https://jihenghu.github.io/blog/research/WRF_ideal_installation/</id>
+    <published>2024-11-21T16:00:00.000Z</published>
+    <updated>2024-11-22T20:53:02.188Z</updated>
+    
+    
+    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
+    
+    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
     
   </entry>
   
@@ -361,9 +361,9 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
     
     
-    <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
-    
     <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+    <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
     
   </entry>
   
@@ -388,9 +388,9 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
     
     
-    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
-    
     <category term="GOES-R" scheme="https://jihenghu.github.io/blog/tags/GOES-R/"/>
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
     
   </entry>
   
@@ -478,9 +478,9 @@
     
     <category term="MWR" scheme="https://jihenghu.github.io/blog/tags/MWR/"/>
     
-    <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
-    
     <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
+    
+    <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
     
   </entry>
   
