@@ -31,9 +31,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
     
     
-    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
-    
     <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
     
     <category term="Frankenmuth" scheme="https://jihenghu.github.io/blog/tags/Frankenmuth/"/>
     
@@ -54,9 +54,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
     
     
-    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
-    
     <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
     
     <category term="Holland" scheme="https://jihenghu.github.io/blog/tags/Holland/"/>
     
@@ -111,6 +111,27 @@
   </entry>
   
   <entry>
+    <title>WRFv4.0 em-ideal 安装记录</title>
+    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_installation/"/>
+    <id>https://jihenghu.github.io/blog/research/WRF_ideal_installation/</id>
+    <published>2024-11-21T16:00:00.000Z</published>
+    <updated>2024-11-22T20:53:02.188Z</updated>
+    
+    
+    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
+    
+    
+    
+    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
+    
+    
+    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
+    
+    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
+    
+  </entry>
+  
+  <entry>
     <title>WRFv4.0 Ideal Case - A Tropical Cyclone</title>
     <link href="https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/"/>
     <id>https://jihenghu.github.io/blog/research/WRF_ideal_tropical_cyclone/</id>
@@ -130,27 +151,6 @@
     <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
     
     <category term="Cyclone" scheme="https://jihenghu.github.io/blog/tags/Cyclone/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WRFv4.0 em-ideal 安装记录</title>
-    <link href="https://jihenghu.github.io/blog/research/WRF_ideal_installation/"/>
-    <id>https://jihenghu.github.io/blog/research/WRF_ideal_installation/</id>
-    <published>2024-11-21T16:00:00.000Z</published>
-    <updated>2024-11-22T20:53:02.188Z</updated>
-    
-    
-    <summary type="html">支线任务的需要，趟一下WRFv4.0的一些坑，原则是遇到坑就跳过</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="WRFV4" scheme="https://jihenghu.github.io/blog/tags/WRFV4/"/>
-    
-    <category term="Model" scheme="https://jihenghu.github.io/blog/tags/Model/"/>
     
   </entry>
   
@@ -221,9 +221,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
     
     
-    <category term="Umich" scheme="https://jihenghu.github.io/blog/tags/Umich/"/>
-    
     <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Umich" scheme="https://jihenghu.github.io/blog/tags/Umich/"/>
     
   </entry>
   
@@ -269,9 +269,9 @@
     <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
     
     
-    <category term="LSM" scheme="https://jihenghu.github.io/blog/tags/LSM/"/>
-    
     <category term="PHS" scheme="https://jihenghu.github.io/blog/tags/PHS/"/>
+    
+    <category term="LSM" scheme="https://jihenghu.github.io/blog/tags/LSM/"/>
     
   </entry>
   
@@ -290,9 +290,9 @@
     <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
     
     
-    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
-    
     <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
     
   </entry>
   
@@ -361,9 +361,30 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
     
     
+    <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
+    
     <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
     
-    <category term="Himawari-8" scheme="https://jihenghu.github.io/blog/tags/Himawari-8/"/>
+  </entry>
+  
+  <entry>
+    <title>MSG SERV CLM数据集下载</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/</id>
+    <published>2023-12-13T14:00:00.000Z</published>
+    <updated>2023-12-17T01:22:00.412Z</updated>
+    
+    
+    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
+    <category term="MSG" scheme="https://jihenghu.github.io/blog/tags/MSG/"/>
     
   </entry>
   
@@ -388,30 +409,9 @@
     <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
     
     
+    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
+    
     <category term="GOES-R" scheme="https://jihenghu.github.io/blog/tags/GOES-R/"/>
-    
-    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MSG SERV CLM数据集下载</title>
-    <link href="https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/"/>
-    <id>https://jihenghu.github.io/blog/data-n-method/MSG-SERV-download-guide/</id>
-    <published>2023-12-13T14:00:00.000Z</published>
-    <updated>2023-12-17T01:22:00.412Z</updated>
-    
-    
-    <summary type="html">MSG静止卫星云掩膜数据的下载</summary>
-    
-    
-    
-    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
-    
-    
-    <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
-    
-    <category term="MSG" scheme="https://jihenghu.github.io/blog/tags/MSG/"/>
     
   </entry>
   
@@ -478,9 +478,9 @@
     
     <category term="MWR" scheme="https://jihenghu.github.io/blog/tags/MWR/"/>
     
-    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
-    
     <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
+    
+    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
     
   </entry>
   
