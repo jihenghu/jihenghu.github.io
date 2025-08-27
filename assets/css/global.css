@@ -108,16 +108,16 @@ div.lazy {
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: #333;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* width: 100%; */
+  /* height: 60px; */
+  /* background: #333; */
+  /* color: #fff; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
   transition: transform 0.3s ease;
   z-index: 1000;
 }
