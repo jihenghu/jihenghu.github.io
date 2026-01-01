@@ -6,7 +6,7 @@
   <link href="https://jihenghu.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://jihenghu.github.io/blog/"/>
-  <updated>2025-08-12T19:36:01.528Z</updated>
+  <updated>2025-12-29T04:46:47.366Z</updated>
   <id>https://jihenghu.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,78 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Data Description for Daily Records of Harmonized MLSEs</title>
+    <link href="https://jihenghu.github.io/blog/data-n-method/harmonized_mlse_data_desc/"/>
+    <id>https://jihenghu.github.io/blog/data-n-method/harmonized_mlse_data_desc/</id>
+    <published>2025-12-28T10:00:00.000Z</published>
+    <updated>2025-12-29T04:46:47.366Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;参数说明&quot;&gt;&lt;a href=&quot;#参数说明&quot; class=&quot;headerlink&quot; title=&quot;参数说明&quot;&gt;&lt;/a&gt;参数说明&lt;/h2&gt;&lt;p&gt;iscan,ipixel：该观测在当前轨道（原始L1级产品）中的行列号&lt;/p&gt;
+&lt;p&gt;nscan,npixel:</summary>
+        
+      
+    
+    
+    
+    <category term="Data N&#39; Method" scheme="https://jihenghu.github.io/blog/categories/Data-N-Method/"/>
+    
+    
+    <category term="MLSE" scheme="https://jihenghu.github.io/blog/tags/MLSE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>New Orleans</title>
+    <link href="https://jihenghu.github.io/blog/essays/no_agu25/"/>
+    <id>https://jihenghu.github.io/blog/essays/no_agu25/</id>
+    <published>2025-12-14T14:00:00.000Z</published>
+    <updated>2025-12-24T04:05:23.721Z</updated>
+    
+    
+    <summary type="html">AGU25，Oak Alley, Cajun</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="Meeting" scheme="https://jihenghu.github.io/blog/tags/Meeting/"/>
+    
+    <category term="Louisiana" scheme="https://jihenghu.github.io/blog/tags/Louisiana/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Upper Peninsula of Michigan</title>
+    <link href="https://jihenghu.github.io/blog/essays/upper_penisula/"/>
+    <id>https://jihenghu.github.io/blog/essays/upper_penisula/</id>
+    <published>2025-10-11T14:00:00.000Z</published>
+    <updated>2026-01-01T03:31:26.025Z</updated>
+    
+    
+    <summary type="html">Upper Peninsula，Mackinac, Munising, Houghton, Porcupine Mountains</summary>
+    
+    
+    
+    <category term="Essay" scheme="https://jihenghu.github.io/blog/categories/Essay/"/>
+    
+    
+    <category term="Michigan" scheme="https://jihenghu.github.io/blog/tags/Michigan/"/>
+    
+    <category term="Gallery" scheme="https://jihenghu.github.io/blog/tags/Gallery/"/>
+    
+    <category term="GreatLakes" scheme="https://jihenghu.github.io/blog/tags/GreatLakes/"/>
+    
+  </entry>
   
   <entry>
     <title>Frankenmuth, MI</title>
@@ -412,75 +484,6 @@
     <category term="Cloud" scheme="https://jihenghu.github.io/blog/tags/Cloud/"/>
     
     <category term="GOES-R" scheme="https://jihenghu.github.io/blog/tags/GOES-R/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Source：Canoe的诊断量输出</title>
-    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-source-output/"/>
-    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-source-output/</id>
-    <published>2023-11-26T16:00:00.000Z</published>
-    <updated>2023-11-27T18:50:44.497Z</updated>
-    
-    
-    <summary type="html">介绍如何自定义输出诊断量及其工作原理</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Basis：Markov Chain Mont Carlo</title>
-    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-basis-mcmc/"/>
-    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-basis-mcmc/</id>
-    <published>2023-11-25T16:00:00.000Z</published>
-    <updated>2023-11-27T18:36:33.525Z</updated>
-    
-    
-    <summary type="html">基于MCMC方法的样本抽样和参数反演一般方法。</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
-    
-    <category term="C++" scheme="https://jihenghu.github.io/blog/tags/C/"/>
-    
-    <category term="MCMC" scheme="https://jihenghu.github.io/blog/tags/MCMC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Canoe Example#4：Juno MWR辐射传输模拟</title>
-    <link href="https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-juno_mwr_eq/"/>
-    <id>https://jihenghu.github.io/blog/research/canoe-athena/canoe-example-juno_mwr_eq/</id>
-    <published>2023-11-24T16:00:00.000Z</published>
-    <updated>2024-03-22T00:14:42.761Z</updated>
-    
-    
-    <summary type="html">本节介绍基于Canoe模式的Juno_MWR正向微波辐射传输模拟。</summary>
-    
-    
-    
-    <category term="Research" scheme="https://jihenghu.github.io/blog/categories/Research/"/>
-    
-    
-    <category term="Canoe" scheme="https://jihenghu.github.io/blog/tags/Canoe/"/>
-    
-    <category term="Juno" scheme="https://jihenghu.github.io/blog/tags/Juno/"/>
-    
-    <category term="MWR" scheme="https://jihenghu.github.io/blog/tags/MWR/"/>
-    
-    <category term="RTM" scheme="https://jihenghu.github.io/blog/tags/RTM/"/>
-    
-    <category term="Thermodynaics" scheme="https://jihenghu.github.io/blog/tags/Thermodynaics/"/>
     
   </entry>
   
