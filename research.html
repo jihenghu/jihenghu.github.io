@@ -16,10 +16,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/global.css">
 	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 
 </head>
 <body class="bg-light d-flex flex-column min-vh-100" data-spy="scroll" data-target="#navbar-domain" data-offset="100">
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
     <div class="container-lg">
         <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
         <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,15 +43,27 @@
 					
                 </li>
                 
-                <li class="nav-item ">
+                <li class="nav-item active">
 					
-						<a class="nav-link" href="/publist" >Publications</a>
+						<a class="nav-link" href="/research" >Research</a>
 					
                 </li>
                 
                 <li class="nav-item ">
 					
-						<a class="nav-link" href="/blog" target="_blank" >Blog</a>
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
 					
                 </li>
                 
@@ -59,167 +79,506 @@
 
 
 
+
 <div class="row">
 	<div class="col-12 col-lg-10">
 	  
-		<h3 class="pt-4" id="domain-earth">
-		  Earth
+		<h3 class="pt-4" id="domain-planetary-science">
+		  Planetary science
 		</h3>
 		
+		
+			
+			
+
+			
+			  <!-- <h3>planetary science</h3> -->
+				<p>Jupiter’s polar regions host persistent circumpolar cyclones arranged in stable polygonal configurations around a central polar vortex.  We examine the vertical structure and thermodynamic properties of these systems,  which provide valuable insight into the mechanisms governing their genesis,  evolution, and long-term stability in the context of prevailing jets, planetary waves, and vorticity gradients.  Multi-frequency microwave observations from the Microwave Radiometer (MWR) probe ammonia distributions and temperature anomalies beneath  the visible cloud layer. Physical atmospheric models incorporating alternative thermal structures and compositional gradients are  constructed and tested against the observed spectra to assess  whether these vortices are shallow weather-layer features or deeply rooted atmospheric disturbances extending to tens of bars.    
+</p>
+			
+		
+			
+			
+
+			
+		
+			
+			
+
+			
+		
+		
+		
+		
+
 		<div class="row"> 
 		  
+		  
+			
 			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
 			  
-<div class="col-md-4 mb-4">
-  <a class="text-decoration-none text-reset" href="/research/earth-microwave-emissivity/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover1.jpg" alt="Passive Microwave Remote Sensing" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Passive Microwave Remote Sensing</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
-  </a>
-</div>
 
-			<!-- </div> -->
-		  
-		</div>
-	 <hr/>
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-4 mb-3 mt-2">
+  <a class="text-decoration-none text-reset" href="/research/planet-jupiter-north-pole/">
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
 	  
-		<h3 class="pt-4" id="domain-planet-science">
-		  Planet science
-		</h3>
-		
-		<div class="row"> 
-		  
-			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
-			  
-<div class="col-md-4 mb-4">
-  <a class="text-decoration-none text-reset" href="/research/atmosphere-outerplanets-satellites-02/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover1.jpg" alt="Thermal Structure" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Thermal Structure</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/research/jnp.gif"
+		  alt="NH3 and Thermal Sturcture in Jupiter's North Pole"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">NH3 and Thermal Sturcture in Jupiter's North Pole</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
   </a>
 </div>
 
-			<!-- </div> -->
-		  
-			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
-			  
-<div class="col-md-4 mb-4">
-  <a class="text-decoration-none text-reset" href="/research/planet-jupiter-lighting-activity/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover5.jpg" alt="Jupiter's Lightning Events Mapping" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Jupiter's Lightning Events Mapping</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
-  </a>
-</div>
+
 
 			<!-- </div> -->
+			
 		  
+		  
+			
 			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
 			  
-<div class="col-md-4 mb-4">
+
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-4 mb-3 mt-2">
   <a class="text-decoration-none text-reset" href="/research/planet-jupiter-polar-vortices/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/research/jcpc.png" alt="Jupiter Polar Vortices" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Jupiter Polar Vortices</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
+	  
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/research/jcpc.png"
+		  alt="A Close-in Eye on Jupiter's Polar Vortices"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">A Close-in Eye on Jupiter's Polar Vortices</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
   </a>
 </div>
 
+
+
 			<!-- </div> -->
+			
 		  
+		  
+			
 			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
 			  
-<div class="col-md-4 mb-4">
-  <a class="text-decoration-none text-reset" href="/research/atmosphere-outerplanets-satellites-01/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover1.jpg" alt="成分和元素丰度" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">成分和元素丰度</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
+
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-4 mb-3 mt-2">
+  <a class="text-decoration-none text-reset" href="/research/planet-jupiter-lighting-activity/">
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
+	  
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/research/jnplighting.png"
+		  alt="Jupiter's Lightning Events Mapping"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">Jupiter's Lightning Events Mapping</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
   </a>
 </div>
 
+
+
 			<!-- </div> -->
+			
 		  
 		</div>
 	 <hr/>
 	  
-		<h3 class="pt-4" id="domain-techniques">
-		  Techniques
+		<h3 class="pt-4" id="domain-earth-system">
+		  Earth system
 		</h3>
 		
+		
+			
+			
+
+			
+		
+			
+			
+
+			
+			  <!-- <h3>earth system</h3> -->
+				<p>Microwave remote sensing provides a powerful framework for investigating terrestrial ecohydrological dynamics across diverse climate regimes.  Passive microwave (PMW) observations, incoperating with physically based radiative transfer modeling,  provide effective and instaneous approach quantifying soil moisture, vegetation water content, and land–atmosphere exchanging fluxes.  We develop surface parameter inverison algorithms, key datasets, forward models and the relevant data assimilation techniques which incorporate satellite observations into land surface models. Together, these effects enable improved monitoring of soil moisture variability, vegetation dynamics, and water–energy interactions at regional to global scales.
+</p>
+			
+		
+			
+			
+
+			
+		
+		
+		
+		
+
 		<div class="row"> 
 		  
+		  
+			
 			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
 			  
-<div class="col-md-4 mb-4">
+
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-5 mb-3 mt-2">
   <a class="text-decoration-none text-reset" href="/research/rt-canopy-rt-model/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover1.jpg" alt="Microwave Radiative Transfer Modeling" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Microwave Radiative Transfer Modeling</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
+	  
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/research/Above-Canopy.png"
+		  alt="Microwave Radiative Transfer Modeling"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">Microwave Radiative Transfer Modeling</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
   </a>
 </div>
 
+
+
 			<!-- </div> -->
+			
+		  
+		  
+			
+			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
+			  
+
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-5 mb-3 mt-2">
+  <a class="text-decoration-none text-reset" href="/research/earth-microwave-emissivity/">
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
+	  
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/photos/171414.png"
+		  alt="Passive Microwave Remote Sensing"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">Passive Microwave Remote Sensing</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
+  </a>
+</div>
+
+
+
+			<!-- </div> -->
+			
 		  
 		</div>
 	 <hr/>
 	  
-		<h3 class="pt-4" id="domain-zzother">
-		  Others
+		<h3 class="pt-4" id="domain-cometary-science">
+		  Cometary science
 		</h3>
 		
+		
+			
+			
+
+			
+		
+			
+			
+
+			
+		
+			
+			
+
+			
+			  <!-- <h3>cometary science</h3> -->
+				<p>We investigate comae gas composition and nucleus outgassing activity through numerical radiative transfer model designed to interpret spectra from terrestrial telescopes and flyby missions.  Physical models couple level excitations, collision induced absroptions, and Non-LTE radiative transfer to reproduce observed line intensities and continuum emission.  By analyzing heliocentric-distance–dependent outgassing and compositional variability, this work constrains surface activity patterns and volatile inventories.  The results link present-day coma abundances to protosolar nebula composition and illuminate the chemical and thermal processes that shaped current elemental and isotopic ratios.</p>
+			
+		
+		
+		
+		
+
 		<div class="row"> 
 		  
+		  
+			
 			<!-- <div class="col-12 col-md-6 col-lg-4"> -->
 			  
-<div class="col-md-4 mb-4">
-  <a class="text-decoration-none text-reset" href="/research/other-doemina-example/">
-    <div class="card h-100 shadow-sm hover-effect">
-      
-        <img data-src="/assets/images/covers/cover1.jpg" alt="Research no domain" class="card-img-top lazy" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" src="/assets/images/empty_300x200.png">
-      
-      <div class="card-body">
-        <h5 class="card-title">Research no domain</h5>
-        <p class="card-text text-muted small">with background image</p>
-      </div>
-    </div>
+
+<style>
+
+/* Card max height */
+.card-fixed {
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+/* Media (image / svg) */
+.card-media {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Prevent card overflow */
+.card-body {
+  overflow: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card-fixed {
+    max-height: 340px;
+  }
+
+  .card-media {
+    height: 140px;
+  }
+}
+</style>
+
+<div class="col-md-5 mb-3 mt-2">
+  <a class="text-decoration-none text-reset" href="/research/outgassing-of-67p/">
+	<div class="card h-100 shadow-sm hover-effect card-fixed">
+	  
+		<img style="border-radius: 10px 10px 0 0"
+		  data-src="/assets/images/photos/67P.png"
+		  alt="Outgassing of 67P/Churyumov-Gerasimenko"
+		  class="card-img-top lazy card-media"
+		  src="/assets/images/empty_300x200.png"
+		>
+	  
+
+	  <div class="card-body d-flex flex-column">
+		<h5 class="card-title">Outgassing of 67P/Churyumov-Gerasimenko</h5>
+		<p class="card-text text-muted small flex-grow-1">
+		  Descriptions
+		</p>
+	  </div>
+	</div>
+
+
   </a>
 </div>
 
+
+
 			<!-- </div> -->
+			
 		  
 		</div>
 	 <hr/>
@@ -230,20 +589,16 @@
   <div class="col-2 d-none d-lg-block">
     <div id="navbar-domain" class="nav nav-pills flex-column sticky-top" style="top: 80px">
       
-        <a class="nav-link d-block" href="#domain-earth">
-          Earth
+        <a class="nav-link d-block" href="#domain-planetary-science">
+          Planetary science
         </a>
       
-        <a class="nav-link d-block" href="#domain-planet-science">
-          Planet science
+        <a class="nav-link d-block" href="#domain-earth-system">
+          Earth system
         </a>
       
-        <a class="nav-link d-block" href="#domain-techniques">
-          Techniques
-        </a>
-      
-        <a class="nav-link d-block" href="#domain-zzother">
-          Others
+        <a class="nav-link d-block" href="#domain-cometary-science">
+          Cometary science
         </a>
       
     </div>
@@ -257,12 +612,19 @@
 
       </div>
     </main>
-    <footer class="footer mt-auto py-3 bg-light">
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
     <div class="container-lg">
         <div class="row my-3">
             <div class="col-6">
                 <div class="text-muted">
-                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Dec 2025</small>
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
                 </div>
             </div>
             <div class="col-6">

@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Canoe Source：Canoe I/O</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/banner.png');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    Canoe Source：Canoe I/O
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <span class="text-body"
+        style="color: white !important;">
+    Jiheng Hu
+  </span>, 
+   Nov 2023
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <h2 id="canoe的输出解析">Canoe的输出解析</h2>
+<p>在Juno-MWR-EQ的模拟中，我们设定的输出诊断量如下：</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## /juno.inp</span>
+<span class="s">&lt;output2&gt;</span>
+<span class="s">file_type   = netcdf</span>      <span class="c1"># NetCDF data dump</span>
+<span class="s">variable    = prim</span>        <span class="c1"># variables to be output</span>
+<span class="s">dt          = 1.E-9</span>       <span class="c1"># time increment between outputs</span>
+
+<span class="s">&lt;output3&gt;</span>
+<span class="s">file_type   = netcdf</span>
+<span class="s">variable    = uov</span>
+<span class="s">dt          = 1.E-9</span>
+
+<span class="s">&lt;output4&gt;</span>
+<span class="s">file_type   = netcdf</span>
+<span class="s">variable    = radtoa</span>
+<span class="s">dt          = 1.E-9</span>
+
+<span class="s">&lt;output5&gt;</span>
+<span class="s">file_type   = netcdf</span>
+<span class="s">variable    = radtau</span>
+<span class="s">dt          = 1.E-9</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">dt</code>是输出步长，<code class="language-plaintext highlighter-rouge">prim</code>为primitive量，类似的还有<code class="language-plaintext highlighter-rouge">cons</code>,见下文。
+那么，这些输出设定是如何被模式解析的呢，解析以后通过什么方式被输出的呢？
+在粗略研读了源码之后，个人理解：Canoe有三套输出解析系统，分别是：基于Athena++的输出解析模块，Canoe扩展输出模块，以及UOV用户自定义输出模块。</p>
+
+<h2 id="athena-output解析">Athena++ Output解析</h2>
+
+<p>在athena++模式中，inp文件会被<a href="https://github.com/PrincetonUniversity/athena/blob/master/src/outputs/outputs.cpp">athena/src/outputs/outputs.cpp</a>模块解析。
+athena++会按照上述文件的设定的关键字，对输出量进行读取，并扩展到输出对象中：</p>
+
+<p>Required parameters that must be specified in an <code class="language-plaintext highlighter-rouge">&lt;output[n]&gt;</code> block are:</p>
+<ul>
+  <li>variable     = cons,prim,D,d,E,e,m,m1,m2,m3,v,v1=vx,v2=vy,v3=vz,p,
+               bcc,bcc1,bcc2,bcc3,b,b1,b2,b3,phi,uov</li>
+  <li>file_type    = rst,tab,vtk,hst,hdf5</li>
+  <li>dt           = problem time between outputs
+EXAMPLE of an <code class="language-plaintext highlighter-rouge">&lt;output[n]&gt;</code> block for a VTK dump:
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="s">&lt;output3&gt;</span>
+<span class="s">file_type   = tab</span>       <span class="c1"># Tabular data dump</span>
+<span class="s">variable    = prim</span>      <span class="c1"># variables to be output</span>
+<span class="s">data_format = %12.5e</span>    <span class="c1"># Optional data format string</span>
+<span class="s">dt          = </span><span class="m">0.01</span>      <span class="c1"># time increment between outputs</span>
+<span class="s">x2_slice    = </span><span class="m">0.0</span>       <span class="c1"># slice in x2</span>
+<span class="s">x3_slice    = </span><span class="m">0.0</span>       <span class="c1"># slice in x3</span>
+</code></pre></div>    </div>
+    <p>Each<code class="language-plaintext highlighter-rouge"> &lt;output[n]&gt;</code> block will result in a new node being created in a linked list of OutputType stored in the <code class="language-plaintext highlighter-rouge">Outputs</code> class.  During a simulation, outputs are made when the simulation time satisfies the criteria implemented in the <code class="language-plaintext highlighter-rouge">MakeOutputs()</code> function.</p>
+  </li>
+</ul>
+
+<p>在这里，prim关键字会被以下逻辑进行解析，<code class="language-plaintext highlighter-rouge"> ContainVariable(output_params.variable, "prim")</code>和或逻辑的使用使得，只要<output>字块中有：</output></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">prim</code>关键字的存在，就会扩展以下primitive量到Outputs类中并最终输出：<code class="language-plaintext highlighter-rouge">rho</code>,<code class="language-plaintext highlighter-rouge">press</code>,<code class="language-plaintext highlighter-rouge">vel</code>,<code class="language-plaintext highlighter-rouge">phi</code>；</li>
+  <li><code class="language-plaintext highlighter-rouge">cons</code>关键字的存在，就会扩展以下conserved量到Outputs类中并最终输出：<code class="language-plaintext highlighter-rouge">dens</code>,<code class="language-plaintext highlighter-rouge">Etot</code>,<code class="language-plaintext highlighter-rouge">mom</code>,<code class="language-plaintext highlighter-rouge">phi</code>。</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">OutputType</span><span class="o">::</span><span class="n">LoadOutputData</span><span class="p">(</span><span class="n">MeshBlock</span> <span class="o">*</span><span class="n">pmb</span><span class="p">)</span> <span class="p">{</span>
+   <span class="cm">/* ...省略.... */</span>
+  <span class="c1">// NEW_OUTPUT_TYPES:</span>
+  <span class="c1">// (lab-frame) density</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"D"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"cons"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"dens"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IDN</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// (rest-frame) density</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"d"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"prim"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"rho"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IDN</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// total energy</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">NON_BAROTROPIC_EOS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"E"</span><span class="p">)</span> <span class="o">||</span>
+        <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"cons"</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Etot"</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+          <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">cons</span><span class="p">);</span>
+        <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">u_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IEN</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IEN</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// pressure</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"p"</span><span class="p">)</span> <span class="o">||</span>
+        <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"prim"</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"press"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IPR</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// momentum vector</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"m"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"cons"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"mom"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">cons</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">u_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">cartesian_vector</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">AthenaArray</span><span class="o">&lt;</span><span class="n">Real</span><span class="o">&gt;</span> <span class="n">src</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+          <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">src</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">u_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">src</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"mom_xyz"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">NewAthenaArray</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">.</span><span class="n">GetDim3</span><span class="p">(),</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">.</span><span class="n">GetDim2</span><span class="p">(),</span>
+                               <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">.</span><span class="n">GetDim1</span><span class="p">());</span>
+      <span class="n">CalculateCartesianVector</span><span class="p">(</span><span class="n">src</span><span class="p">,</span>  <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span>  <span class="n">pmb</span><span class="o">-&gt;</span><span class="n">pcoord</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// each component of momentum</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"m1"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"mom1"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"m2"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"mom2"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span>
+        <span class="o">&amp;&amp;</span> <span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">cons</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">u_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"m3"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"mom3"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span>
+        <span class="o">&amp;&amp;</span> <span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_direction</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">cons</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">u_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IM3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// velocity vector</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"v"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"prim"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vel"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">prim</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">w_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVX</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVX</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">cartesian_vector</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">AthenaArray</span><span class="o">&lt;</span><span class="n">Real</span><span class="o">&gt;</span> <span class="n">src</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+          <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">src</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">w_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVX</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">src</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVX</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vel_xyz"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">NewAthenaArray</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">.</span><span class="n">GetDim3</span><span class="p">(),</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">.</span><span class="n">GetDim2</span><span class="p">(),</span>
+                               <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">.</span><span class="n">GetDim1</span><span class="p">());</span>
+      <span class="n">CalculateCartesianVector</span><span class="p">(</span><span class="n">src</span><span class="p">,</span>  <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span>  <span class="n">pmb</span><span class="o">-&gt;</span><span class="n">pcoord</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// each component of velocity</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"vx"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"v1"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vel1"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVX</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"vy"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"v2"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vel2"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span>
+        <span class="o">&amp;&amp;</span> <span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">prim</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">w_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVY</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVY</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"vz"</span><span class="p">)</span> <span class="o">||</span>
+      <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"v3"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vel3"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_advection_defined</span>
+        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">output_params</span><span class="p">.</span><span class="n">orbital_system_output</span>
+        <span class="o">&amp;&amp;</span> <span class="n">porb</span><span class="o">-&gt;</span><span class="n">orbital_direction</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">porb</span><span class="o">-&gt;</span><span class="n">ConvertOrbitalSystem</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">OrbitalTransform</span><span class="o">::</span><span class="n">prim</span><span class="p">);</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">porb</span><span class="o">-&gt;</span><span class="n">w_orb</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVZ</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">IVZ</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">SELF_GRAVITY_ENABLED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"phi"</span><span class="p">)</span> <span class="o">||</span>
+        <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"prim"</span><span class="p">)</span> <span class="o">||</span>
+        <span class="n">ContainVariable</span><span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">,</span> <span class="s">"cons"</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"phi"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">pgrav</span><span class="o">-&gt;</span><span class="n">phi</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">pgrav</span><span class="o">-&gt;</span><span class="n">output_defect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+        <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+        <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"defect-phi"</span><span class="p">;</span>
+        <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">pgrav</span><span class="o">-&gt;</span><span class="n">def</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+        <span class="n">num_vars_</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="c1">// endif (SELF_GRAVITY_ENABLED)</span>
+</code></pre></div></div>
+<p>那么，上述<output2>模块的输出示例：</output2></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">netcdf juno_mwr.out2.00000 {</span>
+<span class="na">dimensions</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">time = UNLIMITED ; // (1 currently)</span>
+<span class="err">	</span><span class="s">x1 = 1600 ;</span>
+<span class="err">	</span><span class="s">x1f = 1601 ;</span>
+<span class="err">	</span><span class="s">x2 = 5 ;</span>
+<span class="err">	</span><span class="s">x2f = 6 ;</span>
+<span class="err">	</span><span class="s">x3 = 1 ;</span>
+<span class="err">	</span><span class="s">ray = 24 ;</span>
+<span class="na">variables</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">float time(time) ;</span>
+<span class="err">		</span><span class="s">time:axis = "T" ;</span>
+<span class="err">		</span><span class="s">time:units = "s" ;</span>
+<span class="err">		</span><span class="s">time:long_name = "time" ;</span>
+<span class="err">	</span><span class="s">float x1(x1) ;</span>
+<span class="err">		</span><span class="s">x1:axis = "Z" ;</span>
+<span class="err">		</span><span class="s">x1:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1:long_name = "Z-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x1f(x1f) ;</span>
+<span class="err">		</span><span class="s">x1f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1f:long_name = "Z-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x2(x2) ;</span>
+<span class="err">		</span><span class="s">x2:axis = "Y" ;</span>
+<span class="err">		</span><span class="s">x2:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2:long_name = "Y-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x2f(x2f) ;</span>
+<span class="err">		</span><span class="s">x2f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2f:long_name = "Y-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x3(x3) ;</span>
+<span class="err">		</span><span class="s">x3:axis = "X" ;</span>
+<span class="err">		</span><span class="s">x3:units = "m" ;</span>
+<span class="err">		</span><span class="s">x3:long_name = "X-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float mu_out(ray) ;</span>
+<span class="err">		</span><span class="s">mu_out:units = "1" ;</span>
+<span class="err">		</span><span class="s">mu_out:long_name = "cosine polar angle" ;</span>
+<span class="err">	</span><span class="s">float phi_out(ray) ;</span>
+<span class="err">		</span><span class="s">phi_out:units = "rad" ;</span>
+<span class="err">		</span><span class="s">phi_out:long_name = "azimuthal angle" ;</span>
+<span class="err">	</span><span class="s">float rho(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">rho:units = "kg/m^3" ;</span>
+<span class="err">		</span><span class="s">rho:long_name = "density" ;</span>
+<span class="err">	</span><span class="s">float press(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">press:units = "pa" ;</span>
+<span class="err">		</span><span class="s">press:long_name = "pressure" ;</span>
+<span class="err">	</span><span class="s">float vel1(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">vel1:units = "m/s" ;</span>
+<span class="err">		</span><span class="s">vel1:long_name = "velocity" ;</span>
+<span class="err">	</span><span class="s">float vel2(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">vel2:units = "m/s" ;</span>
+<span class="err">		</span><span class="s">vel2:long_name = "velocity" ;</span>
+<span class="err">	</span><span class="s">float vel3(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">vel3:units = "m/s" ;</span>
+<span class="err">		</span><span class="s">vel3:long_name = "velocity" ;</span>
+<span class="err">	</span><span class="s">float r0(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float r1(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float r2(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float r3(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float r4(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float r5(time, x1, x2, x3) ;</span>
+<span class="err">	</span><span class="s">float vapor1(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">vapor1:units = "kg/kg" ;</span>
+<span class="err">		</span><span class="s">vapor1:long_name = "mass mixing ratio of vapor" ;</span>
+<span class="err">	</span><span class="s">float vapor2(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">vapor2:units = "kg/kg" ;</span>
+<span class="err">		</span><span class="s">vapor2:long_name = "mass mixing ratio of vapor" ;</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<h2 id="canoe-output扩展">Canoe output扩展</h2>
+
+<p>Canoe由于添加了热力学和辐射传输模块，对Athena++的输出模块进行了扩展，这些实现在<a href="https://github.com/chengcli/canoe/blob/main/src/outputs/load_user_output_data.cpp">canoe/src/outputs/load_user_output_data.cpp</a>源码中。</p>
+
+<p>包含了对<code class="language-plaintext highlighter-rouge">vapor</code>,<code class="language-plaintext highlighter-rouge">rad</code>,<code class="language-plaintext highlighter-rouge">radtau</code>,<code class="language-plaintext highlighter-rouge">radflux</code>,<code class="language-plaintext highlighter-rouge">radtoa</code>等关键字的支持。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">OutputType</span><span class="o">::</span><span class="n">loadUserOutputData</span><span class="p">(</span><span class="n">MeshBlock</span> <span class="o">*</span><span class="n">pmb</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">OutputData</span> <span class="o">*</span><span class="n">pod</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">phyd</span> <span class="o">=</span> <span class="n">pmb</span><span class="o">-&gt;</span><span class="n">phydro</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">prad</span> <span class="o">=</span> <span class="n">pmb</span><span class="o">-&gt;</span><span class="n">pimpl</span><span class="o">-&gt;</span><span class="n">prad</span><span class="p">;</span>
+
+  <span class="c1">// vapor</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">NVAPOR</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"prim"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span>
+        <span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"vapor"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vapor"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NVAPOR</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="n">NVAPOR</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"cons"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"VECTORS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vapor"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">phyd</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NVAPOR</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="n">NVAPOR</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// radiation</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"rad"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span>
+      <span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"radtau"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">prad</span><span class="o">-&gt;</span><span class="n">GetNumBands</span><span class="p">();</span> <span class="o">++</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">auto</span> <span class="n">pband</span> <span class="o">=</span> <span class="n">prad</span><span class="o">-&gt;</span><span class="n">GetBand</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+      <span class="c1">// tau</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="n">pband</span><span class="o">-&gt;</span><span class="n">GetName</span><span class="p">()</span> <span class="o">+</span> <span class="s">"-tau"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">pband</span><span class="o">-&gt;</span><span class="n">btau</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"rad"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span>
+      <span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"radflux"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// flux up and down</span>
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"flxup"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">prad</span><span class="o">-&gt;</span><span class="n">flxup</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"flxdn"</span><span class="p">;</span>
+    <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">prad</span><span class="o">-&gt;</span><span class="n">flxdn</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+    <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"rad"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span>
+      <span class="n">output_params</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="s">"radtoa"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">prad</span><span class="o">-&gt;</span><span class="n">radiance</span><span class="p">.</span><span class="n">GetDim3</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pod</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OutputData</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">type</span> <span class="o">=</span> <span class="s">"SCALARS"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s">"radiance"</span><span class="p">;</span>
+      <span class="n">pod</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">InitWithShallowSlice</span><span class="p">(</span><span class="n">prad</span><span class="o">-&gt;</span><span class="n">radiance</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">AppendOutputDataNode</span><span class="p">(</span><span class="n">pod</span><span class="p">);</span>
+      <span class="n">num_vars_</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="c1">// for (auto p : prad-&gt;bands) p-&gt;writeBinRadiance(&amp;output_params);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="cm">/* ..省略.. */</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>按照<output4>和<output5>中的设定，输出示例如下：</output5></output4></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">netcdf juno_mwr.out4.00000 {</span>
+<span class="na">dimensions</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">time = UNLIMITED ; // (1 currently)</span>
+<span class="err">	</span><span class="s">x1 = 1600 ;</span>
+<span class="err">	</span><span class="s">x1f = 1601 ;</span>
+<span class="err">	</span><span class="s">x2 = 5 ;</span>
+<span class="err">	</span><span class="s">x2f = 6 ;</span>
+<span class="err">	</span><span class="s">x3 = 1 ;</span>
+<span class="err">	</span><span class="s">ray = 24 ;</span>
+<span class="na">variables</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">float time(time) ;</span>
+<span class="err">		</span><span class="s">time:axis = "T" ;</span>
+<span class="err">		</span><span class="s">time:units = "s" ;</span>
+<span class="err">		</span><span class="s">time:long_name = "time" ;</span>
+<span class="err">	</span><span class="s">float x1(x1) ;</span>
+<span class="err">		</span><span class="s">x1:axis = "Z" ;</span>
+<span class="err">		</span><span class="s">x1:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1:long_name = "Z-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x1f(x1f) ;</span>
+<span class="err">		</span><span class="s">x1f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1f:long_name = "Z-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x2(x2) ;</span>
+<span class="err">		</span><span class="s">x2:axis = "Y" ;</span>
+<span class="err">		</span><span class="s">x2:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2:long_name = "Y-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x2f(x2f) ;</span>
+<span class="err">		</span><span class="s">x2f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2f:long_name = "Y-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x3(x3) ;</span>
+<span class="err">		</span><span class="s">x3:axis = "X" ;</span>
+<span class="err">		</span><span class="s">x3:units = "m" ;</span>
+<span class="err">		</span><span class="s">x3:long_name = "X-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float mu_out(ray) ;</span>
+<span class="err">		</span><span class="s">mu_out:units = "1" ;</span>
+<span class="err">		</span><span class="s">mu_out:long_name = "cosine polar angle" ;</span>
+<span class="err">	</span><span class="s">float phi_out(ray) ;</span>
+<span class="err">		</span><span class="s">phi_out:units = "rad" ;</span>
+<span class="err">		</span><span class="s">phi_out:long_name = "azimuthal angle" ;</span>
+<span class="err">	</span><span class="s">float radiance(time, ray, x2, x3) ;</span>
+<span class="err">		</span><span class="s">radiance:units = "K" ;</span>
+<span class="err">		</span><span class="s">radiance:long_name = "top-of-atmosphere radiance" ;</span>
+<span class="err">}</span>
+
+<span class="s">netcdf juno_mwr.out5.00000 {</span>
+<span class="na">dimensions</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">time = UNLIMITED ; // (1 currently)</span>
+<span class="err">	</span><span class="s">x1 = 1600 ;</span>
+<span class="err">	</span><span class="s">x1f = 1601 ;</span>
+<span class="err">	</span><span class="s">x2 = 5 ;</span>
+<span class="err">	</span><span class="s">x2f = 6 ;</span>
+<span class="err">	</span><span class="s">x3 = 1 ;</span>
+<span class="err">	</span><span class="s">ray = 24 ;</span>
+<span class="na">variables</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">float time(time) ;</span>
+<span class="err">		</span><span class="s">time:axis = "T" ;</span>
+<span class="err">		</span><span class="s">time:units = "s" ;</span>
+<span class="err">		</span><span class="s">time:long_name = "time" ;</span>
+<span class="err">	</span><span class="s">float x1(x1) ;</span>
+<span class="err">		</span><span class="s">x1:axis = "Z" ;</span>
+<span class="err">		</span><span class="s">x1:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1:long_name = "Z-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x1f(x1f) ;</span>
+<span class="err">		</span><span class="s">x1f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1f:long_name = "Z-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x2(x2) ;</span>
+<span class="err">		</span><span class="s">x2:axis = "Y" ;</span>
+<span class="err">		</span><span class="s">x2:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2:long_name = "Y-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x2f(x2f) ;</span>
+<span class="err">		</span><span class="s">x2f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2f:long_name = "Y-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x3(x3) ;</span>
+<span class="err">		</span><span class="s">x3:axis = "X" ;</span>
+<span class="err">		</span><span class="s">x3:units = "m" ;</span>
+<span class="err">		</span><span class="s">x3:long_name = "X-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float mu_out(ray) ;</span>
+<span class="err">		</span><span class="s">mu_out:units = "1" ;</span>
+<span class="err">		</span><span class="s">mu_out:long_name = "cosine polar angle" ;</span>
+<span class="err">	</span><span class="s">float phi_out(ray) ;</span>
+<span class="err">		</span><span class="s">phi_out:units = "rad" ;</span>
+<span class="err">		</span><span class="s">phi_out:long_name = "azimuthal angle" ;</span>
+<span class="err">	</span><span class="s">float CH1tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH1tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH1tau:long_name = "optical thickness" ;</span>
+<span class="err">	</span><span class="s">float CH2tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH2tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH2tau:long_name = "optical thickness" ;</span>
+<span class="err">	</span><span class="s">float CH3tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH3tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH3tau:long_name = "optical thickness" ;</span>
+<span class="err">	</span><span class="s">float CH4tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH4tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH4tau:long_name = "optical thickness" ;</span>
+<span class="err">	</span><span class="s">float CH5tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH5tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH5tau:long_name = "optical thickness" ;</span>
+<span class="err">	</span><span class="s">float CH6tau(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">CH6tau:units = "1" ;</span>
+<span class="err">		</span><span class="s">CH6tau:long_name = "optical thickness" ;</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<p>这些量的meta内容设定在 <code class="language-plaintext highlighter-rouge">canoe/src/outputs/output_utils.cpp</code>中</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   table_ = {// short name, long name, units, grid location
+             {"x1", "height at cell center", "m", "--C"},
+             {"x1f", "height at cell boundary", "m", "--F"},
+             {"x2", "distance at cell center", "m", "-C-"},
+             {"x2f", "distance at cell boundary", "m", "-F-"},
+             {"x3", "distance at cell center", "m", "C--"},
+             {"x3f", "distance at cell boundary", "m", "F--"},
+             {"rho", "density", "kg/m^3", "CCC"},
+             {"press", "pressure", "pa", "CCC"},
+             {"vel", "velocity", "m/s", "CCC"},
+             {"vapor", "mass mixing ratio of vapor", "kg/kg", "CCC"},
+             {"temp", "temperature", "K", "CCC"},
+             {"theta", "potential temperature", "K", "CCC"},
+             {"thetav", "virtual potential temperature", "K", "CCC"},
+             {"mse", "moist static energy", "J/kg", "CCC"},
+             {"rh1", "relative humidity 1", "1", "CCC"},
+             {"rh2", "relative humidity 2", "1", "CCC"},
+             {"eps", "turbulent dissipation", "w/kg", "CCC"},
+             {"tke", "turbulent kinetic energy", "J/kg", "CCC"},
+             {"mut", "dynamic turbulent viscosity", "kg/(m.s)", "CCC"},
+             {"radiance", "top-of-atmosphere radiance", "K", "RCC"}};
+ }
+
+</code></pre></div></div>
+
+<h2 id="user-defined-output-variable-uov">User-defined Output Variable (UOV)</h2>
+<p>在特定的模拟中，我们可能会需要输出我们关心的诊断量，但是往往其不再athena++或者Canoe的输出序列中，那么我们就需要使用UOV功能来注册和装填我们需要的诊断输出量了。
+典型的例子有，温度，位温，虚温，湿静能等参数，不属于流体力学的诊断量，或者热力学模块的参数。
+<code class="language-plaintext highlighter-rouge">&lt;output3&gt;</code>就是对UOV变量的输出设定，使用了uov的关键字来表示我们有一些自定义的诊断量需要输出到<code class="language-plaintext highlighter-rouge">output3.nc</code>这个文件，步长为<code class="language-plaintext highlighter-rouge">dt</code>。
+那么，Canoe(Athena++)通过覆盖MeshBlock类中的成员方法来进行UOV的注册：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MeshBlock</span><span class="p">{</span>
+  <span class="c1">//! defined in either the prob file or default_pgen.cpp in ../pgen/</span>
+  <span class="kt">void</span> <span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">);</span> <span class="c1">// called in Mesh fn (friend class)</span>
+  <span class="c1">//! defined in either the prob file or default_pgen.cpp in ../pgen/</span>
+  <span class="kt">void</span> <span class="n">ProblemGenerator</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>可以理解为：</p>
+<ul>
+  <li>MeshBlock::InitUserMeshBlockData：可以实现对UOV的注册；</li>
+  <li>MeshBlock::UserWorkBeforeOutput：计算输出量；</li>
+  <li>MeshBlock::ProblemGenerator：设置初始值条件。</li>
+</ul>
+
+<p>当然了，这几个函数的功能不仅限与这些。
+default_pgen.cpp中没有对这三个函数做具体实现：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 4x members of MeshBlock class:</span>
+
+<span class="c1">//========================================================================================</span>
+<span class="c1">//! \fn void MeshBlock::InitUserMeshBlockData(ParameterInput *pin)</span>
+<span class="c1">//! \brief Function to initialize problem-specific data in MeshBlock class.  Can also be</span>
+<span class="c1">//! used to initialize variables which are global to other functions in this file.</span>
+<span class="c1">//! Called in MeshBlock constructor before ProblemGenerator.</span>
+<span class="c1">//========================================================================================</span>
+
+<span class="kt">void</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do nothing</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//========================================================================================</span>
+<span class="c1">//! \fn void MeshBlock::ProblemGenerator(ParameterInput *pin)</span>
+<span class="c1">//! \brief Should be used to set initial conditions.</span>
+<span class="c1">//========================================================================================</span>
+
+<span class="kt">void</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">ProblemGenerator</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// In practice, this function should *always* be replaced by a version</span>
+  <span class="c1">// that sets the initial conditions for the problem of interest.</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//===========================================================================</span>
+<span class="c1">//! \fn void MeshBlock::UserWorkBeforeOutput(ParameterInput *pin)</span>
+<span class="c1">//! \brief Function called before generating output files</span>
+<span class="c1">//========================================================================================</span>
+
+<span class="kt">void</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do nothing</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>在模拟实际问题时，应该按需求对这三个成员函数进行实现，也就是本专栏中几个example主要实现的代码。</p>
+
+<p>例如，Juno_MWR模拟中，UOV的设置和计算如下：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 注册输出量</span>
+<span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">AllocateUserOutputVariables</span><span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="n">NVAPOR</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"theta"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"thetav"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">"mse"</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"rh"</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//计算输出</span>
+<span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">PotentialTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// theta_v</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RovRd</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// mse</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">MoistStaticEnergy</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">grav</span> <span class="o">*</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x1v</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+          <span class="n">user_out_var</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+              <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RelativeHumidity</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>最终的输出文件meta如下：</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">netcdf juno_mwr.out3.00000 {</span>
+<span class="na">dimensions</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">time = UNLIMITED ; // (1 currently)</span>
+<span class="err">	</span><span class="s">x1 = 1600 ;</span>
+<span class="err">	</span><span class="s">x1f = 1601 ;</span>
+<span class="err">	</span><span class="s">x2 = 5 ;</span>
+<span class="err">	</span><span class="s">x2f = 6 ;</span>
+<span class="err">	</span><span class="s">x3 = 1 ;</span>
+<span class="err">	</span><span class="s">ray = 24 ;</span>
+<span class="na">variables</span><span class="pi">:</span>
+<span class="err">	</span><span class="s">float time(time) ;</span>
+<span class="err">		</span><span class="s">time:axis = "T" ;</span>
+<span class="err">		</span><span class="s">time:units = "s" ;</span>
+<span class="err">		</span><span class="s">time:long_name = "time" ;</span>
+<span class="err">	</span><span class="s">float x1(x1) ;</span>
+<span class="err">		</span><span class="s">x1:axis = "Z" ;</span>
+<span class="err">		</span><span class="s">x1:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1:long_name = "Z-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x1f(x1f) ;</span>
+<span class="err">		</span><span class="s">x1f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x1f:long_name = "Z-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x2(x2) ;</span>
+<span class="err">		</span><span class="s">x2:axis = "Y" ;</span>
+<span class="err">		</span><span class="s">x2:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2:long_name = "Y-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float x2f(x2f) ;</span>
+<span class="err">		</span><span class="s">x2f:units = "m" ;</span>
+<span class="err">		</span><span class="s">x2f:long_name = "Y-coordinate at cell face" ;</span>
+<span class="err">	</span><span class="s">float x3(x3) ;</span>
+<span class="err">		</span><span class="s">x3:axis = "X" ;</span>
+<span class="err">		</span><span class="s">x3:units = "m" ;</span>
+<span class="err">		</span><span class="s">x3:long_name = "X-coordinate at cell center" ;</span>
+<span class="err">	</span><span class="s">float mu_out(ray) ;</span>
+<span class="err">		</span><span class="s">mu_out:units = "1" ;</span>
+<span class="err">		</span><span class="s">mu_out:long_name = "cosine polar angle" ;</span>
+<span class="err">	</span><span class="s">float phi_out(ray) ;</span>
+<span class="err">		</span><span class="s">phi_out:units = "rad" ;</span>
+<span class="err">		</span><span class="s">phi_out:long_name = "azimuthal angle" ;</span>
+<span class="err">	</span><span class="s">float temp(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">temp:units = "K" ;</span>
+<span class="err">		</span><span class="s">temp:long_name = "temperature" ;</span>
+<span class="err">	</span><span class="s">float theta(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">theta:units = "K" ;</span>
+<span class="err">		</span><span class="s">theta:long_name = "potential temperature" ;</span>
+<span class="err">	</span><span class="s">float thetav(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">thetav:units = "K" ;</span>
+<span class="err">		</span><span class="s">thetav:long_name = "virtual potential temperature" ;</span>
+<span class="err">	</span><span class="s">float mse(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">mse:units = "J/kg" ;</span>
+<span class="err">		</span><span class="s">mse:long_name = "moist static energy" ;</span>
+<span class="err">	</span><span class="s">float rh1(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">rh1:units = "1" ;</span>
+<span class="err">		</span><span class="s">rh1:long_name = "relative humidity 1" ;</span>
+<span class="err">	</span><span class="s">float rh2(time, x1, x2, x3) ;</span>
+<span class="err">		</span><span class="s">rh2:units = "1" ;</span>
+<span class="err">		</span><span class="s">rh2:long_name = "relative humidity 2" ;</span>
+<span class="err">}</span>
+
+</code></pre></div></div>
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

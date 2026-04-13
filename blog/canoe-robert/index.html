@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Canoe Example#2：Robert Uprisng Bubble</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/banner.png');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    Canoe Example#2：Robert Uprisng Bubble
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <span class="text-body"
+        style="color: white !important;">
+    Jiheng Hu
+  </span>, 
+   Nov 2023
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <p>本节继续学习个例二，Robert problem。模拟了一个热气团的上升和充分发展的Kelvin–Helmholtz不稳定性，不考虑额外的Forcing。</p>
+
+<h2 id="问题描述">问题描述</h2>
+<p>本示例展示了一个热空气泡从近地表上升的情景模拟。这个测试案例由<a href="https://doi.org/10.1175/1520-0469(1993)050&lt;1865:BCEWAS&gt;2.0.CO;2">André Robert，1993</a>提出。本个例将其从2D扩展到3D模拟。模拟空间的尺寸为 $1000m \times 1000m \times 2000m$ ，分辨率在每个维度上均匀为 $25m$。
+起始时刻，气泡中心最初位于 $x_0=y_0=500m$ ，$z_0=260m$ 处，其位温异常（Anomaly of Potential Temperature）呈高斯分布，表示为：</p>
+
+<p>$
+\Delta \theta =5 \; \text{K}, \qquad\quad\quad r \leq a \\ 
+ \Delta \theta =5 e^{-(r-a)^2/s^2} \; \text{K} , \quad r &gt; a 
+$</p>
+
+<p>其中 $r$ 为到气泡中心点的距离，参数 $a=50 m，s=100 m$ 。背景大气是等熵的(绝热、无摩擦)，地表气压 $p_0=1 bar$，地表温度 $T_s =303.15 K$ 。随后释放气泡，模拟900秒内的演变过程。</p>
+
+<h2 id="源码分析">源码分析</h2>
+
+<p>本个例的&lt;head&gt;和UOV的设置同Straka问题一样，不再赘述。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// We only need one global variables here, the surface pressure</span>
+<span class="n">Real</span> <span class="n">p0</span><span class="p">;</span>
+
+<span class="c1">// Same as that in @ref straka, make outputs of temperature and potential</span>
+<span class="c1">// temperature.</span>
+<span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">AllocateUserOutputVariables</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"theta"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Set temperature and potential temperature.</span>
+<span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+
+  <span class="n">Real</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">peos</span><span class="o">-&gt;</span><span class="n">GetGamma</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">PotentialTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>对Mesh类进行初始化，本个例不考虑额外的forcing，只有模式内部的重力场作用。
+<strong>这里为什么只对Mesh初始化了 $P_0$ 这一个初始值呢？如果在这里先初始化Ts会怎样？必须要作为global参数吗？</strong></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Initialize surface pressure from input file.</span>
+<span class="kt">void</span> <span class="n">Mesh</span><span class="o">::</span><span class="n">InitUserMeshData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">p0</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"p0"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// We do not need forcings other than gravity in this problem,</span>
+<span class="c1">// so we go directly to the initial condition.</span>
+</code></pre></div></div>
+
+<p>对MeshBlock类进行初始化，遍历设置每个格点的初始条件：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">ProblemGenerator</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Similar to @ref straka, read variables in the input file</span>
+  <span class="n">Real</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"hydro"</span><span class="p">,</span> <span class="s">"gamma"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">grav</span> <span class="o">=</span> <span class="o">-</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">hsrc</span><span class="p">.</span><span class="n">GetG1</span><span class="p">();</span>
+  <span class="n">Real</span> <span class="n">Ts</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"Ts"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">Rd</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"thermodynamics"</span><span class="p">,</span> <span class="s">"Rd"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">/</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="n">Rd</span><span class="p">;</span>
+
+  <span class="n">Real</span> <span class="n">xc</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xc"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">yc</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"yc"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">zc</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"zc"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"s"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">dT</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"dT"</span><span class="p">);</span>
+
+  <span class="c1">// Whether to do a uniform bubble or not.</span>
+  <span class="kt">bool</span> <span class="n">uniform_bubble</span> <span class="o">=</span>
+      <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddBoolean</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"uniform_bubble"</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+  <span class="c1">// Loop over the grids and set initial condition</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Real</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x1v</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x2v</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">x3</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x3v</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">r</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x3</span> <span class="o">-</span> <span class="n">yc</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x3</span> <span class="o">-</span> <span class="n">yc</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">xc</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">xc</span><span class="p">)</span> <span class="o">+</span>
+                      <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">zc</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">zc</span><span class="p">));</span>
+        <span class="n">Real</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">Ts</span> <span class="o">-</span> <span class="n">grav</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">/</span> <span class="n">cp</span><span class="p">;</span>  <span class="c1">//  Adiabatic temperature gradient.</span>
+        <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">p0</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">temp</span> <span class="o">/</span> <span class="n">Ts</span><span class="p">,</span> <span class="n">cp</span> <span class="o">/</span> <span class="n">Rd</span><span class="p">);</span>  <span class="c1">// $p=p_0(\frac{T}{T_s})^{c_p/R_d}$</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">)</span>
+          <span class="n">temp</span> <span class="o">+=</span> <span class="n">dT</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="n">p0</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">/</span> <span class="n">cp</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">uniform_bubble</span><span class="p">)</span>
+          <span class="n">temp</span> <span class="o">+=</span> <span class="n">dT</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">s</span><span class="p">))</span> <span class="o">*</span>
+                  <span class="n">pow</span><span class="p">(</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="n">p0</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">/</span> <span class="n">cp</span><span class="p">);</span>
+        <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IDN</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Rd</span> <span class="o">*</span> <span class="n">temp</span><span class="p">);</span> <span class="c1">// $ \pho=\frac{P}{Rd T}$</span>
+        <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IVX</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IVY</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+      <span class="p">}</span>
+
+  <span class="c1">// Change primitive variables to conserved variables</span>
+  <span class="n">peos</span><span class="o">-&gt;</span><span class="n">PrimitiveToConserved</span><span class="p">(</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">pfield</span><span class="o">-&gt;</span><span class="n">bcc</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">pcoord</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">,</span>
+                             <span class="n">js</span><span class="p">,</span> <span class="n">je</span><span class="p">,</span> <span class="n">ks</span><span class="p">,</span> <span class="n">ke</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>这里涉及到的物理有：</p>
+<ul>
+  <li>计算温度：$T = T_s - \frac{gh}{c_p}$</li>
+  <li>计算压强：$p=p_0(\frac{T}{T_s})^{c_p/R_d}$</li>
+  <li>计算温度异常量 ：$ \Delta T = \Delta\theta  (\frac{p}{p_0})^{Rd/c_p}$</li>
+  <li>计算密度：$ \rho=\frac{P}{Rd T}$</li>
+</ul>
+
+<h2 id="运行和结果">运行和结果</h2>
+<p>项目构建和编译的过程和Straka问题一样，这里不重复说了。这里有一个不同点，为了提高对3D模拟中众多网格的运算效率，使用了8核并行运算。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mpiexec <span class="nt">-n</span> 8 ./robert.release <span class="nt">-i</span> robert3d.inp
+</code></pre></div></div>
+<p>这里为什么 np=8呢，是因为我们在输入文件中对mesh为维数和单核MeshBlock维数进行了设计：</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /robert3d.inp</span>
+<span class="s">&lt;mesh&gt;</span>
+<span class="s">nx1        = 80</span>          
+<span class="s">nx2        = 40</span>          
+<span class="s">nx3        = 40</span>     
+<span class="s">&lt;meshblock&gt;</span>
+<span class="s">nx1        = </span><span class="m">40</span>
+<span class="s">nx2        = </span><span class="m">20</span>
+<span class="s">nx3        = </span><span class="m">20</span>
+</code></pre></div></div>
+<p>也就是总共需要处理的网格数是 $80 \times 40 \times 40$， 是单核处理个数 $40 \times 20 \times 20$ 的八倍。 
+如果单核运行，会出现无法同步的问题，导致报错没有设定边界条件。</p>
+
+<p>温度场、位温场的的演变：
+剖面位置$x3=500m$ 处
+<img style="height:480px" src="/assets/images/blogs/temperature_theta_animation.gif" /></p>
+
+<!-- <img style="height:300px" src="theta_animation.gif"> -->
+
+<h2 id="问题">问题</h2>
+<ol>
+  <li>如果改变P0，Ts的初始化位置，会分别发生什么问题？</li>
+  <li>如果加上Straka问题中的Fusion作为Forcing，模拟结果会如何？</li>
+  <li>改变dT的大小，结果变化如何？</li>
+  <li>湍流场对Scheme的依赖性如何？</li>
+</ol>
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

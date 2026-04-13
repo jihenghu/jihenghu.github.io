@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Canoe Example#3：Bryan Moist Uprising Bubble</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/banner.png');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    Canoe Example#3：Bryan Moist Uprising Bubble
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <span class="text-body"
+        style="color: white !important;">
+    Jiheng Hu
+  </span>, 
+   Nov 2023
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <p>前面两节的模拟都是干空气泡的情形，本节介绍对Bryan湿空气团的模拟，会涉及到相变和热力学的能量交换过程。
+该实验由<a href="https://doi.org/10.1175/1520-0493(2002)130&lt;2917:ABSFMN&gt;2.0.CO;2">Bryan &amp; Fritsch, 2002</a>提出，用来作为湿空气团的模拟标准。在情景上和Robert问题一样，不过是湿空气。</p>
+
+<p>以下内容来百度百科</p>
+<ul>
+  <li>
+    <p>可逆干绝热过程
+对于定质量的气块，它的状态是由气压（p）、温度（T）、和任意一个湿度参数（如比湿q）共同决定，而气块在垂直升降运动过程中其状态不断发生变化，因此必须获得气块状态变量随高度变化规律。
+在垂直升降运动过程中，气块中所含的水汽始终未达到饱和，没有发生相变的绝热过程，称为干绝热过程。这里的干表示未饱和气块在绝热过程中没有发生水相的变化，并非指不含有水汽。由于满足垂直运动的三个基本假设，即绝热条件、准静态条件、静力平衡条件，因此他又是可逆过程，常称为可逆干绝热过程。</p>
+  </li>
+  <li>
+    <p>可逆湿绝热过程
+气块上升时到等熵凝结高度以上，水汽开始<u>凝结并释放出潜热</u>，如果饱和气块继续上升且<u>凝结物全部保留</u>在气块内，并<u>与外界无热量交换</u>；当气块下沉增温湿，这些凝结物<u>又蒸发</u>，使气块始终维持饱和状态，所耗的潜热与原来释放的潜热相等，沿逆过程后仍能回到原来的状态，这样的过程称为<strong>可逆湿绝热过程</strong>，又称为<strong>湿绝热过程</strong>，这里的“湿”表示在饱和的绝热气块内发生水相变化。
+可逆湿绝热过程是一个等熵过程，虽然在可逆式绝热过程中发生了相变，但水汽和凝结出来的液态水总质量（mv+mt）不变，干空气质量md也不变</p>
+  </li>
+</ul>
+
+<p>可逆的绝热过程是等熵过程。等熵过程的对立面是等温过程，在等温过程中，最大限度的热量被转移到了外界，使得系统温度恒定如常。由于在热力学中，温度与熵是一组共轭变量，等温过程和等熵过程也可以视为“共轭”的一对过程。</p>
+
+<h2 id="问题描述">问题描述</h2>
+
+<p>本例将干燥模拟扩展到潮湿模拟，引入水汽和云，我们将模拟在饱和大气环境中上升的饱和气团。
+大气的初始温度廓线是湿绝热线（等熵），所有层的水汽和云总水混合比保持恒定。地表温度和压力分别为289.85 K和1 bar。
+模拟场的近地表由一个温度场呈高斯分布的气团（同Robert问题），充满了水蒸气。
+该气泡温度比环境略高2 K以内，使得其含有略多的水汽，以在热力学和成分上都具有浮力（大气的背景成分是O2+N2）。气泡上升时，气泡的温度和压力下降，导致水蒸气凝结和潜热释放。
+模拟场的垂直尺寸为10公里，水平尺寸为20公里，空间分辨率为100米。</p>
+
+<h2 id="模拟和结果">模拟和结果</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:~/bryanproj/build <span class="o">[</span>14:12] 
+<span class="nv">$ </span>cmake ~/canoe <span class="nt">-DTASK</span><span class="o">=</span>bryan <span class="nb">.</span>
+<span class="nv">$ </span>make <span class="nt">-j8</span>
+<span class="nv">$ </span><span class="nb">cd</span> ..
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:~/bryanproj <span class="o">[</span>14:14] 
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> build/bin/bryan.release <span class="nb">.</span>
+<span class="nv">$ </span><span class="nb">cp </span>build/bin/bryan.inp <span class="nb">.</span>  
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> build/bin/combine.py <span class="nb">.</span>
+</code></pre></div></div>
+<p>开始模拟</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mpirun <span class="nt">-n</span> 4 ./bryan.release <span class="nt">-i</span> bryan.inp 
+<span class="nb">time</span><span class="o">=</span>1.0000e+03 <span class="nv">cycle</span><span class="o">=</span>7734
+Terminating on success
+cpu <span class="nb">time </span>used  <span class="o">=</span> 2.459308e+02 <span class="o">(</span>s<span class="o">)</span>
+</code></pre></div></div>
+<p>模拟了1000s的变化，使用python进行输出的合并</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python combine.py <span class="nt">-o</span> <span class="nb">test</span>
+<span class="nv">$ </span>ncdump <span class="nt">-h</span> bryan-test-main.nc 
+netcdf bryan-test-main <span class="o">{</span>
+dimensions:
+	<span class="nb">time</span> <span class="o">=</span> UNLIMITED <span class="p">;</span> // <span class="o">(</span>11 currently<span class="o">)</span>
+	x1 <span class="o">=</span> 200 <span class="p">;</span>
+	x1f <span class="o">=</span> 201 <span class="p">;</span>
+	x2 <span class="o">=</span> 400 <span class="p">;</span>
+	x2f <span class="o">=</span> 401 <span class="p">;</span>
+	x3 <span class="o">=</span> 1 <span class="p">;</span>
+variables:
+	float <span class="nb">time</span><span class="o">(</span><span class="nb">time</span><span class="o">)</span> <span class="p">;</span>
+		<span class="nb">time</span>:axis <span class="o">=</span> <span class="s2">"T"</span> <span class="p">;</span>
+		<span class="nb">time</span>:long_name <span class="o">=</span> <span class="s2">"time"</span> <span class="p">;</span>
+		<span class="nb">time</span>:units <span class="o">=</span> <span class="s2">"seconds"</span> <span class="p">;</span>
+	float x1<span class="o">(</span>x1<span class="o">)</span> <span class="p">;</span>
+		x1:axis <span class="o">=</span> <span class="s2">"Z"</span> <span class="p">;</span>
+		x1:units <span class="o">=</span> <span class="s2">"meters"</span> <span class="p">;</span>
+		x1:long_name <span class="o">=</span> <span class="s2">"Z-coordinate at cell center"</span> <span class="p">;</span>
+	float x1f<span class="o">(</span>x1f<span class="o">)</span> <span class="p">;</span>
+		x1f:axis <span class="o">=</span> <span class="s2">"Z"</span> <span class="p">;</span>
+		x1f:units <span class="o">=</span> <span class="s2">"meters"</span> <span class="p">;</span>
+		x1f:long_name <span class="o">=</span> <span class="s2">"Z-coordinate at cell face"</span> <span class="p">;</span>
+	float x2<span class="o">(</span>x2<span class="o">)</span> <span class="p">;</span>
+		x2:axis <span class="o">=</span> <span class="s2">"Y"</span> <span class="p">;</span>
+		x2:units <span class="o">=</span> <span class="s2">"meters"</span> <span class="p">;</span>
+		x2:long_name <span class="o">=</span> <span class="s2">"Y-coordinate at cell center"</span> <span class="p">;</span>
+	float x2f<span class="o">(</span>x2f<span class="o">)</span> <span class="p">;</span>
+		x2f:axis <span class="o">=</span> <span class="s2">"Y"</span> <span class="p">;</span>
+		x2f:units <span class="o">=</span> <span class="s2">"meters"</span> <span class="p">;</span>
+		x2f:long_name <span class="o">=</span> <span class="s2">"Y-coordinate at cell face"</span> <span class="p">;</span>
+	float x3<span class="o">(</span>x3<span class="o">)</span> <span class="p">;</span>
+		x3:axis <span class="o">=</span> <span class="s2">"X"</span> <span class="p">;</span>
+		x3:units <span class="o">=</span> <span class="s2">"meters"</span> <span class="p">;</span>
+		x3:long_name <span class="o">=</span> <span class="s2">"X-coordinate at cell center"</span> <span class="p">;</span>
+	float rho<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		rho:units <span class="o">=</span> <span class="s2">"kg/m^3"</span> <span class="p">;</span>
+		rho:long_name <span class="o">=</span> <span class="s2">"density"</span> <span class="p">;</span>
+	float press<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		press:units <span class="o">=</span> <span class="s2">"pa"</span> <span class="p">;</span>
+		press:long_name <span class="o">=</span> <span class="s2">"pressure"</span> <span class="p">;</span>
+	float vel1<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		vel1:units <span class="o">=</span> <span class="s2">"m/s"</span> <span class="p">;</span>
+		vel1:long_name <span class="o">=</span> <span class="s2">"velocity"</span> <span class="p">;</span>
+	float vel2<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		vel2:units <span class="o">=</span> <span class="s2">"m/s"</span> <span class="p">;</span>
+		vel2:long_name <span class="o">=</span> <span class="s2">"velocity"</span> <span class="p">;</span>
+	float vel3<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		vel3:units <span class="o">=</span> <span class="s2">"m/s"</span> <span class="p">;</span>
+		vel3:long_name <span class="o">=</span> <span class="s2">"velocity"</span> <span class="p">;</span>
+	float r0<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+	float vapor<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		vapor:units <span class="o">=</span> <span class="s2">"kg/kg"</span> <span class="p">;</span>
+		vapor:long_name <span class="o">=</span> <span class="s2">"mass mixing ratio of vapor"</span> <span class="p">;</span>
+	float mse<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		mse:units <span class="o">=</span> <span class="s2">"J/kg"</span> <span class="p">;</span>
+		mse:long_name <span class="o">=</span> <span class="s2">"moist static energy"</span> <span class="p">;</span>
+	float qtol<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+	float rh<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+	float temp<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		temp:units <span class="o">=</span> <span class="s2">"K"</span> <span class="p">;</span>
+		temp:long_name <span class="o">=</span> <span class="s2">"temperature"</span> <span class="p">;</span>
+	float theta<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+		theta:units <span class="o">=</span> <span class="s2">"K"</span> <span class="p">;</span>
+		theta:long_name <span class="o">=</span> <span class="s2">"potential temperature"</span> <span class="p">;</span>
+	float theta_e<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+	float theta_v<span class="o">(</span><span class="nb">time</span>, x1, x2, x3<span class="o">)</span> <span class="p">;</span>
+
+// global attributes:
+		:Conventions <span class="o">=</span> <span class="s2">"COARDS"</span> <span class="p">;</span>
+		:history <span class="o">=</span> <span class="s2">"Fri Nov 24 14:34:47 2023: ncks -A ./bryan.out3.nc ./bryan.out2.nc"</span> <span class="p">;</span>
+		:history_of_appended_files <span class="o">=</span> <span class="s2">"Fri Nov 24 14:34:47 2023: Appended file ./bryan.out3.nc had no </span><span class="se">\"</span><span class="s2">history</span><span class="se">\"</span><span class="s2"> attribute</span><span class="se">\n</span><span class="s2">"</span>,
+			<span class="s2">""</span> <span class="p">;</span>
+		:NCO <span class="o">=</span> <span class="s2">"netCDF Operators version 4.8.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)"</span> <span class="p">;</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>温度场、位温场的的演变：
+<img src="/assets/images/blogs/bryan_animation.gif" style="height:480px" /></p>
+
+<h2 id="源码解读">源码解读</h2>
+
+<h3 id="头文件">头文件</h3>
+<p>除了之前介绍的几个类库，这里新增了几个，这里使用注释的方式简介一下</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;athena/bvals/bvals.hpp&gt;</span><span class="c1">  // defines BoundaryBase, BoundaryValues classes used for setting BCs on all data</span><span class="cp">
+</span><span class="c1">// application</span>
+<span class="cp">#include</span> <span class="cpf">&lt;application/application.hpp&gt;</span><span class="c1"> // app注册</span><span class="cp">
+#include</span> <span class="cpf">&lt;application/exceptions.hpp&gt;</span><span class="c1">  // 报错信息</span><span class="cp">
+</span><span class="c1">// 定义了vapor,cloud,chemitry,tracer,particle等介质的索引和函数，如GetVaporId();</span>
+<span class="cp">#include</span> <span class="cpf">&lt;index_map.hpp&gt;</span><span class="c1">  </span><span class="cp">
+</span>
+<span class="c1">// climath</span>
+<span class="cp">#include</span> <span class="cpf">&lt;climath/core.h&gt;</span><span class="c1"> //基础的数学函数和单位转换</span><span class="cp">
+#include</span> <span class="cpf">&lt;climath/interpolation.h&gt;</span><span class="c1"> // 插值工具包，包括定位，线性内插，样条等方法；</span><span class="cp">
+#include</span> <span class="cpf">&lt;climath/root.hpp&gt;</span><span class="c1"> </span><span class="cp">
+</span><span class="c1">// special includes</span>
+<span class="cp">#include</span> <span class="cpf">"bryan_vapor_functions.hpp"</span><span class="c1">//包含了本个例使用的湿空气物理，计算饱和水汽压</span><span class="cp">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="输出诊断量">输出诊断量</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">iH2O</span><span class="p">,</span> <span class="n">iH2Oc</span><span class="p">;</span>  <span class="c1">// indices for water vapor and cloud</span>
+<span class="n">Real</span> <span class="n">p0</span><span class="p">,</span> <span class="n">grav</span><span class="p">;</span>  <span class="c1">//  global var declaration on surface pressure and the gravity</span>
+</code></pre></div></div>
+<p>注册输出参数：temperature, potential temperature, virtual potential temperature, moist static energy, relatve humidity, total mixing ratio of water。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">AllocateUserOutputVariables</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"theta"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"theta_v"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">"mse"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">"theta_e"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">"rh"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">"qtol"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Grid iterations to assign the value before ouput, Most of the diagnosis variables are members of Class <code class="language-plaintext highlighter-rouge">Thermoddynamics</code>, use a pinter to refer the instance.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">PotentialTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// theta_v</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RovRd</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// Theta/Rd</span>
+        <span class="c1">// mse</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">MoistStaticEnergy</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">grav</span> <span class="o">*</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x1v</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// theta_e</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">EquivalentPotentialTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">iH2O</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RelativeHumidity</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">iH2O</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// total mixing ratio</span>
+        <span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">air</span> <span class="o">=</span> <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">gather_from_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">+</span> <span class="n">air</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">iH2Oc</span><span class="p">];</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">AirParcel</code>类定义在<a href="https://github.com/chengcli/canoe/blob/main/src/air_parcel.hpp"><code class="language-plaintext highlighter-rouge">air_parcel.hpp</code></a>, 定义了一系列的空气包的属性和计算函数，用来描述格点内气体、水凝物等介质的浓度状态。 
+<code class="language-plaintext highlighter-rouge">AirParcel</code>类包含了数种介质类型的定义及其单位的换算函数。介质使用指针表示，一共6种：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">Real</span> <span class="o">*</span><span class="k">const</span> <span class="n">w</span><span class="p">;</span> <span class="c1">//! hydro data</span>
+  <span class="n">Real</span> <span class="o">*</span><span class="k">const</span> <span class="n">c</span><span class="p">;</span> <span class="c1">//! cloud data</span>
+  <span class="n">Real</span> <span class="o">*</span><span class="k">const</span> <span class="n">q</span><span class="p">;</span> <span class="c1">//! chemistry data</span>
+  <span class="n">Real</span> <span class="o">*</span><span class="k">const</span> <span class="n">x</span><span class="p">;</span> <span class="c1">//! tracer data</span>
+  <span class="n">Real</span> <span class="o">*</span><span class="k">const</span> <span class="n">t</span><span class="p">;</span> <span class="c1">//! turbulence data</span>
+  <span class="n">Real</span> <span class="k">const</span> <span class="o">*</span><span class="n">d</span><span class="p">;</span> <span class="c1">//! particle data</span>
+</code></pre></div></div>
+<p>分别表示对应物质的浓度值，可以采用<code class="language-plaintext highlighter-rouge">air.w[iH2O]</code>的形式引用对应的水汽含量；
+浓度的单位由枚举类定义：<code class="language-plaintext highlighter-rouge">enum class Type { MassFrac = 0, MassConc = 1, MoleFrac = 2, MoleConc = 3 };</code>
+并且定义了四种单位之间的转换函数：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">AirParcel</span> <span class="o">&amp;</span><span class="n">ToMassFraction</span><span class="p">();</span>
+  <span class="n">AirParcel</span> <span class="o">&amp;</span><span class="n">ToMassConcentration</span><span class="p">();</span>
+  <span class="n">AirParcel</span> <span class="o">&amp;</span><span class="n">ToMoleFraction</span><span class="p">();</span>
+  <span class="n">AirParcel</span> <span class="o">&amp;</span><span class="n">ToMoleConcentration</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">namespace:: AirParcelHelper</code>定义了几个用于更新&lt;void distribute_to_primitive()&gt;、获取&lt;AirParcel/AirColumn  gather_from_conserved()&gt;一个或一段气柱的AirParcel信息的函数。此处用于获取水含量信息。</p>
+
+<hr />
+
+<h3 id="初始化mesh类">初始化Mesh类</h3>
+
+<p>本个例依然不考虑额外的Forcing， 所以没有注册source function。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Mesh</span><span class="o">::</span><span class="n">InitUserMeshData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pindex</span> <span class="o">=</span> <span class="n">IndexMap</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+
+  <span class="n">grav</span> <span class="o">=</span> <span class="o">-</span><span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"hydro"</span><span class="p">,</span> <span class="s">"grav_acc1"</span><span class="p">);</span>
+  <span class="n">p0</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"p0"</span><span class="p">);</span>
+
+  <span class="c1">// index</span>
+  <span class="n">iH2O</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetVaporId</span><span class="p">(</span><span class="s">"H2O"</span><span class="p">);</span>
+  <span class="n">iH2Oc</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetCloudId</span><span class="p">(</span><span class="s">"H2O(c)"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="初始化meshblock类">初始化MeshBlock类</h3>
+
+<p>依然是先获取热力学的实例指针*pthermo，以便对热力学参数机型操控；
+读取<problem>block中设定的初始参数: 地表温度，气团中心坐标，椭圆轴长，温度梯度参数，气团初始时刻的水汽混合比 vapor mixing ratio。</problem></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">ProblemGenerator</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+
+  <span class="n">Real</span> <span class="n">Ps</span> <span class="o">=</span> <span class="n">p0</span><span class="p">;</span>
+  <span class="n">Real</span> <span class="n">Ts</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"Ts"</span><span class="p">);</span>  <span class="c1">// 289.85</span>
+  <span class="n">Real</span> <span class="n">xc</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xc"</span><span class="p">);</span>  <span class="c1">// 10,000 m</span>
+  <span class="n">Real</span> <span class="n">zc</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"zc"</span><span class="p">);</span>  <span class="c1">// 2,000 m</span>
+  <span class="n">Real</span> <span class="n">xr</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xr"</span><span class="p">);</span>  <span class="c1">// 2,000</span>
+  <span class="n">Real</span> <span class="n">zr</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"zr"</span><span class="p">);</span>  <span class="c1">// 2,000</span>
+  <span class="n">Real</span> <span class="n">dT</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"dT"</span><span class="p">);</span>  <span class="c1">// 1E5 pa</span>
+  <span class="n">Real</span> <span class="n">qt</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"qt"</span><span class="p">);</span>  <span class="c1">// 0.0196</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">AirParcel</span> <span class="nf">air</span><span class="p">(</span><span class="n">AirParcel</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">MassFrac</span><span class="p">);</span> <span class="c1">// 定义一个MassFrac为单位的空气块</span>
+  <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">=</span> <span class="n">qt</span><span class="p">;</span> <span class="c1">// 设定比湿</span>
+  <span class="n">air</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">iH2Oc</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span> 
+
+  <span class="n">air</span><span class="p">.</span><span class="n">ToMoleFraction</span><span class="p">();</span>  <span class="c1">// 转换为摩尔分数</span>
+  <span class="n">qt</span> <span class="o">=</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>遍历格点，（1）首先使用地表气压和地表温度插值出第一层（is）和地表(0)中间高度处的气温和气压，水汽，也就是 <code class="language-plaintext highlighter-rouge">pcoord-&gt;dx1f(is) / 2.</code>高度处的空气参数，注意is表示其实下标；
+（2）再循环空气柱，自下而上构建出一条湿绝热廓线。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// construct a reversible adiabat</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">=</span> <span class="n">qt</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IPR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ps</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ts</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">iH2Oc</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+
+      <span class="c1">//这里先使用地表气压和地表温度插值出第一层（is）和地表(0)中间高度处的气温和气压，水汽</span>
+      <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">dx1f</span><span class="p">(</span><span class="n">is</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+                           <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">ReversibleAdiabat</span><span class="p">,</span> <span class="n">grav</span><span class="p">);</span>
+      <span class="c1">// 循环空气柱，自下而上构建出一条湿绝热廓线</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_conserved</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+        <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">dx1f</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                             <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">ReversibleAdiabat</span><span class="p">,</span> <span class="n">grav</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Extrapolate()</code>函数的定义如下,此处用来构建一个满足固定大气模型的廓线：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Extrapolate</span>	<span class="p">(</span>	<span class="n">AirParcel</span> <span class="o">*</span> 	<span class="n">qfrac</span><span class="p">,</span>
+<span class="n">Real</span> 	<span class="n">dzORdlnp</span><span class="p">,</span>
+<span class="n">Method</span> 	<span class="n">method</span><span class="p">,</span>
+<span class="n">Real</span> 	<span class="n">grav</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span>
+<span class="n">Real</span> 	<span class="n">userp</span> <span class="o">=</span> <span class="mf">0.</span> 
+<span class="p">)</span>		<span class="k">const</span>
+<span class="n">Construct</span> <span class="n">an</span> <span class="mx">1d</span> <span class="n">atmosphere</span>
+
+<span class="n">Parameters</span>
+<span class="p">[</span><span class="n">in</span><span class="p">,</span><span class="n">out</span><span class="p">]</span>	<span class="n">qfrac</span>	<span class="n">mole</span> <span class="n">fraction</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">air</span> <span class="n">parcel</span>
+<span class="p">[</span><span class="n">in</span><span class="p">]</span>	<span class="n">dzORdlnp</span>	<span class="n">vertical</span> <span class="n">grid</span> <span class="n">spacing</span>
+<span class="p">[</span><span class="n">in</span><span class="p">]</span>	<span class="n">method</span>	<span class="n">choose</span> <span class="n">from</span> <span class="p">[</span><span class="n">reversible</span><span class="p">,</span> <span class="n">pseudo</span><span class="p">,</span> <span class="n">dry</span><span class="p">,</span> <span class="n">isothermal</span><span class="p">]</span>
+<span class="p">[</span><span class="n">in</span><span class="p">]</span>	<span class="n">grav</span>	<span class="n">gravitational</span> <span class="n">acceleration</span>
+<span class="p">[</span><span class="n">in</span><span class="p">]</span>	<span class="n">userp</span>	<span class="n">user</span> <span class="n">parameter</span> <span class="n">to</span> <span class="n">adjust</span> <span class="n">the</span> <span class="n">temperature</span> <span class="n">gradient</span>
+</code></pre></div></div>
+
+<p>这个怎么实现呢，实际上Extrapolate调用了<code class="language-plaintext highlighter-rouge">rk4IntegrateLnp()</code>函数进行微分方程的数值积分：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="kt">void</span>  <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">rk4IntegrateLnp</span><span class="p">(</span><span class="n">AirParcel</span> <span class="o">*</span><span class="n">air</span><span class="p">,</span> <span class="n">Real</span> <span class="n">dlnp</span><span class="p">,</span> <span class="n">Method</span> <span class="n">method</span><span class="p">,</span>
+                                      <span class="n">Real</span> <span class="n">adlnTdlnP</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">rk4IntegrateLnp()</code>进一步调用了<code class="language-plaintext highlighter-rouge">calDlnTDlnP()</code>函数来计算温压关系：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">Real</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">calDlnTDlnP</span><span class="p">(</span><span class="n">AirParcel</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">qfrac</span><span class="p">,</span> <span class="n">Real</span> <span class="n">latent</span><span class="p">[])</span> <span class="k">const</span> <span class="p">{</span>
+   <span class="c1">// calculate gammad</span>
+   <span class="n">Real</span> <span class="n">gammad</span> <span class="o">=</span> <span class="n">GetGammad</span><span class="p">(</span><span class="n">qfrac</span><span class="p">);</span>
+  
+   <span class="n">Real</span> <span class="n">q_gas</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">;</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">NCLOUD</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="n">q_gas</span> <span class="o">-=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+  
+   <span class="n">Real</span> <span class="n">f_sig</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">;</span>
+   <span class="c1">// vapor</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+     <span class="n">f_sig</span> <span class="o">+=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">cp_ratio_mole_</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">);</span>
+   <span class="c1">// cloud</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">NCLOUD</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+     <span class="n">f_sig</span> <span class="o">+=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">cp_ratio_mole_</span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">NVAPOR</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">);</span>
+   <span class="n">Real</span> <span class="n">cphat_ov_r</span> <span class="o">=</span> <span class="n">gammad</span> <span class="o">/</span> <span class="p">(</span><span class="n">gammad</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="n">f_sig</span> <span class="o">/</span> <span class="n">q_gas</span><span class="p">;</span>
+  
+   <span class="c1">// vapor</span>
+   <span class="n">Real</span> <span class="n">xd</span> <span class="o">=</span> <span class="n">q_gas</span><span class="p">;</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="n">xd</span> <span class="o">-=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+  
+   <span class="n">Real</span> <span class="n">c1</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">c3</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">iv</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">iv</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">iv</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">c1</span> <span class="o">+=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">/</span> <span class="n">xd</span> <span class="o">*</span> <span class="n">latent</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span>
+     <span class="n">c2</span> <span class="o">+=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">/</span> <span class="n">xd</span> <span class="o">*</span> <span class="n">latent</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">*</span> <span class="n">latent</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span>
+     <span class="n">c3</span> <span class="o">+=</span> <span class="n">qfrac</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">/</span> <span class="n">xd</span><span class="p">;</span>
+   <span class="p">}</span>
+  
+   <span class="k">return</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">cphat_ov_r</span> <span class="o">+</span> <span class="p">(</span><span class="n">c2</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">c3</span><span class="p">));</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+<p>这个函数的来源与Cheng Li博士期间的工作：<a href="https://doi.org/10.1175/JAS-D-17-0257.1">《Moist Adiabats with Multiple Condensing Species: A New Theory with Application to Giant-Planet Atmospheres》</a>，其提出了适用于多种可凝结气体共存情形下的湿绝热温压关系（经典理论只适用于水蒸气存在的地球大气，不适用于巨行星的大气廓线构建），形式是这样的，大家感兴趣可以去研读：
+<img src="https://s2.loli.net/2023/11/26/v5AKio6xkCrm3Oa.png" alt="Moist Adiabats T-P with Multiple Condensing Species" /></p>
+
+<hr />
+
+<p>最后这部分是再初始场中叠加Guassian气团的温湿度异常场，然后计算水的相变平衡点。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// add temperature anomaly</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Real</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x1v</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x2v</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">L</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sqr</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">xc</span><span class="p">)</span> <span class="o">/</span> <span class="n">xr</span><span class="p">)</span> <span class="o">+</span> <span class="n">sqr</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">zc</span><span class="p">)</span> <span class="o">/</span> <span class="n">zr</span><span class="p">));</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">L</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">air</span> <span class="o">=</span> <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">gather_from_conserved</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+          <span class="n">air</span><span class="p">.</span><span class="n">ToMoleFraction</span><span class="p">();</span>
+          <span class="n">Real</span> <span class="n">temp_v</span> <span class="o">=</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">*</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RovRd</span><span class="p">(</span><span class="n">air</span><span class="p">);</span>   <span class="c1">/// 计算虚温</span>
+          <span class="n">temp_v</span> <span class="o">*=</span> <span class="mf">1.</span> <span class="o">+</span> <span class="n">dT</span> <span class="o">*</span> <span class="n">sqr</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">M_PI</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">))</span> <span class="o">/</span> <span class="mf">300.</span><span class="p">;</span>   <span class="c1">/// 叠加保护水汽的虚温</span>
+
+          <span class="n">Real</span> <span class="n">temp</span><span class="p">;</span>
+          <span class="kt">int</span> <span class="n">err</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">],</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">+</span> <span class="n">dT</span><span class="p">,</span> <span class="mf">1.E-8</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">temp</span><span class="p">,</span>
+                         <span class="p">[</span><span class="o">&amp;</span><span class="n">pthermo</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="n">temp_v</span><span class="p">](</span><span class="n">Real</span> <span class="n">temp</span><span class="p">)</span> <span class="p">{</span>
+                           <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+
+                           <span class="k">auto</span> <span class="n">rates</span> <span class="o">=</span>
+                               <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">TryEquilibriumTP_VaporCloud</span><span class="p">(</span><span class="n">air</span><span class="p">,</span> <span class="n">iH2O</span><span class="p">);</span>
+                           <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rates</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+                           <span class="n">air</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">iH2Oc</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rates</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+                           <span class="k">return</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RovRd</span><span class="p">(</span><span class="n">air</span><span class="p">)</span> <span class="o">-</span> <span class="n">temp_v</span><span class="p">;</span>
+                         <span class="p">});</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="k">throw</span> <span class="n">RuntimeError</span><span class="p">(</span><span class="s">"pgen"</span><span class="p">,</span> <span class="s">"TVSolver doesn't converge"</span><span class="p">);</span>
+
+          <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+          <span class="k">auto</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">TryEquilibriumTP_VaporCloud</span><span class="p">(</span><span class="n">air</span><span class="p">,</span> <span class="n">iH2O</span><span class="p">);</span>
+          <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rates</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="n">air</span><span class="p">.</span><span class="n">c</span><span class="p">[</span><span class="n">iH2Oc</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rates</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+          <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_conserved</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="todo">TODO</h2>
+<ul>
+  <li>try_equilibrium_tp_vapor_cloud.cpp 相变平衡点的计算问题</li>
+  <li>multiple condensing species dLnTdLnP 的计算问题</li>
+  <li>
+    <p>RK4微分方程的积分问题</p>
+  </li>
+  <li>提取热力学假设和大气廓线构建的相关内容</li>
+</ul>
+
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

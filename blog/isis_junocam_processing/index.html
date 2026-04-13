@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JunoCam Image Processing- A guide through</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/canvas_storm.webp');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    JunoCam Image Processing- A guide through
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <a class="text-body"
+     style="color: white !important;"
+     href="https://xinyuewang05.github.io/xinyueCV-website/"
+     target="_blank">
+    Xinyue Wang
+  </a>, 
+   Nov 2025
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <h2 id="select-image">Select image</h2>
+<p>go to juno mission web, swri<br />
+notice the PJ69 is a quite nice alternative, bear down the Product ID in the METADATA: 
+<code class="language-plaintext highlighter-rouge">JNCE_2025028_69C00031_V01</code>, we use RDR instead of edr -&gt; JNCR-*</p>
+
+<h2 id="download-image-files">Download image files</h2>
+<p>goto the online archive of misson data:
+https://pds-imaging.jpl.nasa.gov/volumes/juno</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$wget</span> https://planetarydata.jpl.nasa.gov/img/data/juno/JNOJNC_0030/DATA/RDR/JUPITER/ORBIT_65/JNCR_2024264_65C00029_V01.LBL
+</code></pre></div></div>
+
+<hr />
+<h2 id="process-using-isis">Process using ISIS</h2>
+
+<h3 id="data-source">Data Source</h3>
+<p>The data is download from wbsite: https://planetarydata.jpl.nasa.gov/img/data/juno/JNOJNC_0024/DATA/RDR/JUPITER/ORBIT_45/
+Only four images of Europa are available: <code class="language-plaintext highlighter-rouge">JNCE_2022272_45C00001_V01 to JNCE_2022272_45C00004_V01</code>.<br />
+Here, I only processed one image: <code class="language-plaintext highlighter-rouge">JNCE_2022272_45C00001_V01</code>, which is saved in <code class="language-plaintext highlighter-rouge">Europa_data/Junocam_ImageSet_13805/Raw data/</code>.</p>
+
+<p>The scripts and results for steps 2 to 4 are all located in Europa_data/Junocam_ImageSet_13805/Low_resolution/.
+.sh —&gt; Linux_shell/</p>
+
+<h4 id="rgb-image-generation">RGB Image Generation</h4>
+<p>Run the script <code class="language-plaintext highlighter-rouge">run_LBL_RGB_new_AA_13805.sh</code> in ISIS.<br />
+This script performs the following steps:</p>
+<ul>
+  <li>Converts the <code class="language-plaintext highlighter-rouge">*.LBL</code> file into RED, GREEN, and BLUE <code class="language-plaintext highlighter-rouge">.cub</code> files, which are saved in <code class="language-plaintext highlighter-rouge">Processing_data/RGB_image/</code>.</li>
+  <li>Applies a map projection using <code class="language-plaintext highlighter-rouge">rectproj.map</code> in <code class="language-plaintext highlighter-rouge">Processing_data/RGB_map/Projection.map/</code>.</li>
+  <li>Merges multiple projected <code class="language-plaintext highlighter-rouge">.cub</code> files (<code class="language-plaintext highlighter-rouge">*_map.cub</code>) into mosaics for each color channel (<code class="language-plaintext highlighter-rouge">*_mosaic.cub</code>).
+Uses three separate band lists (r2, g2, b2) to avoid ordering or dimension mismatch issues. These files are saved in <code class="language-plaintext highlighter-rouge">Processing_data/Mosaic/Projected_images</code>.</li>
+  <li>Combines the mosaics into an RGB PNG image which is aved in <code class="language-plaintext highlighter-rouge">Processing_data/Figure/</code>.</li>
+</ul>
+
+<h3 id="fits-conversion">FITS Conversion</h3>
+<p>Run <code class="language-plaintext highlighter-rouge">run_RGB_save_A.sh</code> in ISIS. <br />
+This script:</p>
+<ul>
+  <li>Converts <code class="language-plaintext highlighter-rouge">*_mosaic.cub</code> files to <code class="language-plaintext highlighter-rouge">*_pho.cub</code>, which contain geometry (only raw image, latitude, and longitude).</li>
+  <li>Converts these <code class="language-plaintext highlighter-rouge">.cub</code> files into FITS format which can be read in MATLAB. These files are saved in <code class="language-plaintext highlighter-rouge">Processing_data/Mosaic/Projected_images/</code>.</li>
+  <li>According to the <code class="language-plaintext highlighter-rouge">*_mosaic.cub</code>, we produce the PNG images (<code class="language-plaintext highlighter-rouge">*_mosaic.png</code>) for each color channel, which area saved in <code class="language-plaintext highlighter-rouge">Processing_data/Figure/</code>.</li>
+</ul>
+
+<h3 id="matlab-processing">MATLAB Processing</h3>
+<p>Using the MATLAB to read and display the RGB color map and individual R, G, and B channels. 
+The code is provided in <code class="language-plaintext highlighter-rouge">read_map_RGB_13805.m</code> in <code class="language-plaintext highlighter-rouge">MATLAB_code/</code>.<br />
+The results (<code class="language-plaintext highlighter-rouge">Europa_*_Map.png</code>) are shown in <code class="language-plaintext highlighter-rouge">Processing_data/Figure/</code>.</p>
+
+<h3 id="comparison-with-voyager-and-björn-jónssons-maps">Comparison with Voyager and Björn Jónsson’s Maps</h3>
+<p>Comparison is made between JunoCam images, a Voyager mosaic, and a map processed  by Björn Jónsson.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">20150218_europa_global_map_20000x10000.jpg</code> is the images proceesed by Björn Jónsson.</li>
+  <li><code class="language-plaintext highlighter-rouge">europa_voyager_galileossi_global_mosaic_500m_1024.jpg</code> is the image from Voyager. 
+These files are stored in <code class="language-plaintext highlighter-rouge">Europa_data/Compare_map_other_mission/map.png/</code>, and the website links where I website links from which I downloaded these two maps are included in <code class="language-plaintext highlighter-rouge">Website_map.rtf</code>.</li>
+  <li>Using the MATLAB to read these two images: <code class="language-plaintext highlighter-rouge">Read_Europa_map.m</code> and <code class="language-plaintext highlighter-rouge">Read_Europa_map_Bjorn.m</code>, which are save in <code class="language-plaintext highlighter-rouge">Europa_data/Compare_map_other_mission/code/</code>.</li>
+</ul>
+
+<p>Here, I only compare images in blue channel. 
+To improve comparison, I reprocessed the JunoCam image at higher resolution. The scripts and results are all located in <code class="language-plaintext highlighter-rouge">Europa_data/Junocam_ImageSet_13805/High_resolution/</code>. 
+Run <code class="language-plaintext highlighter-rouge">run_LBL_RGB_new_AA_high_res.sh</code>  in ISIS. 
+The processing steps are mostly the same as before, but I used <code class="language-plaintext highlighter-rouge">rectproj_high_res.map</code> for the map projection. The only difference from the previous <code class="language-plaintext highlighter-rouge">rectproj.map</code> file is that the scale was changed from 10.0 to 30.0 pixels/degree. And then run <code class="language-plaintext highlighter-rouge">run_RGB_save_A_high_res.sh</code> to save images as PNG.</p>
+
+<p>Based on the high-resolution image in the blue channel, we made a comparison. To more clearly show the difference in resolution, we selected a region on Europa containing the feature Callanish for comparison. The code is shown in <code class="language-plaintext highlighter-rouge">Europa_Juno_Voyager_comparison_plot.m</code> in <code class="language-plaintext highlighter-rouge">Europa_data/Compare_map_other_mission/code/</code>. The comparison result is shown by <code class="language-plaintext highlighter-rouge">Europa_image_comparision.png</code> in <code class="language-plaintext highlighter-rouge">Europa_data/Compare_map_other_mission/Figure/</code>.</p>
+
+<h3 id="raw-image-mosaic-no-map-projection">Raw Image Mosaic (No Map Projection)</h3>
+<p>To address the edge distortions seen in the previous image mosaic with map projection—which did not look as good as the image on the website—I created this mosaic from raw image stripes without applying map projection.
+The following files were used in this step:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">convert_blue_to_fits.sh</code>: Converts the raw blue channel image stripes to <code class="language-plaintext highlighter-rouge">.fits</code> format. It is saved in <code class="language-plaintext highlighter-rouge">Europa_data/Junocam_ImageSet_13805/Low_resolution/Linux_shell/</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Mosaic_raw_image.m</code>: A MATLAB script that mosaics the raw image stripes into a single image. It is saved in <code class="language-plaintext highlighter-rouge">Europa_data/Junocam_ImageSet_13805/Low_resolution/MATLAB_code/</code>.</p>
+  </li>
+</ul>
+
+<p>The results are saved in <code class="language-plaintext highlighter-rouge">Europa_data/Junocam_ImageSet_13805/Low_resolution/Figure/</code>.</p>
+
+<p>While the resulting mosaic and the version on the JunoCam website are visually appealing, they lack latitude and longitude information because no map projection was applied</p>
+
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

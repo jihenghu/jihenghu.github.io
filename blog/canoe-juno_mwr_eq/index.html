@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Canoe Example#4：Juno MWR Simulations</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/banner.png');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    Canoe Example#4：Juno MWR Simulations
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <span class="text-body"
+        style="color: white !important;">
+    Jiheng Hu
+  </span>, 
+   Nov 2023
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <p>本节解读一下<code>juno_mwr_eq</code>示例的具体实现和实验使用到的理论和假设。</p>
+
+<h2 id="情景描述">情景描述</h2>
+<p>Juno Mission
+朱诺（Juno）是一项由美国宇航局（NASA）进行的木星探测任务, 于2011年8月5日从佛罗里达州的卡纳维拉尔角空军基地发射,于2016年7月4日成功进入了木星轨道, 主要目标是深入研究木星的内部结构、大气层和磁场，以帮助科学家们了解这个巨大气体行星的形成和演化过程。
+朱诺搭载了多种科学仪器，包括微波辐射计(MWR)、微波雷达、飞行器磁力计、高能粒子探测器等，用于测量木星大气的温度、气体成分、磁场和辐射环境等参数。
+极化轨道：</p>
+
+<p>朱诺以一个相对较小的轨道倾角环绕木星，被称为“极化轨道”，以减少朱诺受到木星辐射带的辐射影响，并允许更全面地研究木星的极区域。
+Juno的轨道离心率较大，可以使其再近木点钻进木星辐射带进行大气辐射的观测，减少木星磁场的干扰。
+<img src="https://s2.loli.net/2023/11/27/b2npsa4NmQF6ClB.jpg" alt="NASA：Juno’s Orbit" /></p>
+
+<p>已知木星大气特性：伽利略号探测器对木星的穿透性探测得到了一系列的probe in-situ测了结果，其中包括，大气气体成分主要是水和氨气；1 bar 高度的气温约为169 K。
+模拟需要实现的步骤：</p>
+<ol>
+  <li>输入已知的探测结果和热力学参数；</li>
+  <li>基于绝热假设构建大气温湿度廓线和气体含量廓线；</li>
+  <li>辐射传输模拟，计算天顶微波亮温。</li>
+</ol>
+
+<h2 id="运行个例">运行个例</h2>
+
+<p>构建项目和编译</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:~ <span class="o">[</span>11:31]<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> Juno_MWR_Proj/build
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:~ <span class="o">[</span>11:31]<span class="nv">$ </span><span class="nb">cd </span>Juno_MWR_Proj/build/
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:build <span class="o">[</span>11:32]<span class="nv">$ </span>cmake ~/canoe/ <span class="nt">-DTASK</span><span class="o">=</span>juno <span class="nb">.</span> 
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:build <span class="o">[</span>11:32]<span class="nv">$ </span>make <span class="nt">-j8</span> <span class="c">## 8核编译</span>
+</code></pre></div></div>
+<p>准备所需要的文件：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ..
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:Juno_MWR_Proj <span class="o">[</span>11:35]<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> build/bin/juno_mwr.release <span class="nb">.</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:Juno_MWR_Proj <span class="o">[</span>11:35]<span class="nv">$ </span><span class="nb">cp </span>build/bin/juno_mwr.inp <span class="nb">.</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:Juno_MWR_Proj <span class="o">[</span>11:36]<span class="nv">$ </span><span class="nb">cp </span>build/bin/mwr_channels.yaml <span class="nb">.</span>
+</code></pre></div></div>
+<p>输入和配置文件<a href="/assets/images/blogs/juno_mwr.inp.txt">juno_mwr.inp</a> | <a href="/assets/images/blogs/mwr_channels.yaml">mwr_channels.yaml</a>我们会在后面介绍其具体意义。</p>
+
+<p>运行</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="nb">env</span><span class="o">)</span> jihenghu@canopy:Juno_MWR_Proj <span class="o">[</span>11:40]<span class="nv">$ </span>./juno_mwr.release <span class="nt">-i</span> juno_mwr.inp 
+<span class="c">######################################################</span>
+<span class="c">##              CANOE MODEL STARTS                  ##</span>
+<span class="c">######################################################</span>
+Log, <span class="s2">"2023-11-15 11:40:57"</span>,        canoe, 2., <span class="s2">"Installing monitor canoe"</span>
+Log, <span class="s2">"2023-11-15 11:40:57"</span>,        canoe, 2.1., <span class="s2">"Initialize IndexMap"</span>
+......
+Log, <span class="s2">"2023-11-15 11:40:59"</span>,         snap, 47.1., <span class="s2">"Destroy Thermodynamics"</span>
+Log, <span class="s2">"2023-11-15 11:40:59"</span>,        canoe, 48.1., <span class="s2">"Destroy IndexMap"</span>
+Log, <span class="s2">"2023-11-15 11:40:59"</span>,      outputs, 49.1., <span class="s2">"Destroy MetadataTable"</span>
+
+Terminating on success
+cpu <span class="nb">time </span>used  <span class="o">=</span> 1.6321420000000000e+00 <span class="o">(</span>s<span class="o">)</span>
+</code></pre></div></div>
+<p><a href="/assets/images/blogs/juno_mwr_eq_stdout.txt">…点击查看完整日志…</a></p>
+
+<p>检查输出：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tree
+<span class="nb">.</span>
+├── build/
+├── juno_mwr.inp
+├── juno_mwr.out2.00000.nc
+├── juno_mwr.out3.00000.nc
+├── juno_mwr.out4.00000.nc
+├── juno_mwr.out5.00000.nc
+├── juno_mwr.release -&gt; build/bin/juno_mwr.release
+└── mwr_channels.yaml
+
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> build/bin/combine.py 
+<span class="nv">$ </span>python3 combine.py <span class="nt">-o</span> test. <span class="c">## 将输出合并成一个nc文件</span>
+<span class="nv">$ </span>tree
+├── build/
+├── combine.py -&gt; build/bin/combine.py
+├── combine_rules
+├── juno_mwr.inp
+├── juno_mwr.release -&gt; build/bin/juno_mwr.release
+├── juno_mwr-test-main.nc
+└── mwr_channels.yam
+</code></pre></div></div>
+
+<h2 id="结果分析">结果分析</h2>
+<ol>
+  <li>大气廓线输出：包括温度、位温、两种气体的浓度廓线。</li>
+</ol>
+
+<p><img src="https://s2.loli.net/2023/11/28/b8JU5KMPwx4fTEr.png" style="height:680px" /></p>
+
+<ol>
+  <li>辐射传输模拟：包括6个通道的天顶亮温，临边昏暗和权重廓线</li>
+</ol>
+
+<p><img src="https://s2.loli.net/2024/03/22/KA3q6EmDIPOkt4i.png" style="height:480px" />
+<img src="https://s2.loli.net/2024/03/22/EwbZsjO6uzdVBI8.png" style="height:480px" /></p>
+
+<p><i>Note:</i>这里的权重指的是：</p>
+
+<p>$w(z)=-e^{- \tau } d\tau /dz $</p>
+
+<h2 id="源码分析">源码分析</h2>
+
+<p>比较特殊的头文件如下：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;snap/thermodynamics/vapors/sodium_vapors.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;astro/Jupiter/jup_fletcher16_cirs.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;astro/planets.hpp&gt;</span><span class="cp">
+</span><span class="c1">//radiative transfer</span>
+<span class="cp">#include</span> <span class="cpf">&lt;harp/radiation.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;harp/radiation_band.hpp&gt;</span><span class="cp">
+</span><span class="c1">// tracer</span>
+<span class="cp">#include</span> <span class="cpf">&lt;tracer/tracer.hpp&gt;</span><span class="cp">
+</span><span class="c1">// opacity</span>
+<span class="cp">#include</span> <span class="cpf">&lt;opacity/Giants/microwave/mwr_absorbers.hpp&gt;</span><span class="cp">
+</span><span class="c1">// inversion</span>
+<span class="cp">#include</span> <span class="cpf">&lt;inversion/profile_inversion.hpp&gt;</span><span class="cp">
+</span><span class="c1">// special includes</span>
+<span class="cp">#include</span> <span class="cpf">"juno_mwr_specs.hpp"</span><span class="cp">
+</span></code></pre></div></div>
+
+<p>全局变量
+<code class="language-plaintext highlighter-rouge">Real grav, P0, T0, Tmin, clat;</code> 
+<code class="language-plaintext highlighter-rouge">Real xHe, xCH4, xH2S, xNa, xKCl, metallicity;</code> // 痕量气体的含量</p>
+
+<p>设定输出的诊断量，常规的温度和能量，加上几种condensible气体的相对湿度。这里只有H2O和NH3两种（NHYDRO=2）。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">InitUserMeshBlockData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">AllocateUserOutputVariables</span><span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="n">NVAPOR</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"theta"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"thetav"</span><span class="p">);</span>
+  <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">"mse"</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"rh"</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">SetUserOutputVariableName</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>NVAPOR,NHYDRO的定义在<a href="https://github.com/PrincetonUniversity/athena/blob/master/src/defs.hpp.in">defs.hpp.in</a></p>
+
+<p>输出前的计算</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">MeshBlock</span><span class="o">::</span><span class="n">UserWorkBeforeOutput</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">PotentialTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// theta_v</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">user_out_var</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RovRd</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">// mse</span>
+        <span class="n">user_out_var</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+            <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">MoistStaticEnergy</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">grav</span> <span class="o">*</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">x1v</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">NVAPOR</span><span class="p">;</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+          <span class="n">user_out_var</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span>
+              <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RelativeHumidity</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>初始化，读取适用于所有网格的设置：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Mesh</span><span class="o">::</span><span class="n">InitUserMeshData</span><span class="p">(</span><span class="n">ParameterInput</span> <span class="o">*</span><span class="n">pin</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">grav</span> <span class="o">=</span> <span class="o">-</span><span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"hydro"</span><span class="p">,</span> <span class="s">"grav_acc1"</span><span class="p">);</span>
+  <span class="n">P0</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"mesh"</span><span class="p">,</span> <span class="s">"ReferencePressure"</span><span class="p">);</span>
+  <span class="n">T0</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"T1bar"</span><span class="p">);</span>
+
+  <span class="n">Tmin</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"Tmin"</span><span class="p">);</span>
+  <span class="n">clat</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"clat"</span><span class="p">,</span> <span class="mf">0.</span><span class="p">);</span>
+
+  <span class="n">xH2S</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xH2S"</span><span class="p">);</span>
+
+  <span class="n">metallicity</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"metallicity"</span><span class="p">,</span> <span class="mf">0.</span><span class="p">);</span>
+
+  <span class="n">xNa</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xNa"</span><span class="p">);</span>
+  <span class="n">xNa</span> <span class="o">*=</span> <span class="n">pow</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="n">metallicity</span><span class="p">);</span>
+
+  <span class="n">xKCl</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xKCl"</span><span class="p">);</span>
+  <span class="n">xKCl</span> <span class="o">*=</span> <span class="n">pow</span><span class="p">(</span><span class="mf">10.</span><span class="p">,</span> <span class="n">metallicity</span><span class="p">);</span>
+
+  <span class="n">xHe</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xHe"</span><span class="p">);</span>
+
+  <span class="n">xCH4</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"xCH4"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="problemgenerator">ProblemGenerator</h3>
+<p>这个个例比较复杂，我们逐块解释：</p>
+
+<ul>
+  <li>数据读取</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">Application</span><span class="o">::</span><span class="n">Logger</span> <span class="nf">app</span><span class="p">(</span><span class="s">"main"</span><span class="p">);</span>  <span class="c1">// 日志注册</span>
+  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"ProblemGenerator: juno"</span><span class="p">);</span> 
+  <span class="k">auto</span> <span class="n">pthermo</span> <span class="o">=</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span> <span class="c1">// 获取热力学指针对象</span>
+
+  <span class="c1">// mesh limits</span>
+  <span class="n">Real</span> <span class="n">x1min</span> <span class="o">=</span> <span class="n">pmy_mesh</span><span class="o">-&gt;</span><span class="n">mesh_size</span><span class="p">.</span><span class="n">x1min</span><span class="p">;</span>
+  <span class="n">Real</span> <span class="n">x1max</span> <span class="o">=</span> <span class="n">pmy_mesh</span><span class="o">-&gt;</span><span class="n">mesh_size</span><span class="p">.</span><span class="n">x1max</span><span class="p">;</span>
+  <span class="n">Real</span> <span class="n">H0</span> <span class="o">=</span> <span class="n">pcoord</span><span class="o">-&gt;</span><span class="n">GetPressureScaleHeight</span><span class="p">();</span>  <span class="c1">// 大气标高H0</span>
+</code></pre></div></div>
+<p>这里读取了模拟的垂直坐标的范围和大气标高H0：
+ Input文件的范围是 x1min  = -270.E3 到 x1max       = 200.E3 的高度范围。
+这里说明一下模拟使用的坐标系统：
+\(\begin{align}
+z^*= H_0 \cdot ln\frac{P}{P_0} ;
+P_0= 1 bar
+\end{align}\)</p>
+<ul>
+  <li>对于等温大气：$z=z^*=H_0 \cdot ln\frac{P}{P_0}$；</li>
+  <li>对于等熵大气：$z !=z^*$</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// request temperature and pressure</span>
+  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"request T"</span><span class="p">,</span> <span class="n">T0</span><span class="p">);</span>
+  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"request P"</span><span class="p">,</span> <span class="n">P0</span><span class="p">);</span>
+
+  <span class="c1">// thermodynamic constants</span>
+  <span class="n">Real</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetReal</span><span class="p">(</span><span class="s">"hydro"</span><span class="p">,</span> <span class="s">"gamma"</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">Rd</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetRd</span><span class="p">();</span>
+  <span class="n">Real</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">/</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="n">Rd</span><span class="p">;</span>
+
+  <span class="c1">// index</span>
+  <span class="k">auto</span> <span class="n">pindex</span> <span class="o">=</span> <span class="n">IndexMap</span><span class="o">::</span><span class="n">GetInstance</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="n">iH2O</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetVaporId</span><span class="p">(</span><span class="s">"H2O"</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">iNH3</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetVaporId</span><span class="p">(</span><span class="s">"NH3"</span><span class="p">);</span>
+
+  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"index of H2O"</span><span class="p">,</span> <span class="n">iH2O</span><span class="p">);</span>
+  <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"index of NH3"</span><span class="p">,</span> <span class="n">iNH3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>迭代求算$T_s$, $P_s$:</p>
+<ol>
+  <li>①计算地表气压和地表气温（干绝热模型）： $ P_s=P_0 \cdot e^{-x1min/H0} $；$ T_s=T_0 \cdot \frac{P_s}{P_0}^{R_d/C_p} $ ;</li>
+  <li>②从地表开始构建一条绝热廓线到1bar的位置（湿绝热），获得是$T_0’$ ;</li>
+  <li>计算1bar处的温度偏差$\Delta T=T_0’ - T_0$，修正Ts：$ T_s’=T_s- \Delta T $，</li>
+  <li>③自下而上再次构建湿绝热廓线，获得新的T_0”；</li>
+  <li>重复3和4，直到$\Delta T&lt;0.01 K$。</li>
+</ol>
+
+<p>① ②两个过程并非简单的逆过程，否则2过程得到的$T_0’=T_0$，即迭代没有意义。实际上之所以这么做，是因为过程2在干绝热过程计算时，每一层混合气体的总$C_p$随着气体组分变化。并且，单一组分气体的$C_p$也在随温度变化的，而过程1使用了上下恒定的$C_p$。 
+下图展示了最初几步① ② ③过程示意图：</p>
+
+<p><img src="https://s2.loli.net/2023/11/27/uCB4qa9AEojFwfX.jpg" style="height:400px" />
+<img src="https://s2.loli.net/2023/11/27/HCg8lK7I6JXmVoM.jpg" style="height:400px" /></p>
+
+<p>代码如下：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// estimate surface temperature and pressure</span>
+  <span class="n">Real</span> <span class="n">Ps</span> <span class="o">=</span> <span class="n">P0</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x1min</span> <span class="o">/</span> <span class="n">H0</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">Ts</span> <span class="o">=</span> <span class="n">T0</span> <span class="o">*</span> <span class="nf">pow</span><span class="p">(</span><span class="n">Ps</span> <span class="o">/</span> <span class="n">P0</span><span class="p">,</span> <span class="n">Rd</span> <span class="o">/</span> <span class="n">cp</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">iter</span><span class="o">++</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// read in vapors</span>
+    <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">=</span> <span class="n">xH2O</span><span class="p">;</span>
+    <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNH3</span><span class="p">;</span>
+    <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IPR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ps</span><span class="p">;</span>
+    <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ts</span><span class="p">;</span>
+
+    <span class="c1">// stop at just above P0</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="o">-</span><span class="n">dlnp</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+                           <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IPR</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">P0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// extrapolate down to where air is</span>
+    <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="n">log</span><span class="p">(</span><span class="n">P0</span> <span class="o">/</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IPR</span><span class="p">]),</span>
+                         <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">);</span>
+
+    <span class="c1">// make up for the difference</span>
+    <span class="n">Ts</span> <span class="o">+=</span> <span class="n">T0</span> <span class="o">-</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">T0</span> <span class="o">-</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+
+    <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"Iteration #"</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+    <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"T"</span><span class="p">,</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">iter</span> <span class="o">&gt;</span> <span class="n">max_iter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">RuntimeError</span><span class="p">(</span><span class="s">"ProblemGenerator"</span><span class="p">,</span> <span class="s">"maximum iteration reached"</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>构建大气廓线：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// construct atmosphere from bottom up</span>
+  <span class="n">air</span><span class="p">.</span><span class="n">ToMoleFraction</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">SetZero</span><span class="p">();</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iH2O</span><span class="p">]</span> <span class="o">=</span> <span class="n">xH2O</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">=</span> <span class="n">xNH3</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IPR</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ps</span><span class="p">;</span>
+      <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ts</span><span class="p">;</span>
+
+      <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// check relative humidity</span>
+        <span class="n">Real</span> <span class="n">rh</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">RelativeHumidity</span><span class="p">(</span><span class="n">air</span><span class="p">,</span> <span class="n">iNH3</span><span class="p">);</span>
+        <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">*=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">rh_max_nh3</span> <span class="o">/</span> <span class="n">rh</span><span class="p">,</span> <span class="mf">1.</span><span class="p">);</span>
+
+        <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+
+        <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="o">-</span><span class="n">dlnp</span><span class="p">,</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">IDN</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">Tmin</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c1">// Replace adiabatic atmosphere with isothermal atmosphere if temperature</span>
+      <span class="c1">// is too low</span>
+      <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="n">dlnp</span><span class="p">,</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="o">-</span><span class="n">dlnp</span><span class="p">,</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">Isothermal</span><span class="p">);</span>
+        <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>手动修正大气地不稳定度，使用<code class="language-plaintext highlighter-rouge">adlnTdlnP</code>，<code class="language-plaintext highlighter-rouge">adlnNH3dlnP</code>这个输入量来完成，会作用到<code class="language-plaintext highlighter-rouge">Extrapolate</code>函数上。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// if requested</span>
+  <span class="c1">// modify atmospheric stability</span>
+  <span class="n">Real</span> <span class="n">adlnTdlnP</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnTdlnP"</span><span class="p">,</span> <span class="mf">0.</span><span class="p">);</span>
+  <span class="n">Real</span> <span class="n">adlnNH3dlnP</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnNH3dlnP"</span><span class="p">,</span> <span class="mf">0.</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">adlnTdlnP</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Real</span> <span class="n">pmin</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnTdlnP.pmin"</span><span class="p">,</span> <span class="mf">1.</span><span class="p">);</span>
+    <span class="n">Real</span> <span class="n">pmax</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnTdlnP.pmax"</span><span class="p">,</span> <span class="mf">20.</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ibegin</span> <span class="o">=</span> <span class="n">find_pressure_level_lesser</span><span class="p">(</span><span class="n">pmax</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">iend</span> <span class="o">=</span> <span class="n">find_pressure_level_lesser</span><span class="p">(</span><span class="n">pmin</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">);</span>
+
+        <span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">air</span> <span class="o">=</span> <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">gather_from_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ibegin</span><span class="p">);</span>
+        <span class="n">air</span><span class="p">.</span><span class="n">ToMoleFraction</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ibegin</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iend</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="o">-</span><span class="n">dlnp</span><span class="p">,</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">,</span>
+                               <span class="mf">0.</span><span class="p">,</span> <span class="n">adlnTdlnP</span><span class="p">);</span>
+          <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">adlnNH3dlnP</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Real</span> <span class="n">pmin</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnNH3dlnP.pmin"</span><span class="p">,</span> <span class="mf">1.</span><span class="p">);</span>
+    <span class="n">Real</span> <span class="n">pmax</span> <span class="o">=</span> <span class="n">pin</span><span class="o">-&gt;</span><span class="n">GetOrAddReal</span><span class="p">(</span><span class="s">"problem"</span><span class="p">,</span> <span class="s">"adlnNH3dlnP.pmax"</span><span class="p">,</span> <span class="mf">20.</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ibegin</span> <span class="o">=</span> <span class="n">find_pressure_level_lesser</span><span class="p">(</span><span class="n">pmax</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">iend</span> <span class="o">=</span> <span class="n">find_pressure_level_lesser</span><span class="p">(</span><span class="n">pmin</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">);</span>
+
+        <span class="k">auto</span> <span class="o">&amp;&amp;</span><span class="n">air</span> <span class="o">=</span> <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">gather_from_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ibegin</span><span class="p">);</span>
+        <span class="n">air</span><span class="p">.</span><span class="n">ToMoleFraction</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ibegin</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">iend</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">Extrapolate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">air</span><span class="p">,</span> <span class="o">-</span><span class="n">dlnp</span><span class="p">,</span> <span class="n">Thermodynamics</span><span class="o">::</span><span class="n">Method</span><span class="o">::</span><span class="n">DryAdiabat</span><span class="p">);</span>
+          <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">+=</span> <span class="n">adlnNH3dlnP</span> <span class="o">*</span> <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">*</span> <span class="n">dlnp</span><span class="p">;</span>
+          <span class="k">auto</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">TryEquilibriumTP_VaporCloud</span><span class="p">(</span><span class="n">air</span><span class="p">,</span> <span class="n">iNH3</span><span class="p">);</span>
+          <span class="n">air</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span class="n">iNH3</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rates</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="n">AirParcelHelper</span><span class="o">::</span><span class="n">distribute_to_primitive</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">air</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+<p>设置痕量气体和电子，碱金属。计算蒸汽压和浓度：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// set tracers, electron and Na</span>
+  <span class="kt">int</span> <span class="n">ielec</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetTracerId</span><span class="p">(</span><span class="s">"e-"</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">iNa</span> <span class="o">=</span> <span class="n">pindex</span><span class="o">-&gt;</span><span class="n">GetTracerId</span><span class="p">(</span><span class="s">"Na"</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">ptracer</span> <span class="o">=</span> <span class="n">pimpl</span><span class="o">-&gt;</span><span class="n">ptracer</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">is</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">ie</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Real</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">pthermo</span><span class="o">-&gt;</span><span class="n">GetTemp</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">pH2S</span> <span class="o">=</span> <span class="n">xH2S</span> <span class="o">*</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">pNa</span> <span class="o">=</span> <span class="n">xNa</span> <span class="o">*</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">(</span><span class="n">IPR</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">Real</span> <span class="n">svp</span> <span class="o">=</span> <span class="n">sat_vapor_p_Na_H2S_Visscher</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">pH2S</span><span class="p">);</span>
+        <span class="n">pNa</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">svp</span><span class="p">,</span> <span class="n">pNa</span><span class="p">);</span>
+
+        <span class="n">ptracer</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">(</span><span class="n">iNa</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">pNa</span> <span class="o">/</span> <span class="p">(</span><span class="n">Constants</span><span class="o">::</span><span class="n">kBoltz</span> <span class="o">*</span> <span class="n">temp</span><span class="p">);</span>
+        <span class="n">ptracer</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">(</span><span class="n">ielec</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">saha_ionization_electron_density</span><span class="p">(</span>
+            <span class="n">temp</span><span class="p">,</span> <span class="n">ptracer</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">(</span><span class="n">iNa</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="mf">5.14</span><span class="p">);</span>
+      <span class="p">}</span>
+
+  <span class="c1">// primitive to conserved conversion (hydro)</span>
+  <span class="n">peos</span><span class="o">-&gt;</span><span class="n">PrimitiveToConserved</span><span class="p">(</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">pfield</span><span class="o">-&gt;</span><span class="n">bcc</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">pcoord</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">,</span>
+                             <span class="n">js</span><span class="p">,</span> <span class="n">je</span><span class="p">,</span> <span class="n">ks</span><span class="p">,</span> <span class="n">ke</span><span class="p">);</span>
+
+  <span class="c1">// conserved to primitive conversion (tracer)</span>
+  <span class="n">peos</span><span class="o">-&gt;</span><span class="n">PassiveScalarConservedToPrimitive</span><span class="p">(</span><span class="n">pscalars</span><span class="o">-&gt;</span><span class="n">s</span><span class="p">,</span> <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">u</span><span class="p">,</span> <span class="n">pscalars</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span>
+                                          <span class="n">pscalars</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span> <span class="n">pcoord</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">ie</span><span class="p">,</span> <span class="n">js</span><span class="p">,</span> <span class="n">je</span><span class="p">,</span>
+                                          <span class="n">ks</span><span class="p">,</span> <span class="n">ke</span><span class="p">);</span>
+
+
+</code></pre></div></div>
+<p>最后是辐射传输计算。</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Microwave radiative transfer needs temperatures at cell interfaces, which</span>
+  <span class="c1">// are interpolated from cell centered hydrodynamic variables. Normally, the</span>
+  <span class="c1">// boundary conditions are taken care of internally. But, since we call</span>
+  <span class="c1">// radiative tranfer directly in pgen, we would need to update the boundary</span>
+  <span class="c1">// conditions manually. The following lines of code updates the boundary</span>
+  <span class="c1">// conditions.</span>
+  <span class="n">phydro</span><span class="o">-&gt;</span><span class="n">hbvar</span><span class="p">.</span><span class="n">SwapHydroQuantity</span><span class="p">(</span><span class="n">phydro</span><span class="o">-&gt;</span><span class="n">w</span><span class="p">,</span> <span class="n">HydroBoundaryQuantity</span><span class="o">::</span><span class="n">prim</span><span class="p">);</span>
+  <span class="n">pbval</span><span class="o">-&gt;</span><span class="n">ApplyPhysicalBoundaries</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">pbval</span><span class="o">-&gt;</span><span class="n">bvars_main_int</span><span class="p">);</span>
+
+  <span class="c1">// calculate radiative transfer</span>
+  <span class="k">auto</span> <span class="n">prad</span> <span class="o">=</span> <span class="n">pimpl</span><span class="o">-&gt;</span><span class="n">prad</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ks</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">ke</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// run RT models</span>
+    <span class="n">app</span><span class="o">-&gt;</span><span class="n">Log</span><span class="p">(</span><span class="s">"run microwave radiative transfer"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">js</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">je</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="n">prad</span><span class="o">-&gt;</span><span class="n">CalRadiance</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>本节涉及到了使用湿绝热垂直递减率来构建大气温度廓线的方法，考虑了多种水凝物潜热释放的情形，具体请参考文献【Moist Adiabats with Multiple Condensing Species: A New Theory with Application to Giant-Planet Atmospheres】</p>
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>

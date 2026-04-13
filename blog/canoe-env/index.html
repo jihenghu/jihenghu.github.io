@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Canoe Installation</title>
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/global.css">
+	<script src="/assets/js/navbar.js"></script>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+
+</head>
+<style type="text/css">
+    .container {
+        width: auto;
+        max-width: 980px;
+        padding: 0 15px;
+		margin-bottom:3em
+    }
+</style>
+
+<style>
+.floating-toc {
+  position: absolute; /* Start below banner */
+  top: 400px;         /* Initial offset = banner height */
+  <!-- right: 1.5rem; -->
+  width: 220px;
+  right: calc(2% + 1rem);
+  max-height: calc(100vh - 7rem);
+  z-index: 1030;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .floating-toc {
+    display: block;
+  }
+}
+
+.floating-toc .card {
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.92);
+}
+
+.floating-toc nav a {
+  display: block;
+  padding: .35rem .5rem;
+  font-size: .9rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.floating-toc nav a:hover {
+  background: rgba(13,110,253,.08);
+  color: #0d6efd;
+  filter: brightness(1.05);
+}
+
+.floating-toc nav a.active {
+  background: rgba(13,110,253,.18);
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.floating-toc .toc-h3 {
+  padding-left: 1.2rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 1400px) {
+  .floating-toc {
+    width: 260px;
+    right: 6rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+  .floating-toc {
+    width: 200px;
+    right: 1rem;
+  }
+   .container {
+	max-width: 780px;
+}
+  
+}
+
+@media (max-width: 991px) {
+  .floating-toc {
+    display: none; /* hide on tablets/mobile */
+  }
+  .container {
+	max-width: 780px;
+	}
+  
+}
+
+
+</style>
+
+
+
+
+
+<body class="d-flex flex-column h-100" style="padding-top:58px !important">
+    <style>
+.navbar {
+  border-bottom: 2px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5 shadow-sm">
+    <div class="container-lg">
+        <a class="navbar-brand" href="/"><strong>Jiheng's Page</strong></a>
+        <button class="navbar-toggler" style="font-size: 1em; padding: 0.5em;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-map"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/" >Home</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/research" >Research</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/publications" >Publications</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/about" >About</a>
+					
+                </li>
+                
+                <li class="nav-item ">
+					
+						<a class="nav-link" href="/blog" >Blog</a>
+					
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main role="main" class="flex-shrink-0">
+	
+
+
+
+
+<div style="
+  position:relative;
+  height:300px;
+  <!-- border-radius:20px; -->
+  overflow:hidden;
+  margin-bottom:2.2rem;">
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/images/covers/banner.png');
+    background-size:cover;
+    background-position:center;
+  "></div>
+
+  <div style="
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.35)
+    );
+  "></div>
+
+<div style="
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:1.6rem;
+  color:white;
+">
+  <h1 style="margin:0; font-weight:600;">
+    Canoe Installation
+  </h1>
+  
+  <h6 style="margin:0; font-weight:600;">
+  &copy; <span class="text-body"
+        style="color: white !important;">
+    Jiheng Hu
+  </span>, 
+   Oct 2023
+  </h6>
+  
+	  <p style="
+    margin:0;
+    font-weight:400;
+    opacity:0.5;
+    text-align:right;
+  ">
+    
+  </p>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <main class="col-lg-12 col-md-10">
+      <h2 id="what-is-canoe">What is Canoe?</h2>
+<blockquote>
+  <p>Canoe is an light-weighted extension of an astrophysical code Athena++ to enable atmospheric simulations. We utilize the static/adaptive mesh-refinement, parallelization, curvilinear geometry, and dynamic task scheduling innate to the Athena++ code and augment it with a multi-fluid hydrodynamic solver that is specially designed for atmospheric flows involving condensible gases, clouds, hazes and precipitation. The purpose of the model is to fascilitate fundamental atmospheric research while maintaining a certain degree of sophistication and reality to explain the real world observation and phenomena.</p>
+</blockquote>
+
+<ul>
+  <li>CANOE 文档地址：<a href="https://snap.chengcli.io/index.html">https://snap.chengcli.io/index.html</a>；</li>
+  <li>CANOE 仓库地址：<a href="https://github.com/chengcli/canoe.git">https://github.com/chengcli/canoe.git</a></li>
+  <li>ATHENA++仓库地址：<a href="https://github.com/PrincetonUniversity/athena.git">https://github.com/PrincetonUniversity/athena.git</a></li>
+</ul>
+
+<h2 id="环境准备">环境准备</h2>
+
+<p>本安装环境是RedHat商用系统，如果你用的是其他linux系统，请尝试做对应的依赖库的替换，请参考Canoe仓库的readme文件。</p>
+
+<h3 id="github仓库拉取源码安装依赖">GitHub仓库拉取源码，安装依赖。</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> git clone https://github.com/chengcli/canoe
+<span class="o">&gt;</span> <span class="nb">sudo </span>yum <span class="nt">-y</span> <span class="nb">install</span> <span class="si">$(</span><span class="nb">cat </span>packages_centos.txt<span class="si">)</span> <span class="c">## 安装必要的依赖</span>
+</code></pre></div></div>
+
+<p>根据版本不同，如果package文件中没有包括mpich，就需要手动下载</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>yum <span class="nb">install </span>mpich-devel  <span class="c">## 安装 MPICH，支持并行</span>
+<span class="o">&gt;</span> vim ~/bash_profile  <span class="c">#  添加如下内容</span>
+ <span class="c">#/home/jiehnghu/.bash_profile</span>
+ <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/lib64/mpich/bin
+<span class="o">&gt;</span> <span class="nb">source</span> ~/.bash_profile <span class="c">## 执行生效</span>
+</code></pre></div></div>
+
+<h3 id="科学格式读写相关依赖库">科学格式读写相关依赖库</h3>
+
+<p>安装支持NETCDF格式IO的库</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cd </span>external/
+<span class="o">&gt;</span> ./fetch_pnetcdf.sh 
+<span class="o">&gt;</span> ./install_pnetcdf.sh
+</code></pre></div></div>
+
+<p>安装FITS格式IO库</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>yum <span class="nb">install </span>cfitsio-devel
+</code></pre></div></div>
+
+<h3 id="安装后期处理的python和相关库">安装后期处理的python和相关库</h3>
+
+<p>安装python3.9，虚拟环境和开机默认进入</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cd</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>yum <span class="nb">install </span>python39
+<span class="o">&gt;</span> python3.9 <span class="nt">-m</span> venv <span class="nb">env</span>  <span class="c">## 创建虚拟环境env</span>
+<span class="o">&gt;</span> <span class="nb">source env</span>/bin/activate <span class="c">## 进入env</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">echo</span> <span class="s1">'source /home/jihenghu/env/bin/activate'</span><span class="o">&gt;&gt;</span> ~/.bash_profile <span class="c">## 追加到开机执行</span>
+</code></pre></div></div>
+
+<p>安装requirements文件中的依赖：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">cd </span>canoe/
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> pip3 <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="c"># Astropy</span>
+<span class="c"># Black</span>
+<span class="c"># Cmakelang</span>
+<span class="c"># Cpplint</span>
+<span class="c"># Netcdf4</span>
+<span class="c"># Numpy</span>
+<span class="c"># pre-commit</span>
+<span class="c"># Tqdm</span>
+</code></pre></div></div>
+<p>安装格式检查：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> pre-commit <span class="nb">install</span>
+</code></pre></div></div>
+<p>这样，canoe编译和运行，后期处理相关的环境就准备好了。</p>
+
+<h2 id="项目编译">项目编译</h2>
+
+<p>Canoe源码已经内置了一些构建好的项目，可以直接编译和运行:
+``内列举了这些内置项目的名称，这些项目的源码位于canoe/examples/路径下。
+你可以使用如下命令尽心项目的编译、安装和运行：
+例如，对于straka项目：</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">cd</span> <span class="p">;</span> <span class="nb">mkdir</span> <span class="nt">-p</span> strakaProj/build
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">cd </span>strakeProj/build/
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> cmake ~/canoe <span class="nt">-DTASK</span><span class="o">=</span>straka  <span class="c">## 编译</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> make <span class="nt">-j8</span> <span class="c">## 安装</span>
+</code></pre></div></div>
+<p>运行</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">ln</span> <span class="nt">-s</span> build/bin/straka.release <span class="nb">.</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">ln</span> <span class="nt">-s</span> build/bin/combine.py <span class="nb">.</span>  
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> <span class="nb">cp </span>build/bin/straka.inp <span class="nb">.</span>    <span class="c">## 输入的namelist</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> ./straka.release <span class="nt">-i</span> straka.inp <span class="c">## 运行</span>
+<span class="o">(</span><span class="nb">env</span><span class="o">)&gt;</span> python combine.py <span class="nt">-o</span> <span class="nb">test</span>  <span class="c">## 合并输出文件</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+<ul>
+  <li>https://github.com/chengcli/canoe</li>
+  <li>https://snap.chengcli.io</li>
+</ul>
+
+    </main>
+	
+	
+    <!-- Aside TOC -->
+	<aside class="floating-toc">
+	  <div class="card shadow-sm">
+		<div class="card-body p-3">
+		  <h6 class="text-muted mb-2">TABLE OF CONTENT</h6>
+		  <input class="form-control form-control-sm mb-3" placeholder="Filter sections">
+		  <nav id="floating-toc-list"></nav>
+		</div>
+	  </div>
+	</aside>
+	
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector("main");
+  const toc = document.getElementById("floating-toc-list");
+  const filter = document.querySelector(".floating-toc input");
+  const tocContainer = document.querySelector(".floating-toc");
+
+  if (!content || !toc) return;
+
+  const bannerHeight = 400; // height of your banner
+  const fixedTop = 100;       // top offset when fixed
+
+  /* ---- Build TOC ---- */
+  const headings = content.querySelectorAll("h2, h3");
+  headings.forEach(h => {
+    if (!h.id) {
+      h.id = h.textContent.trim().toLowerCase().replace(/[^\w]+/g, "-");
+    }
+    const a = document.createElement("a");
+    a.href = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.classList.add(`toc-${h.tagName.toLowerCase()}`);
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll("a");
+  const sections = Array.from(headings);
+
+  /* ---- Scroll behavior ---- */
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky/fixed toggle
+    if (scrollY > bannerHeight - fixedTop) {
+      tocContainer.style.position = "fixed";
+      tocContainer.style.top = fixedTop + "px";
+    } else {
+      tocContainer.style.position = "absolute";
+      tocContainer.style.top = bannerHeight + "px";
+    }
+
+    // Active section
+    let current = "";
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < 140) {
+        current = sec.id;
+      }
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+  });
+
+  /* ---- Filter ---- */
+  if (filter) {
+    filter.addEventListener("input", e => {
+      const v = e.target.value.toLowerCase();
+      links.forEach(a => {
+        a.style.display = a.textContent.toLowerCase().includes(v)
+          ? "block"
+          : "none";
+      });
+    });
+  }
+});
+</script>
+
+			
+    </main>
+    <style>
+.footer {
+  border-top: 1px solid #FFCB05;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container-lg">
+        <div class="row my-3">
+            <div class="col-6">
+                <div class="text-muted">
+                    <small>&copy; 2025-2026 JIHENG <span style="color: red">💕</span>     Last updated: Apr 2026</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="text-right text-muted">
+                    <small>Powered by GitHub Pages, theme adapted from Jekyll <a href="https://github.com/luost26/academic-homepage" target="_blank">academic</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+              ],
+              throwOnError : false
+            });
+        });
+    </script>
+</body>
+
+</html>
