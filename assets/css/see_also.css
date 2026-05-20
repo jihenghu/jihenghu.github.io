@@ -1,0 +1,127 @@
+
+/* ---- See Also Section ---- */
+ul.statistics li a:hover {
+  color:#636363;
+}
+
+ul.statistics li a:hover strong {
+  color: #636363;
+}
+
+ul.statistics li a:hover .icon:before {
+  color: #636363;
+}
+
+
+section.main.special {
+  text-align: center;
+  padding: 3em 1.5em;
+}
+
+header.major {
+  margin-bottom: 2em;
+}
+
+header.major h2 {
+  font-size: 2em;
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+header.major h2:after {
+  content: "";
+  display: block;
+  width: 3.25em;
+  height: 2px;
+  margin: 0.7em auto 0 auto;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+}
+
+/* ---- Statistics Layout ---- */
+
+ul.statistics {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  cursor: default;
+}
+
+ul.statistics li {
+  flex: 1;
+  padding: 1.5em;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Background Colors (style1–style5) */
+ul.statistics li.style1 { background-color: #efa8b0; }
+ul.statistics li.style2 { background-color: #c79cc8; }
+ul.statistics li.style3 { background-color: #a89cc8; }
+ul.statistics li.style4 { background-color: #9bb2e1; }
+ul.statistics li.style5 { background-color: #8cc9f0; }
+
+/* Rounded corners */
+ul.statistics li:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+ul.statistics li:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Title */
+ul.statistics li strong {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-top: 0.3em;
+}
+
+/* ---- Links ---- */
+
+ul.statistics li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ---- Icons ---- */
+
+.icon {
+  border-bottom: none;
+}
+
+.icon:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 2.75rem;
+  line-height: 1.3;
+  display: inline-block;
+}
+
+/* ---- Responsive (Mobile) ---- */
+
+@media screen and (max-width: 736px) {
+  ul.statistics {
+    display: block;
+    width: 100%;
+    max-width: 20em;
+  }
+
+  ul.statistics li {
+    border-radius: 8px !important;
+    margin-bottom: 1em;
+  }
+
+  ul.statistics li strong {
+    font-size: 2em;
+  }
+
+  .icon:before {
+    font-size: 3.25rem;
+  }
+}
